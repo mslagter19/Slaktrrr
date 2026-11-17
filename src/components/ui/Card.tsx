@@ -11,6 +11,7 @@ const cardVariants = cva(
                 outline: "border border-slate-200 bg-white",
                 elevated: "bg-white shadow-md hover:shadow-lg",
                 filled: "bg-slate-100",
+                transparent: "bg-transparent",
             },
 
             direction: {
@@ -53,6 +54,7 @@ type CardImageProps = Omit<ComponentProps<"img">, "alt"> & {
     alt: string // verplicht: TypeScript dwingt een alt-tekst af
     badge?: ReactNode // slot voor je eigen <Badge>
     wrapperClassName?: string // voor formaat/aspect-ratio van het vak om de afbeelding
+    film?: boolean // NIEUW: filmstrip-look (voor cases)
 }
 
 export function CardImage({
@@ -60,11 +62,12 @@ export function CardImage({
     alt,
     className,
     wrapperClassName,
+    film = false,
     loading = "lazy",
     ...rest
 }: CardImageProps) {
     return (
-        <div className={cn("relative aspect-video shrink-0 overflow-hidden", wrapperClassName)}>
+        <div className={cn("relative aspect-video shrink-0 overflow-hidden", wrapperClassName, film && "film")}>
             <img
                 alt={alt}
                 loading={loading}
@@ -74,7 +77,7 @@ export function CardImage({
                 )}
                 {...rest}
             />
-            {badge && <div className="absolute top-3 left-3">{badge}</div>}
+            {badge && <div className="absolute top-3 left-3 z-10">{badge}</div>}
         </div>
     )
 }

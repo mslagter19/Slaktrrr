@@ -1,5 +1,7 @@
 import type { ReactNode } from "react"
-import { Sidebar } from "./Sidebar"
+import { Navigation } from "./Navigation"
+import { Footer } from "./Footer"
+import { PageTransition } from "../transition/PageTransition"
 
 type AppShellProps = {
     children: ReactNode
@@ -7,11 +9,21 @@ type AppShellProps = {
 
 export function AppShell({ children }: AppShellProps) {
     return (
-        <div className="min-h-screen bg-slate-50 text-slate-900 md:grid md:grid-cols-[16rem_1fr]">
-            <Sidebar />
-            <main className="p-6 md:p-10">
-                <div className="mx-auto max-w-4xl">{children}</div>
+        <div className="flex min-h-dvh flex-col bg-black text-white">
+            <a
+                href="#main"
+                className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-md focus:bg-brand-600 focus:px-4 focus:py-2 focus:text-black"
+            >
+                Ga naar inhoud
+            </a>
+
+            <main id="main" tabIndex={-1} className="w-full flex-1 outline-none">
+                {children}
             </main>
+
+            <Footer />
+            <PageTransition />
+            <Navigation />
         </div>
     )
 }

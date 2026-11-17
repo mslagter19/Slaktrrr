@@ -13,9 +13,14 @@ const badgeVariants = cva(
                 secondary: "bg-slate-100 text-slate-900 hover:bg-slate-200 data-[pressed=true]:bg-slate-300",
                 outline: "border border-slate-300 bg-transparent text-slate-900 hover:bg-slate-50 data-[pressed=true]:bg-slate-100",
                 link: "text-brand-600 underline-offset-4 hover:underline",
+                transparent: "bg-transparent text-slate-900",
+                // NIEUW: platte "eyebrow"-tekst met ruimte voor een streepje ervoor
+                eyebrow: "gap-3 bg-transparent text-xs font-medium uppercase tracking-[0.22em] text-brand-600",
             },
 
             size: {
+                // NIEUW: geen vaste hoogte/padding, voor eyebrow-gebruik
+                none: "",
                 xs: "h-6 px-2 text-xs",
                 sm: "h-8 px-3 text-sm",
                 md: "h-10 px-4 text-sm",
@@ -45,12 +50,11 @@ export function Badge({
     variant,
     size,
     radius,
-    children
+    children,
+    ...rest // NIEUW: aria-*, id, data-* etc. komen nu ook op de div
 }: ComponentProps<"div"> & VariantProps<typeof badgeVariants>) {
     return (
-        <div
-            className={cn(badgeVariants({ variant, size, radius }), className)}
-        >
+        <div className={cn(badgeVariants({ variant, size, radius }), className)} {...rest}>
             {children}
         </div>
     )

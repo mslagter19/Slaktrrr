@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-const SITE_NAME = 'Slagvast'
+const SITE_NAME = 'Slaktrrr'
 
 type PageMeta = {
     title: string
