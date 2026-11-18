@@ -1,54 +1,72 @@
-import { NavLink } from "react-router-dom"
-import { cn } from "../../lib/cn"
-import { MusicPlayer } from "../ui/MusicPlayer"
-import { Logo } from "../logo/Logo"
+import { useState, type ReactNode } from "react"
+import { useLocation } from "react-router-dom"
+import { Button } from "../ui/Button" // pas het pad aan naar jouw Button
+import { NavModal } from "../navigation/NavModal"
+import { NeonLabel } from "../navigation/NeonLabel"
+import { Link } from "react-router-dom"
 
-const links = [
-    { to: "/", label: "Home", end: true },
-    { to: "/werk", label: "Werk" },
-    { to: "/over-mij", label: "Over mij" },
-    { to: "/contact", label: "Contact" },
-]
+type NavigationProps = {
+    logo: ReactNode // je bestaande <Logo />
+    music?: ReactNode // je bestaande muziekknop
+}
 
-export function Navigation() {
+function MenuIcon() {
     return (
-        <header className="fixed inset-x-0 bottom-0 z-50 border-t border-white/15 bg-black/90 pb-[env(safe-area-inset-bottom)] backdrop-blur">
-            <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
-                {/* Logo: vervang door je eigen <Logo /> component */}
-                <NavLink
-                    to="/"
-                    aria-label="Slaktrrr, naar home"
-                    className="flex items-center gap-2 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-600"
-                >
-                    <Logo className="text-brand-600" />
-                </NavLink>
+        <svg viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+            <path d="M4 7h16M4 12h11M4 17h16" />
+        </svg>
+    )
+}
 
-                <nav aria-label="Hoofdnavigatie">
-                    <ul className="flex items-center gap-4 sm:gap-6">
-                        {links.map(({ to, label, end }) => (
-                            <li key={to}>
-                                <NavLink
-                                    to={to}
-                                    end={end}
-                                    className={({ isActive }) =>
-                                        cn(
-                                            "relative inline-block py-2 text-sm transition-colors motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-600",
-                                            isActive ? "text-white" : "text-white/60 hover:text-white",
-                                            // het "naaldje" boven de actieve link
-                                            isActive &&
-                                            "after:absolute after:-top-[15px] after:left-1/2 after:h-0.5 after:w-5 after:-translate-x-1/2 after:bg-brand-600 after:content-['']"
-                                        )
-                                    }
-                                >
-                                    {label}
-                                </NavLink>
-                            </li>
-                        ))}
-                    </ul>
-                </nav>
+export function Navigation({ logo, music }: NavigationProps) {
+    const [open, setOpen] = useState(false)
+    const { pathname } = useLocation()
 
-                <MusicPlayer />
-            </div>
-        </header>
+    // Sluit de poster bij elke routewissel (state aanpassen tijdens het renderen,
+    // zodat er geen extra render-cyclus via een effect nodig is)
+    const [prevPathname, setPrevPathname] = useState(pathname)
+    if (pathname !== prevPathname) {
+        setPrevPathname(pathname)
+        setOpen(false)
+    }
+
+    return (
+        <>
+            <nav
+                aria-label="Hoofdnavigatie"
+                className="fixed inset-x-0 bottom-0 z-50 border-t border-white/10 bg-black/90 pb-[env(safe-area-inset-bottom)] backdrop-blur"
+            >
+                <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4">
+                    <Link
+                        to="/"
+                        aria-label="Slaktrrr, naar de homepage"
+                        className="shrink-0 text-brand-600 transition-opacity hover:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-600 motion-reduce:transition-none"
+                    >
+                        {logo}
+                    </Link>
+
+                    <div className="flex flex-1 justify-center">
+                        <NeonLabel />
+                    </div>
+
+                    <div className="flex items-center gap-8">
+                        {music}
+                        <Button
+                            variant="outline"
+                            size="md"
+                            aria-haspopup="dialog"
+                            aria-expanded={open}
+                            onClick={() => setOpen(true)}
+                            leftIcon={<MenuIcon />}
+                            className="border-white/30 text-white hover:bg-white/10 cursor-pointer"
+                        >
+                            Menu
+                        </Button>
+                    </div>
+                </div>
+            </nav>
+
+            <NavModal open={open} onClose={() => setOpen(false)} />
+        </>
     )
 }

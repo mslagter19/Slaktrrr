@@ -2,6 +2,8 @@ import type { ReactNode } from "react"
 import { Navigation } from "./Navigation"
 import { Footer } from "./Footer"
 import { PageTransition } from "../transition/PageTransition"
+import { MusicPlayer } from "../ui/MusicPlayer"
+import { Logo } from "../logo/Logo"
 
 type AppShellProps = {
     children: ReactNode
@@ -23,7 +25,7 @@ export function AppShell({ children }: AppShellProps) {
 
             <Footer />
             <PageTransition />
-            <Navigation />
+            <Navigation logo={<Logo />} music={<MusicPlayer />} />
         </div>
     )
 }

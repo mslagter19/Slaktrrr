@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './index.css'
 import App from './App.tsx'
 import { ErrorPage } from './pages/SatusPages.tsx'
+import { MotionProvider } from './components/gsap/MotionProvider.tsx'
 
 // useBlocker vereist een data router. Eén splat-route die je bestaande <App /> rendert,
 // zodat de <Routes> in App.tsx ongewijzigd blijven werken.
@@ -13,6 +14,8 @@ const router = createBrowserRouter([{ path: '*', element: <App />, errorElement:
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <MotionProvider>
+      <RouterProvider router={router} />
+    </MotionProvider>
   </StrictMode>,
 )

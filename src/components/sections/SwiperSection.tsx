@@ -5,6 +5,7 @@ type SectionColumns = 1 | 2 | 3 | 4
 
 type ColumnsSectionProps = {
     title?: string
+    id?: string
     description?: string
     background?: SectionBackground
     backgroundClassName?: string
@@ -32,10 +33,10 @@ const columnClasses: Record<SectionColumns, string> = {
     4: "grid-cols-1 md:grid-cols-2 lg:grid-cols-4",
 }
 
-export function ColumnsSection({ title, description, background = "black", backgroundClassName, columns = 1, columnsClassName, gap, container = true, className = "", children }: ColumnsSectionProps) {
+export function SwiperSection({ title, id, description, background = "black", backgroundClassName, columns = 1, columnsClassName, gap, container = true, className = "", children }: ColumnsSectionProps) {
     return (
-        <section className={`${backgroundClassName ?? backgrounds[background]} py-16 ${className}`}>
-            <div className={container ? "mx-auto max-w-6xl px-6" : "px-6"}>
+        <section id={id} className={`${backgroundClassName ?? backgrounds[background]} py-16 ${className}`}>
+            <div className={container ? "mx-auto max-w-7xl px-6" : "px-6"}>
                 {(title || description) && (
                     <header className="mb-10">
                         {title && <h2 className="text-lg font-semibold">{title}</h2>}

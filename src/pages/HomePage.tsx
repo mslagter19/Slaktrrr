@@ -1,12 +1,12 @@
 import { usePageMeta } from "../hooks/usePageMeta";
-import { ColumnsSection } from "../components/showcase/ColumnsSection";
-import { CaseSection } from "../components/showcase/CaseSection";
+import { ColumnsSection } from "../components/sections/ColumnsSection";
+import { CaseSection } from "../components/sections/CaseSection";
 import { Card, CardImage, CardBody, CardTitle, CardDescription } from "../components/ui/Card";
 import { Badge } from "../components/ui/Badge";
 import { Underline } from "../components/ui/Underline";
 import { TrackList, TrackListItem } from "../components/ui/TrackList";
 import { Instrumentation } from "../components/instrumentation/Instrumentation";
-import { HeroSection } from "../components/showcase/HeroSection";
+import { HeroSection } from "../components/sections/HeroSection";
 import { PlayingCardLine, SaxophoneLine } from "../components/ui/LineArt";
 
 export function HomePage() {
