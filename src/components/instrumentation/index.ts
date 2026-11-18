@@ -1,5 +1,5 @@
 export { Instrumentation } from "./Instrumentation"
 export { ChannelCard } from "./ChannelCard"
 export { VinylDisc } from "./VinylDisc"
-export { VerticalMeter } from "./Verticalmeter"
+export { VerticalMeter } from "./VerticalMeter"
 export type { Skill, SkillGroupId, SkillFilter } from "./types"
