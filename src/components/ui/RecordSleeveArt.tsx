@@ -12,7 +12,7 @@ type RecordSleeveArtProps = {
 // Moet binnen een element met class "group" staan (je <Card> is dat al)
 export function RecordSleeveArt({ cover, title, badge, className }: RecordSleeveArtProps) {
     return (
-        <div className={cn("relative w-2/3", className)}>
+        <div className={cn("relative w-2/3 m-auto", className)}>
             {/* De plaat: achter de hoes, schuift bij hover/focus half naar buiten */}
             <div
                 className="
