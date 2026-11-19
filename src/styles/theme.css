@@ -236,6 +236,15 @@ h1, h2, h3 {
   }
 }
 
+@utility noir-img {
+    filter: grayscale(1) contrast(1.1);
+    transition: filter var(--duration-standard) var(--ease-standard);
+}
+.group:hover .noir-img,
+.group:has(:focus-visible) .noir-img {
+    filter: grayscale(0) contrast(1);
+}
+
 /* ---------- Case-paneel (native <dialog>) rechts ---------- */
 .case-drawer {
     margin: 0 0 0 auto;

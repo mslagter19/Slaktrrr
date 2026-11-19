@@ -67,7 +67,7 @@ export function CardImage({
     ...rest
 }: CardImageProps) {
     return (
-        <div className={cn("relative aspect-video shrink-0 overflow-hidden", wrapperClassName, film && "film")}>
+        <div className={cn("relative aspect-square shrink-0 overflow-hidden", wrapperClassName, film && "film")}>
             <img
                 alt={alt}
                 loading={loading}

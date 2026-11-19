@@ -9,6 +9,7 @@ import { Card, CardBody, CardTitle } from "../components/ui/Card";
 import { CountUp } from "../components/ui/CountUp";
 import { useParams } from "react-router-dom";
 import { CaseSleeve } from "../components/ui/CaseSleeve";
+import bijMartinusImg from "../assets/images/cases/bij-martinus.webp";
 
 export function BijMartinus() {
     const { slug } = useParams<{ slug: string }>()
@@ -26,7 +27,7 @@ export function BijMartinus() {
                 subtitle="Een kerk met moves"
                 aside={
                     <CaseSleeve
-                        src="../src/assets/images/cases/bij-martinus.webp"
+                        src={bijMartinusImg}
                         alt="Screenshot van de homepage van Bakkerij Van Dam"
                         title="Bakkerij Van Dam"
                         catalogNumber="SLK-003"
@@ -51,7 +52,7 @@ export function BijMartinus() {
                     <p>BijMartinus bestaat uit meerdere ruimtes die elk een eigen sfeer hebben, maar toch als één merk moeten voelen. Het platform moest redactioneel flexibel blijven: beheerders moeten zelf pagina’s kunnen opbouwen zonder een developer. Tegelijk moest het werken op mobiel, goed vindbaar zijn en bovenop een bestaand CMS-framework draaien. De vraag was dus hoe je een eigenzinnige huisstijl vastlegt in herbruikbare bouwstenen, zodat de stijl bewaakt blijft terwijl de inhoud vrij te beheren is.</p>
                 </div>
                 <div className="">
-                    <img src="../src/assets/images/cases/bij-martinus.webp"></img>
+                    <img src={bijMartinusImg}></img>
                 </div>
             </ColumnsSection>
 
