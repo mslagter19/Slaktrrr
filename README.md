@@ -28,6 +28,16 @@ Claude Code-commands in `.claude/skills/`:
 
 ## Wijzigingen
 
+### 19 november 2026
+- **Contact**: contactformulier `ContactModal` en cv-download in de outro, met podiumlicht
+- **Secties**: cases staan als platen op een plank met een zwart naambordje
+- **Animaties**: koppen animeren met `SplitHeading`, saxofoon en speelkaart krijgen parallax
+- **Thema**: `noir-img`-filter maakt foto's zwart-wit, met kleur bij hover of focus
+- **Navigatie**: neonlabel uit de balk gehaald en andere tabtitel als de bezoeker wegklikt
+- **Layout**: grotere tekst, rondere knoppen en een kleiner logo op mobiel
+- **Tooling**: project-commands voor Claude, `CLAUDE.md` en een Nederlandse README met changelog
+- **Build**: afbeeldingspaden gerepareerd zodat ze ook in de productiebuild werken
+
 ### 18 november 2026
 - **Animaties**: `MotionProvider` met aan/uit-knop, plus `Reveal`, `SplitHeading` en `ParallaxScene`
 - **Navigatie**: volledig scherm-menu `NavModal` met neonlabels en vernieuwde navigatiebalk
@@ -53,4 +63,4 @@ Claude Code-commands in `.claude/skills/`:
 - **UI-primitives**: basiscomponenten Button, Card, Badge, Tabs, Typography, accordion en formulier
 - **Pagina's**: demopagina per primitive en een overzicht van de design tokens
 
-<!-- readme:laatste-commit ac901df -->
+<!-- readme:laatste-commit 6e32eea -->
