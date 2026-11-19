@@ -8,6 +8,10 @@ import { TrackList, TrackListItem } from "../components/ui/TrackList";
 import { Instrumentation } from "../components/instrumentation/Instrumentation";
 import { HeroSection } from "../components/sections/HeroSection";
 import { PlayingCardLine, SaxophoneLine } from "../components/ui/LineArt";
+import { Button } from "../components/ui/Button";
+import { ParallaxScene } from "../components/gsap/ParallaxScene";
+import { OutroSection } from "../components/sections/OutroSection";
+import testImage from "../assets/test-image.jpg";
 
 export function HomePage() {
     usePageMeta({
@@ -19,12 +23,21 @@ export function HomePage() {
         <div id="homepage">
             <HeroSection />
 
-            <ColumnsSection columns={2} gap="gap-10" background="black" className="relative overflow-hidden">
-                <SaxophoneLine
-                    className="pointer-events-none absolute -right-16 top-0 w-80 rotate-12 text-white/10"
-                />
+            <CaseSection
+                limit={3}
+                title="Zoek een goeie plaat uit"
+                description="Bekijk hieronder de collectie, kies er een uit en zet het op!"
+            />
+
+            <ColumnsSection columns={2} gap="gap-10" background="black" className="relative overflow-hidden flex">
+                {/* Saxofoon met parallax: iets trager dan de inhoud, lichte rotatie */}
+                <ParallaxScene aria-hidden="true" className="pointer-events-none absolute inset-0">
+                    <div data-speed="0.8" data-rotate="3" className="absolute -right-16 top-0 w-80">
+                        <SaxophoneLine className="rotate-12 text-white/10" />
+                    </div>
+                </ParallaxScene>
                 <Card variant="transparent" radius="none">
-                    <CardImage film src="/src/assets/test-image.jpg" alt="Test image"></CardImage>
+                    <CardImage film src={testImage} className="noir-img" alt="Test image"></CardImage>
                 </Card>
                 <Card variant="transparent" radius="none">
                     <CardBody>
@@ -34,9 +47,15 @@ export function HomePage() {
                         <CardTitle as="h2" className="text-4xl font-normal">
                             <span className="font-bold font-white">Code met</span> <span className="text-brand-600 italic">een ritme</span>
                         </CardTitle>
-                        <CardDescription className="text-base text-white">
+                        <CardDescription className="text-base text-white/60">
                             Slaktrrr is een front-end developer met een sterke achtergrond in UX design. Hij heeft ervaring met het bouwen van webapplicaties en websites, en is altijd op zoek naar manieren om de gebruikerservaring te verbeteren.
                         </CardDescription>
+                        <Button
+                            href="/over-mij"
+                            size="lg"
+                            className="rounded-full text-black rounded-xl w-fit mt-2">
+                            Over mij
+                        </Button>
                     </CardBody>
                 </Card>
             </ColumnsSection>
@@ -44,9 +63,12 @@ export function HomePage() {
             <Underline background="black" width="full" thickness="thin" className="pt-0 pb-0"></Underline>
 
             <ColumnsSection columns={2} gap="gap-10" background="black" className="relative overflow-hidden">
-                <PlayingCardLine
-                    className="pointer-events-none absolute -left-0 -top-8 w-60 -rotate-12 text-white/10">
-                </PlayingCardLine>
+                {/* Speelkaart met parallax: draait de andere kant op dan de saxofoon */}
+                <ParallaxScene aria-hidden="true" className="pointer-events-none absolute inset-0">
+                    <div data-speed="0.7" data-rotate="-3" className="absolute -left-0 -top-8 w-60">
+                        <PlayingCardLine className="-rotate-12 text-white/10" />
+                    </div>
+                </ParallaxScene>
 
                 <div className="">
                     <h3 className="mb-4 text-lg uppercase !text-brand-600">
@@ -62,21 +84,7 @@ export function HomePage() {
 
             <Instrumentation />
 
-            <ColumnsSection columns={1} gap="gap-10" background="black" className="pb-0">
-                <div className="flex flex-col items-center justify-center p-6">
-                    <Badge size="xs" radius="none" variant="transparent" className="text-brand-600 w-auto justify-start px-0 mb-4 text-lg uppercase">
-                        Zoek een goeie plaat uit!
-                    </Badge>
-                    <h2 className="text-white text-4xl font-bold mb-4">
-                        Cases
-                    </h2>
-                    <p className="text-white text-lg">
-                        Hier vind je mijn recente projecten en werkervaring.
-                    </p>
-                </div>
-            </ColumnsSection>
-
-            <CaseSection></CaseSection>
+            <OutroSection></OutroSection>
 
         </div>
     )

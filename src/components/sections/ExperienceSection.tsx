@@ -3,6 +3,7 @@ import { Button } from "../ui/Button"
 import { Score } from "../experience/Score"
 import { TicketStub } from "../experience/TicketStub"
 import { experiences } from "../experience/Experience.data"
+import { SplitHeading } from "../gsap/SplitHeading"
 
 // Kleine pijlen als icoon, zodat de knoptekst zelf schoon blijft
 function Chevron({ direction }: { direction: "left" | "right" }) {
@@ -39,10 +40,14 @@ export function ExperienceSection({ defaultActiveId }: ExperienceSectionProps) {
         <section id="ervaring" aria-labelledby="ervaring-titel" className="bg-black py-24 text-white">
             <div className="mx-auto max-w-7xl px-6">
                 <header className="max-w-2xl">
-                    <h2 id="ervaring-titel" className="font-heading text-4xl font-semibold sm:text-5xl">
+                    <SplitHeading
+                        as="h2"
+                        id="ervaring-titel"
+                        className="font-heading text-4xl font-bold mb-4"
+                    >
                         Mijn loopbaan als partituur
-                    </h2>
-                    <p className="mt-4 text-white/70">
+                    </SplitHeading>
+                    <p className="mt-4 text-white/60">
                         Elke noot is een plek waar ik heb gespeeld. De boog laat zien hoe lang, en hoe hoger de noot,
                         hoe groter mijn rol. Tik op een noot voor het kaartje met de details.
                     </p>

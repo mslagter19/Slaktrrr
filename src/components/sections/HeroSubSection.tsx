@@ -1,6 +1,7 @@
 import type { ReactNode } from "react"
 import { Badge } from "../ui/Badge"
 import { Button } from "../ui/Button"
+import { SplitHeading } from "../gsap/SplitHeading"
 
 type SectionBackground = "white" | "black" | "brand" | "secondary" | "transparent"
 
@@ -53,12 +54,13 @@ export function HeroSubSection({
                             {subtitle}
                         </Badge>
 
-                        <h1
+                        <SplitHeading
+                            as="h1"
                             id="hero-title"
                             className="mt-4 font-heading text-[clamp(2.6rem,11vw,5.5rem)] leading-[0.98] font-semibold tracking-tight"
                         >
                             {title}
-                        </h1>
+                        </SplitHeading>
 
                         <p className="mt-4 max-w-md text-base leading-relaxed text-white/60">
                             {description}
@@ -68,7 +70,7 @@ export function HeroSubSection({
                             <Button
                                 href="#werk"
                                 size="lg"
-                                className="rounded-full text-black"
+                                className="rounded-xl text-black"
                                 leftIcon={
                                     <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true">
                                         <path d="M4 2l10 6-10 6z" fill="currentColor" />
@@ -81,7 +83,7 @@ export function HeroSubSection({
                                 to="/over-mij"
                                 variant="outline"
                                 size="lg"
-                                className="rounded-full border-white/30 text-white hover:bg-white/10"
+                                className="rounded-xl border-white/30 text-white hover:bg-white/10"
                             >
                                 Over mij
                             </Button>
