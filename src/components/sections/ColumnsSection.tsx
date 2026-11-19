@@ -39,7 +39,7 @@ export function ColumnsSection({ title, description, background = "black", backg
                 {(title || description) && (
                     <header className="mb-10">
                         {title && <h2 className="text-lg font-semibold">{title}</h2>}
-                        {description && <p className="mt-1 text-sm opacity-70">{description}</p>}
+                        {description && <p className="mt-1 text-base text-white/60">{description}</p>}
                     </header>
                 )}
                 <div className={`grid ${columnClasses[columns]} ${gap ?? "gap-6"} ${columnsClassName ?? ""}`}>

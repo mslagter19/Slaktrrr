@@ -24,13 +24,13 @@ const VARIANTS = {
         width: 1729,
         glyphs: (
             <>
-            <path transform="translate(0 0)" d={S} fillRule="evenodd" />
-            <path transform="translate(254 0)" d={L} fillRule="evenodd" />
-            <path transform="translate(496 0)" d={A} fillRule="evenodd" />
-            <path transform="translate(751 0)" d={G} fillRule="evenodd" />
-            <path transform="translate(1010 0)" d={T} fillRule="evenodd" />
-            <path transform="translate(1268 0)" d={E} fillRule="evenodd" />
-            <path transform="translate(1508 0)" d={R} fillRule="evenodd" />
+                <path transform="translate(0 0)" d={S} fillRule="evenodd" />
+                <path transform="translate(254 0)" d={L} fillRule="evenodd" />
+                <path transform="translate(496 0)" d={A} fillRule="evenodd" />
+                <path transform="translate(751 0)" d={G} fillRule="evenodd" />
+                <path transform="translate(1010 0)" d={T} fillRule="evenodd" />
+                <path transform="translate(1268 0)" d={E} fillRule="evenodd" />
+                <path transform="translate(1508 0)" d={R} fillRule="evenodd" />
             </>
         ),
     },
@@ -39,14 +39,14 @@ const VARIANTS = {
         width: 2011,
         glyphs: (
             <>
-            <path transform="translate(0 0)" d={S} fillRule="evenodd" />
-            <path transform="translate(254 0)" d={L} fillRule="evenodd" />
-            <path transform="translate(496 0)" d={A} fillRule="evenodd" />
-            <path transform="translate(751 0)" d={K} fill="none" stroke="currentColor" strokeWidth={57} strokeLinecap="round" strokeLinejoin="round" />
-            <path transform="translate(1010 0)" d={T} fillRule="evenodd" />
-            <path transform="translate(1268 0)" d={R} fillRule="evenodd" />
-            <path transform="translate(1529 0)" d={R} fillRule="evenodd" />
-            <path transform="translate(1790 0)" d={R} fillRule="evenodd" />
+                <path transform="translate(0 0)" d={S} fillRule="evenodd" />
+                <path transform="translate(254 0)" d={L} fillRule="evenodd" />
+                <path transform="translate(496 0)" d={A} fillRule="evenodd" />
+                <path transform="translate(751 0)" d={K} fill="none" stroke="currentColor" strokeWidth={57} strokeLinecap="round" strokeLinejoin="round" />
+                <path transform="translate(1010 0)" d={T} fillRule="evenodd" />
+                <path transform="translate(1268 0)" d={R} fillRule="evenodd" />
+                <path transform="translate(1529 0)" d={R} fillRule="evenodd" />
+                <path transform="translate(1790 0)" d={R} fillRule="evenodd" />
             </>
         ),
     },
@@ -69,7 +69,7 @@ export function Logo({ variant = "slaktrrr", title, className, ...rest }: LogoPr
             xmlns="http://www.w3.org/2000/svg"
             viewBox={`0 0 ${width} 312`}
             fill="currentColor"
-            className={cn("h-8 w-auto", className)}
+            className={cn("h-4 md:h-8 w-auto", className)}
             role={name ? "img" : undefined}
             aria-label={name || undefined}
             aria-hidden={name ? undefined : true}

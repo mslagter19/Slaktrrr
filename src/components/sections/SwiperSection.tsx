@@ -39,8 +39,8 @@ export function SwiperSection({ title, id, description, background = "black", ba
             <div className={container ? "mx-auto max-w-7xl px-6" : "px-6"}>
                 {(title || description) && (
                     <header className="mb-10">
-                        {title && <h2 className="text-lg font-semibold">{title}</h2>}
-                        {description && <p className="mt-1 text-sm opacity-70">{description}</p>}
+                        {title && <h2 className="font-bold font-heading text-slate-900 text-4xl">{title}</h2>}
+                        {description && <p className="mt-1 text-base text-white/60">{description}</p>}
                     </header>
                 )}
                 <div className={`grid ${columnClasses[columns]} ${gap ?? "gap-6"} ${columnsClassName ?? ""}`}>

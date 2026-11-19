@@ -17,7 +17,7 @@ export function GroupFilter({ value, options, onChange }: GroupFilterProps) {
                     aria-pressed={value === option.id}
                     onClick={() => onChange(option.id)}
                     className={cn(
-                        "rounded-full border px-3 py-1.5 text-xs transition-colors motion-reduce:transition-none",
+                        "rounded-xl border px-4 py-2 text-base transition-colors motion-reduce:transition-none cursor-pointer",
                         value === option.id
                             ? "border-white bg-white text-black"
                             : "border-white/20 hover:border-brand-600"

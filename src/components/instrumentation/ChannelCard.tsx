@@ -19,8 +19,8 @@ export function ChannelCard({ skill, index, active }: ChannelCardProps) {
             aria-valuemax={100}
             className="group flex h-full flex-col rounded-xl border border-white/10 bg-white/5 p-4 transition-colors hover:border-brand-600 motion-reduce:transition-none"
         >
-            <div className="flex justify-between text-[11px] tracking-[0.12em] uppercase">
-                <span className="text-white/50">Ch {String(index + 1).padStart(2, "0")}</span>
+            <div className="flex justify-between text-base tracking-[0.12em] uppercase">
+                <span className="text-white/60">Ch {String(index + 1).padStart(2, "0")}</span>
                 <span className="text-brand-600">{groupLabels[skill.group]}</span>
             </div>
 
@@ -29,9 +29,9 @@ export function ChannelCard({ skill, index, active }: ChannelCardProps) {
                 <VerticalMeter level={skill.level} active={active} delay={index * 50} />
             </div>
 
-            <h3 className="font-heading text-base font-semibold">{skill.name}</h3>
-            <p className="mt-0.5 text-[11px] tabular-nums text-white/50">{skill.level} / 100</p>
-            <p className="mt-2 text-xs leading-relaxed text-white/50">{skill.note}</p>
+            <h3 className="font-heading text-base font-bold">{skill.name}</h3>
+            <p className="mt-0.5 text-base tabular-nums text-white/60">{skill.level} / 100</p>
+            <p className="mt-2 text-base leading-relaxed text-white/60">{skill.note}</p>
         </article>
     )
 }
