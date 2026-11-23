@@ -28,6 +28,16 @@ Claude Code-commands in `.claude/skills/`:
 
 ## Wijzigingen
 
+### 23 november 2026
+- **Pagina's**: nieuwe Cases met filter, Ervaring met `SetlistSection`, Reviews en Contact met FAQ
+- **Animaties**: scroll-reveals op de homepage spelen nu echt af, met verse triggers na navigatie
+- **Knoppen**: naald-wipe als hover op buttons en een equalizer-hamburger die naar een kruisje draait
+- **Contact**: formulier los als `ContactTicket`, voor de modal en de contactpagina
+- **Footer**: muziekcredits in een liner notes-modal en links met een messing groef-lijn
+- **Cases**: case BijMartinus met grotere hoes, VU-meters bij de cijfers en de stack als personnel
+- **Layout**: tickets even hoog, Instrumentation-slider op mobiel hersteld, film-effect op foto's
+- **Build**: `.htaccess` als SPA-fallback en geen scroll-flits meer bij het openen van modals
+
 ### 19 november 2026
 - **Contact**: contactformulier `ContactModal` en cv-download in de outro, met podiumlicht
 - **Secties**: cases staan als platen op een plank met een zwart naambordje
@@ -63,4 +73,4 @@ Claude Code-commands in `.claude/skills/`:
 - **UI-primitives**: basiscomponenten Button, Card, Badge, Tabs, Typography, accordion en formulier
 - **Pagina's**: demopagina per primitive en een overzicht van de design tokens
 
-<!-- readme:laatste-commit 6e32eea -->
+<!-- readme:laatste-commit b9e5881 -->
