@@ -36,10 +36,17 @@ export function CasePanel({ item, onClose }: CasePanelProps) {
 
             <p className="text-sm leading-relaxed text-white/70">{summary}</p>
 
-            <ul className="flex flex-wrap gap-2" aria-label="Categorieën">
+            {/* Categorieën als platenlabels: messing rand, kapitalen, een "spindelgat" ervoor */}
+            <ul className="flex flex-wrap gap-3" aria-label="Categorieën">
                 {categories.map((category) => (
                     <li key={category}>
-                        <Badge variant="outline" size="xs" radius="full" className="border-white/30 text-white">
+                        <Badge
+                            variant="outline"
+                            size="sm"
+                            radius="full"
+                            className="gap-2.5 border-brand-600/50 bg-brand-600/5 pl-2.5 font-heading text-xs font-semibold tracking-[0.2em] text-white uppercase hover:bg-brand-600/5"
+                        >
+                            <span aria-hidden="true" className="size-2 rounded-full bg-brand-600 ring-2 ring-brand-600/25" />
                             {category}
                         </Badge>
                     </li>

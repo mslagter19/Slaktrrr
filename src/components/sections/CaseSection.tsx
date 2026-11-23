@@ -3,6 +3,9 @@ import { Card, CardBody, CardTitle } from "../ui/Card"
 import { RecordSleeveArt } from "../ui/RecordSleeveArt"
 import { CaseDrawer } from "../ui/CaseDrawer"
 import type { CasePanelData } from "../ui/CasePanel"
+import { Reveal } from "../gsap/Reveal"
+import { SplitHeading } from "../gsap/SplitHeading"
+import { GroupFilter } from "../instrumentation/GroupFilter"
 
 import bijMartinus from "../../assets/images/cases/bij-martinus.webp"
 
@@ -13,6 +16,7 @@ type CaseSectionProps = {
     excludeSlug?: string   // de case waar je nu op zit
     category?: string      // optioneel: alleen deze categorie tonen
     limit?: number         // optioneel: max aantal tegels
+    filterable?: boolean   // optioneel: filterknoppen per categorie boven de plank (negeert limit)
 }
 
 type CaseItem = CasePanelData
@@ -30,21 +34,21 @@ const defaultCases: CaseItem[] = [
         title: "Korving houtbewerking",
         cover: bijMartinus,
         summary: "Korte samenvatting van het project. Wat was de opdracht en wat heb ik gebouwd?",
-        categories: ["Website", "Webshop"],
+        categories: ["Website"],
     },
     {
         slug: "project-3",
         title: "Project 3",
         cover: bijMartinus,
         summary: "Korte samenvatting van het project. Wat was de opdracht en wat heb ik gebouwd?",
-        categories: ["Website", "Webshop"],
+        categories: ["Webapp"],
     },
     {
         slug: "project-4",
         title: "Project 4",
         cover: bijMartinus,
         summary: "Korte samenvatting van het project. Wat was de opdracht en wat heb ik gebouwd?",
-        categories: ["Website", "Webshop"],
+        categories: ["Webshop"],
     },
 ]
 
@@ -60,19 +64,33 @@ export function CaseSection({
     excludeSlug,
     category,
     limit,
+    filterable = false,
 }: CaseSectionProps) {
     const [active, setActive] = useState<CaseItem | null>(null)
     const [open, setOpen] = useState(false)
+    const [picked, setPicked] = useState("all") // gekozen filter ("all" = alles)
+
+    // Filterknoppen: "Alle" + elke categorie die in de cases voorkomt
+    const filterOptions = useMemo(
+        () => [
+            { id: "all", label: "Alle" },
+            ...Array.from(new Set(cases.flatMap((c) => c.categories))).map((cat) => ({ id: cat, label: cat })),
+        ],
+        [cases]
+    )
+
+    // Het filter wint van de category-prop
+    const activeCategory = filterable && picked !== "all" ? picked : category
 
     const visibleCases = useMemo(() => {
         const current = cases.find((c) => c.slug === excludeSlug)
 
         return cases
             .filter((c) => c.slug !== excludeSlug)
-            .filter((c) => !category || c.categories.includes(category))
+            .filter((c) => !activeCategory || c.categories.includes(activeCategory))
             .sort((a, b) => overlap(b, current) - overlap(a, current))
-            .slice(0, limit)
-    }, [cases, excludeSlug, category, limit])
+            .slice(0, filterable ? undefined : limit)
+    }, [cases, excludeSlug, activeCategory, limit, filterable])
 
     if (visibleCases.length === 0) return null
 
@@ -86,17 +104,23 @@ export function CaseSection({
             <section className="bg-black bg-[radial-gradient(ellipse_80%_50%_at_50%_0%,rgba(255,255,255,0.10),transparent)]">
                 <div className="mx-auto max-w-7xl px-6 py-16 lg:py-24 gap-2 flex flex-col">
                     {title && (
-                        <h2 className="font-heading !font-bold text-slate-900 text-4xl font-normal text-center">
+                        <SplitHeading className="font-heading !font-bold text-slate-900 text-4xl font-normal text-center leading-[1.15]">
                             {title}
-                        </h2>
+                        </SplitHeading>
                     )}
                     {description && (
-                        <p className="text-center text-white/60">
+                        <Reveal as="p" className="text-center text-white/60">
                             {description}
-                        </p>
+                        </Reveal>
+                    )}
+                    {filterable && (
+                        <div className="mt-10 flex justify-center">
+                            <GroupFilter value={picked} options={filterOptions} onChange={setPicked} label="Filter op categorie" />
+                        </div>
                     )}
                     {/* Zoveel kolommen als er passen (min. 20rem per plaat), gap-8 ertussen */}
-                    <ul className="grid grid-cols-[repeat(auto-fill,minmax(20rem,1fr))] gap-8 mt-16">
+                    {/* Reveal als ul: de platen komen een voor een binnen; key = opnieuw binnenkomen na filteren */}
+                    <Reveal key={activeCategory ?? "all"} as="ul" stagger={0.12} className={filterable ? "grid grid-cols-[repeat(auto-fill,minmax(20rem,1fr))] gap-8 mt-10" : "grid grid-cols-[repeat(auto-fill,minmax(20rem,1fr))] gap-8 mt-16"}>
                         {visibleCases.map((item) => (
                             <li key={item.slug}>
                                 <Card
@@ -126,7 +150,7 @@ export function CaseSection({
                                                 type="button"
                                                 onClick={() => openPanel(item)}
                                                 aria-haspopup="dialog"
-                                                className="cursor-pointer text-center outline-none after:absolute after:inset-0 after:content-[''] group-hover:underline"
+                                                className="cursor-pointer text-center outline-none after:absolute after:inset-0 after:content-['']"
                                             >
                                                 {item.title}
                                             </button>
@@ -138,7 +162,7 @@ export function CaseSection({
                                 </Card>
                             </li>
                         ))}
-                    </ul>
+                    </Reveal>
                 </div>
             </section>
 

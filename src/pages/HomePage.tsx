@@ -11,6 +11,7 @@ import { PlayingCardLine, SaxophoneLine } from "../components/ui/LineArt";
 import { Button } from "../components/ui/Button";
 import { ParallaxScene } from "../components/gsap/ParallaxScene";
 import { OutroSection } from "../components/sections/OutroSection";
+import { Reveal } from "../components/gsap/Reveal";
 import testImage from "../assets/test-image.jpg";
 
 export function HomePage() {
@@ -36,11 +37,14 @@ export function HomePage() {
                         <SaxophoneLine className="rotate-12 text-white/10" />
                     </div>
                 </ParallaxScene>
+                <Reveal>
+                    <Card variant="transparent" radius="none">
+                        <CardImage film src={testImage} className="noir-img" alt="Test image"></CardImage>
+                    </Card>
+                </Reveal>
                 <Card variant="transparent" radius="none">
-                    <CardImage film src={testImage} className="noir-img" alt="Test image"></CardImage>
-                </Card>
-                <Card variant="transparent" radius="none">
-                    <CardBody>
+                    {/* Badge, titel, tekst en knop verschijnen een voor een */}
+                    <Reveal as={CardBody} delay={0.15}>
                         <Badge size="xs" radius="none" variant="transparent" className="text-brand-600 w-auto justify-start p-0 text-lg uppercase font-heading">
                             Over mij
                         </Badge>
@@ -51,12 +55,12 @@ export function HomePage() {
                             Slaktrrr is een front-end developer met een sterke achtergrond in UX design. Hij heeft ervaring met het bouwen van webapplicaties en websites, en is altijd op zoek naar manieren om de gebruikerservaring te verbeteren.
                         </CardDescription>
                         <Button
-                            href="/over-mij"
+                            to="/over-mij"
                             size="lg"
                             className="rounded-full text-black rounded-xl w-fit mt-2">
                             Over mij
                         </Button>
-                    </CardBody>
+                    </Reveal>
                 </Card>
             </ColumnsSection>
 
@@ -70,7 +74,7 @@ export function HomePage() {
                     </div>
                 </ParallaxScene>
 
-                <div className="">
+                <Reveal>
                     <h3 className="mb-4 text-lg uppercase !text-brand-600">
                         Feiten
                     </h3>
@@ -79,7 +83,7 @@ export function HomePage() {
                         <TrackListItem label="Ervaring">5+ jaar</TrackListItem>
                         <TrackListItem label="Stack">React, Tailwind</TrackListItem>
                     </TrackList>
-                </div>
+                </Reveal>
             </ColumnsSection>
 
             <Instrumentation />

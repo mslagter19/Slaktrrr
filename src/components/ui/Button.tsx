@@ -1,7 +1,9 @@
-import type { ComponentProps, ReactNode } from "react"
+import { useRef, type ComponentProps, type ReactNode } from "react"
 import { Link, type LinkProps } from "react-router-dom"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "../../lib/cn"
+import { useNeedleWipe } from "../../hooks/useNeedleWipe"
+import { useMotion } from "../gsap/Motion-context"
 
 const buttonVariants = cva(
     // Base styles
@@ -40,6 +42,9 @@ const buttonVariants = cva(
 
             animation: {
                 none: "",
+                // Naald-wipe: een vlak veegt over de knop als een naald over de groef (GSAP, zie useNeedleWipe).
+                // De tekstkleur wisselt alleen als de wipe echt draait (data-wipe staat dan op de knop).
+                wipe: "relative isolate overflow-hidden data-wipe:hover:text-black data-wipe:focus-visible:text-black",
                 subtle: "hover:brightness-110 active:brightness-95",
                 scale: "hover:scale-[1.03] active:scale-[0.97]",
                 lift: "hover:-translate-y-0.5 hover:shadow-md active:translate-y-0",
@@ -57,7 +62,7 @@ const buttonVariants = cva(
             variant: "primary",
             size: "md",
             radius: "md",
-            animation: "subtle",
+            animation: "wipe",
             iconOnly: false,
         },
     }
@@ -93,11 +98,20 @@ type ButtonProps = ButtonAsButtonProps | ButtonAsLinkProps | ButtonAsRouterLinkP
 // Eén plek voor de inhoud, zodat we de volgorde icoon-tekst-icoon niet drie keer schrijven
 type ButtonContentProps = Pick<ButtonSharedProps, "leftIcon" | "rightIcon"> & {
     children?: ReactNode
+    wipe?: string // kleurclass van het wipe-vlak, of undefined voor geen wipe
 }
 
-function ButtonContent({ leftIcon, rightIcon, children }: ButtonContentProps) {
+function ButtonContent({ leftIcon, rightIcon, children, wipe }: ButtonContentProps) {
     return (
         <>
+            {/* Wipe-vlak: verborgen tot useNeedleWipe data-wipe op de knop zet */}
+            {wipe && (
+                <span
+                    aria-hidden="true"
+                    data-wipe-fill
+                    className={cn("pointer-events-none absolute inset-0 -z-10 hidden group-data-wipe:block", wipe)}
+                />
+            )}
             {leftIcon}
             {children}
             {rightIcon}
@@ -105,14 +119,40 @@ function ButtonContent({ leftIcon, rightIcon, children }: ButtonContentProps) {
     )
 }
 
+// Variant-props die naar cva gaan en dus niet op het DOM-element mogen belanden
+const variantKeys = ["variant", "size", "radius", "fullWidth", "iconOnly", "animation"] as const
+
 export function Button(props: ButtonProps) {
+    // Eén ref voor alle drie de vormen (button, a, Link)
+    const ref = useRef<HTMLButtonElement & HTMLAnchorElement>(null)
+    const { enabled: motion } = useMotion()
+
+    const isTextLink = props.variant === "link" || props.variant === "linksecondary"
+    const hasWipe = (props.animation ?? "wipe") === "wipe" && !isTextLink
+    useNeedleWipe(ref, { enabled: motion && hasWipe })
+
+    // Ivoor over messing (primary), messing over donker (outline, secondary)
+    const wipe = hasWipe ? ((props.variant ?? "primary") === "primary" ? "bg-white" : "bg-brand-600") : undefined
+
+    const classes = cn(
+        buttonVariants({
+            variant: props.variant,
+            size: props.size,
+            radius: props.radius,
+            fullWidth: props.fullWidth,
+            iconOnly: props.iconOnly,
+            animation: props.animation,
+        }),
+        props.className
+    )
+
     // 1. Interne route
     if (props.to !== undefined) {
-        const { className, variant, size, leftIcon, rightIcon, children, ...rest } = props
+        const { leftIcon, rightIcon, children, ...rest } = omitVariants(props)
 
         return (
-            <Link className={cn(buttonVariants({ variant, size }), className)} {...rest}>
-                <ButtonContent leftIcon={leftIcon} rightIcon={rightIcon}>
+            <Link {...rest} ref={ref} className={classes}>
+                <ButtonContent leftIcon={leftIcon} rightIcon={rightIcon} wipe={wipe}>
                     {children}
                 </ButtonContent>
             </Link>
@@ -121,18 +161,13 @@ export function Button(props: ButtonProps) {
 
     // 2. Extern adres
     if (props.href !== undefined) {
-        const { className, variant, size, leftIcon, rightIcon, children, target, rel, ...rest } = props
+        const { leftIcon, rightIcon, children, target, rel, ...rest } = omitVariants(props)
 
         const safeRel = target === "_blank" ? "noopener noreferrer" : rel
 
         return (
-            <a
-                className={cn(buttonVariants({ variant, size }), className)}
-                target={target}
-                rel={safeRel}
-                {...rest}
-            >
-                <ButtonContent leftIcon={leftIcon} rightIcon={rightIcon}>
+            <a {...rest} ref={ref} className={classes} target={target} rel={safeRel}>
+                <ButtonContent leftIcon={leftIcon} rightIcon={rightIcon} wipe={wipe}>
                     {children}
                 </ButtonContent>
             </a>
@@ -140,13 +175,21 @@ export function Button(props: ButtonProps) {
     }
 
     // 3. Gewone knop
-    const { className, variant, size, leftIcon, rightIcon, children, type = "button", ...rest } = props
+    const { leftIcon, rightIcon, children, type = "button", ...rest } = omitVariants(props)
 
     return (
-        <button type={type} className={cn(buttonVariants({ variant, size }), className)} {...rest}>
-            <ButtonContent leftIcon={leftIcon} rightIcon={rightIcon}>
+        <button {...rest} ref={ref} type={type} className={classes}>
+            <ButtonContent leftIcon={leftIcon} rightIcon={rightIcon} wipe={wipe}>
                 {children}
             </ButtonContent>
         </button>
     )
+}
+
+// Haalt className en de cva-props eruit, de rest gaat naar het element
+function omitVariants<P extends { className?: string }>(props: P) {
+    const rest: Record<string, unknown> = { ...props }
+    delete rest.className
+    for (const key of variantKeys) delete rest[key]
+    return rest as Omit<P, "className" | (typeof variantKeys)[number]>
 }

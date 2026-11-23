@@ -5,7 +5,7 @@ import { tracks } from "../../lib/tracks"
 import { Tooltip } from "./Tooltip"
 
 const controlButton =
-    "inline-flex shrink-0 items-center justify-center rounded-full border border-white/25 text-white transition-colors hover:border-brand-600 hover:bg-brand-600 hover:text-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600 motion-reduce:transition-none"
+    "inline-flex shrink-0 cursor-pointer items-center justify-center rounded-full border border-white/25 text-white transition-colors hover:border-brand-600 hover:bg-brand-600 hover:text-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600 motion-reduce:transition-none"
 
 function Vinyl({ spinning }: { spinning: boolean }) {
     return (

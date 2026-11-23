@@ -5,6 +5,8 @@ import { WhiskeyGlassLine } from "../ui/LineArt"
 import { ParallaxScene } from "../gsap/ParallaxScene"
 import { ContactModal } from "../contact/ContactModal"
 import { Spotlight } from "../ui/Spotlight"
+import { Reveal } from "../gsap/Reveal"
+import { SplitHeading } from "../gsap/SplitHeading"
 
 type OutroSectionProps = {
     // Waar de cv-download naartoe wijst (later eventueel een Laravel-route)
@@ -60,40 +62,44 @@ export function OutroSection({ cvHref = "/cv/download", contactEndpoint = "/api/
                     <span aria-hidden="true" className="h-px w-8 bg-brand-600" />
                 </Badge>
 
-                <h2
+                <SplitHeading
                     id="outro-titel"
                     className="mx-auto mt-4 max-w-3xl font-heading text-[clamp(2.4rem,8vw,4.5rem)] leading-[1.02] font-semibold tracking-tight"
                 >
                     Zin in een <em className="font-medium text-brand-600">encore</em>?
-                </h2>
+                </SplitHeading>
 
-                <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/70">
-                    Heb je een vraag, een project of gewoon zin in een goed gesprek? Stuur me een bericht. Of neem
-                    eerst mijn cv mee voor de weg.
-                </p>
+                {/* Tekst en knoppen komen na de kop binnen */}
+                <Reveal delay={0.2}>
+                    <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/70">
+                        Heb je een vraag, een project of gewoon zin in een goed gesprek? Stuur me een bericht. Of neem
+                        eerst mijn cv mee voor de weg.
+                    </p>
 
-                <div className="mt-8 flex flex-wrap justify-center gap-3">
-                    <Button
-                        size="lg"
-                        className="cursor-pointer rounded-full text-black"
-                        aria-haspopup="dialog"
-                        onClick={() => setOpen(true)}
-                        leftIcon={<MailIcon />}
-                    >
-                        Stel een vraag
-                    </Button>
+                    <div className="mt-8 flex flex-wrap justify-center gap-3">
+                        <Button
+                            size="lg"
+                            radius="lg"
+                            className="cursor-pointer text-black"
+                            aria-haspopup="dialog"
+                            onClick={() => setOpen(true)}
+                            leftIcon={<MailIcon />}
+                        >
+                            Stel een vraag
+                        </Button>
 
-                    <Button
-                        href={cvHref}
-                        download
-                        variant="outline"
-                        size="lg"
-                        className="rounded-full border-white/30 text-white hover:bg-white/10"
-                        leftIcon={<DownloadIcon />}
-                    >
-                        Download cv
-                    </Button>
-                </div>
+                        <Button
+                            href={cvHref}
+                            download
+                            variant="outline"
+                            size="lg"
+                            className="border-white/30 text-white hover:bg-white/10"
+                            leftIcon={<DownloadIcon />}
+                        >
+                            Download cv
+                        </Button>
+                    </div>
+                </Reveal>
             </div>
 
             <ContactModal open={open} onClose={() => setOpen(false)} endpoint={contactEndpoint} />

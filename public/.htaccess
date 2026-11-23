@@ -1,0 +1,9 @@
+# SPA-fallback: bestaande bestanden en mappen gewoon serveren,
+# alle andere paden naar index.html, zodat React Router de route afhandelt
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>

@@ -1,15 +1,16 @@
 import { cn } from "../../lib/cn"
-import type { SkillFilter } from "./types"
 
-type GroupFilterProps = {
-    value: SkillFilter
-    options: { id: SkillFilter; label: string }[]
-    onChange: (value: SkillFilter) => void
+// Generiek: werkt met elke set string-id's (skills-groepen, case-categorieën, ...)
+type GroupFilterProps<T extends string> = {
+    value: T
+    options: { id: T; label: string }[]
+    onChange: (value: T) => void
+    label?: string // aria-label van de groep
 }
 
-export function GroupFilter({ value, options, onChange }: GroupFilterProps) {
+export function GroupFilter<T extends string>({ value, options, onChange, label = "Filter op set" }: GroupFilterProps<T>) {
     return (
-        <div className="flex flex-wrap gap-2" role="group" aria-label="Filter op set">
+        <div className="flex flex-wrap gap-2" role="group" aria-label={label}>
             {options.map((option) => (
                 <button
                     key={option.id}

@@ -4,7 +4,7 @@ import { useMotion } from "./Motion-context"
 
 type RevealProps = ComponentProps<"div"> & {
     as?: ElementType
-    y?: number // 8 tot 12 voelt rustig; groter wordt snel opvallend
+    y?: number // 10 tot 20 voelt rustig; groter wordt snel opvallend
     stagger?: number
     delay?: number
     duration?: number
@@ -19,7 +19,7 @@ type RevealProps = ComponentProps<"div"> & {
  */
 export function Reveal({
     as: Tag = "div",
-    y = 10,
+    y = 16,
     stagger = 0.08,
     delay = 0,
     duration = 0.7,
@@ -46,7 +46,7 @@ export function Reveal({
                 delay,
                 stagger,
                 ease: "power2.out",
-                scrollTrigger: { trigger: el, start: "top 88%", once: true },
+                scrollTrigger: { trigger: el, start: "top 80%", once: true },
             })
         },
         { scope: ref, dependencies: [active, y, stagger, delay, duration] }

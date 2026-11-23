@@ -44,7 +44,7 @@ export function SplitHeading({
                         ease: "power4.out",
                         stagger: 0.12,
                         delay,
-                        scrollTrigger: { trigger: el, start: "top 85%", once: true },
+                        scrollTrigger: { trigger: el, start: "top 80%", once: true },
                     })
                 },
             })

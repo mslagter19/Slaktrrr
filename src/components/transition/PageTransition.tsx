@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useRef } from "react"
 import { useBlocker, useLocation } from "react-router-dom"
 import gsap from "gsap"
+import { ScrollTrigger } from "../../lib/gsap"
 import { TransitionOverlay } from "./TransitionOverlay"
 
 const COVER_DURATION = 0.7
@@ -72,6 +73,11 @@ export function PageTransition() {
 
     // In-animatie: nieuwe pagina staat er, doek veegt weg
     useEffect(() => {
+        // Nieuwe pagina staat er: startposities van ScrollTriggers opnieuw berekenen,
+        // ook nog een keer zodra de fonts geladen zijn (die veranderen de hoogte van koppen)
+        ScrollTrigger.refresh()
+        document.fonts?.ready.then(() => ScrollTrigger.refresh())
+
         if (!isCovering.current) return
 
         gsap.timeline({

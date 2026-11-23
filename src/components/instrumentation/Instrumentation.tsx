@@ -55,12 +55,20 @@ export function Instrumentation({ skills = defaultSkills }: InstrumentationProps
                     onSlideChange={(s) => setCurrent(s.activeIndex + 1)}
                     freeMode
                     keyboard
-                    slidesPerView={4.5} //auto
+                    // Swiper bepaalt zelf de slidebreedte; geef slides geen vaste breedte via CSS,
+                    // anders klopt zijn rekensom niet en stopt de slider te vroeg (vooral op mobiel)
+                    slidesPerView={1.5}
+                    breakpoints={{
+                        640: { slidesPerView: 2.5 },
+                        768: { slidesPerView: 3.5 },
+                        1024: { slidesPerView: 4.5 },
+                        1280: { slidesPerView: 5.5 },
+                    }}
                     spaceBetween={12}
                     className="!overflow-visible"
                 >
                     {visible.map((skill, i) => (
-                        <SwiperSlide key={skill.name} className="!h-auto !w-48">
+                        <SwiperSlide key={skill.name} className="!h-auto">
                             <ChannelCard skill={skill} index={i} active={inView} />
                         </SwiperSlide>
                     ))}

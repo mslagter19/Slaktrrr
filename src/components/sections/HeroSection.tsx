@@ -1,7 +1,6 @@
 import { SplitHeading } from "../gsap/SplitHeading"
 import { Badge } from "../ui/Badge"
 import { Button } from "../ui/Button"
-import { CountUp } from "../ui/CountUp"
 import { Vinyl } from "../ui/Vinyl"
 
 /*
@@ -112,34 +111,13 @@ export function HeroSection() {
                             download
                             variant="outline"
                             size="lg"
-                            className="rounded-full border-white/30 text-white hover:bg-white/10"
+                            radius="lg"
+                            className="border-white/30 text-white hover:bg-white/10"
                             leftIcon={<DownloadIcon />}
                         >
                             Download cv
                         </Button>
                     </div>
-
-                    {/* USP's: twee tellers en één tekstwaarde */}
-                    <dl className="mt-8 flex gap-8 text-xs tracking-wider text-white/60 uppercase">
-                        <div>
-                            <dt>jaar ervaring</dt>
-                            <dd className="font-heading text-lg tracking-normal text-white normal-case">
-                                <CountUp to={6} suffix="+" duration={1.6} start="mount" />
-                            </dd>
-                        </div>
-                        <div>
-                            <dt>projecten</dt>
-                            <dd className="font-heading text-lg tracking-normal text-white normal-case">
-                                <CountUp to={40} duration={2.2} delay={0.2} start="mount" />
-                            </dd>
-                        </div>
-                        <div>
-                            <dt>stack</dt>
-                            <dd className="font-heading text-lg tracking-normal text-white normal-case">
-                                React · Laravel
-                            </dd>
-                        </div>
-                    </dl>
                 </div>
             </div>
         </section>

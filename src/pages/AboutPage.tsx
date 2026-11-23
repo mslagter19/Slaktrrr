@@ -8,6 +8,7 @@ import { NowSpinning } from "../components/ui/NowSpinning";
 import { ExperienceSection } from "../components/sections/ExperienceSection";
 import { ReviewSection } from "../components/sections/ReviewSection";
 import { SplitHeading } from "../components/gsap/SplitHeading";
+import { CardImage } from "../components/ui/Card";
 import bijMartinusImg from "../assets/images/cases/bij-martinus.webp";
 
 export function AboutPage() {
@@ -36,7 +37,7 @@ export function AboutPage() {
                     <p className="text-white/60">BijMartinus bestaat uit meerdere ruimtes die elk een eigen sfeer hebben, maar toch als één merk moeten voelen. Het platform moest redactioneel flexibel blijven: beheerders moeten zelf pagina’s kunnen opbouwen zonder een developer. Tegelijk moest het werken op mobiel, goed vindbaar zijn en bovenop een bestaand CMS-framework draaien. De vraag was dus hoe je een eigenzinnige huisstijl vastlegt in herbruikbare bouwstenen, zodat de stijl bewaakt blijft terwijl de inhoud vrij te beheren is.</p>
                 </div>
                 <div className="">
-                    <img className="noir-img" src={bijMartinusImg}></img>
+                    <CardImage film src={bijMartinusImg} alt="Screenshot van het project BijMartinus" className="noir-img" wrapperClassName="group aspect-[4/3]" />
                 </div>
             </ColumnsSection>
 

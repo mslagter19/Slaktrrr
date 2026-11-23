@@ -5,18 +5,36 @@ import { HeroSubSection } from "../components/sections/HeroSubSection";
 import { CaseSection } from "../components/sections/CaseSection";
 import { OutroSection } from "../components/sections/OutroSection";
 import { WhiskeyGlassLine } from "../components/ui/LineArt";
-import { Card, CardBody, CardTitle } from "../components/ui/Card";
+import { CardImage } from "../components/ui/Card";
+import { Badge } from "../components/ui/Badge";
 import { CountUp } from "../components/ui/CountUp";
+import { VuMeter } from "../components/ui/VuMeter";
+import { TrackList, TrackListItem } from "../components/ui/TrackList";
+import { Reveal } from "../components/gsap/Reveal";
+import { SplitHeading } from "../components/gsap/SplitHeading";
 import { useParams } from "react-router-dom";
 import { CaseSleeve } from "../components/ui/CaseSleeve";
 import bijMartinusImg from "../assets/images/cases/bij-martinus.webp";
+
+// De cijfers van het project, elk met een VU-meter (level 0–1 = uitslag van de naald)
+const levels = [
+    { to: 12, suffix: "+", level: 0.72, label: "Secties", caption: <>Eigen <span className="font-bold text-brand-600">CMS-secties</span> met bijbehorende editors</> },
+    { to: 1500, suffix: "", level: 0.95, label: "Regels", caption: <><span className="font-bold text-brand-600">Regels</span> huisstijl voor vijf ruimtes</> },
+]
+
+// De tech stack als credits op een jazzplaat: tech + "instrument"
+const personnel = [
+    { name: "Vue 3", role: "lead" },
+    { name: "TypeScript", role: "rhythm" },
+    { name: "LESS", role: "brass" },
+]
 
 export function BijMartinus() {
     const { slug } = useParams<{ slug: string }>()
 
     usePageMeta({
-        title: "Welkom bij Slaktrrr",
-        description: "De design tokens van Slaktrrr: kleur, typografie en radius."
+        title: "BijMartinus",
+        description: "Case BijMartinus: huisstijl, CMS-secties, navigatie en contactpagina voor versie 2 van het platform."
     })
 
     return (
@@ -28,14 +46,15 @@ export function BijMartinus() {
                 aside={
                     <CaseSleeve
                         src={bijMartinusImg}
-                        alt="Screenshot van de homepage van Bakkerij Van Dam"
-                        title="Bakkerij Van Dam"
+                        alt="Screenshot van de homepage van BijMartinus"
+                        title="BijMartinus"
                         catalogNumber="SLK-003"
+                        className="md:max-w-none"
                         personnel={[
-                            { label: "Client", value: "Bakkerij Van Dam" },
+                            { label: "Client", value: "BijMartinus" },
                             { label: "Rol", value: "Front-end developer" },
                             { label: "Jaar", value: "2025" },
-                            { label: "Stack", value: "React, Tailwind, GSAP" },
+                            { label: "Stack", value: "Vue 3, TypeScript, LESS" },
                         ]}
                     />
                 }
@@ -52,7 +71,7 @@ export function BijMartinus() {
                     <p>BijMartinus bestaat uit meerdere ruimtes die elk een eigen sfeer hebben, maar toch als één merk moeten voelen. Het platform moest redactioneel flexibel blijven: beheerders moeten zelf pagina’s kunnen opbouwen zonder een developer. Tegelijk moest het werken op mobiel, goed vindbaar zijn en bovenop een bestaand CMS-framework draaien. De vraag was dus hoe je een eigenzinnige huisstijl vastlegt in herbruikbare bouwstenen, zodat de stijl bewaakt blijft terwijl de inhoud vrij te beheren is.</p>
                 </div>
                 <div className="">
-                    <img src={bijMartinusImg}></img>
+                    <CardImage film src={bijMartinusImg} alt="Screenshot van het project BijMartinus" className="noir-img" wrapperClassName="group aspect-[4/3]" />
                 </div>
             </ColumnsSection>
 
@@ -63,47 +82,50 @@ export function BijMartinus() {
                 </div>
             </ColumnsSection>
 
-            <ColumnsSection columns={2} className="relative overflow-hidden" gap="gap-10">
-                <Card variant="transparent" radius="none">
-                    <CardBody className="text-center">
-                        <CountUp to={12} suffix="+" duration={1.6} start="mount" className="text-4xl font-bold" />
-                        <CardTitle className="font-normal">
-                            Eigen <span className="font-bold text-brand-600">CMS-secties</span> met bijbehorende editors
-                        </CardTitle>
-                    </CardBody>
-                </Card>
-                <Card variant="transparent" radius="none">
-                    <CardBody className="text-center">
-                        <CountUp to={1500} duration={1.6} start="mount" className="text-4xl font-bold" />
-                        <CardTitle className="font-normal">
-                            <span className="font-bold text-brand-600">regels</span> huisstijl voor vijf ruimtes
-                        </CardTitle>
-                    </CardBody>
-                </Card>
+            {/* Levels: elk cijfer met een VU-meter die uitslaat zodra hij in beeld komt */}
+            <ColumnsSection columns={1} className="relative overflow-hidden">
+                <div className="flex flex-col items-center gap-12">
+                    <Badge variant="eyebrow" size="none" radius="none" className="justify-center text-brand-600">
+                        <span aria-hidden="true" className="h-px w-8 bg-brand-600" />
+                        Levels · BijMartinus v2
+                        <span aria-hidden="true" className="h-px w-8 bg-brand-600" />
+                    </Badge>
+
+                    <div className="grid w-full max-w-4xl gap-12 md:grid-cols-2">
+                        {levels.map((item) => (
+                            <figure key={item.label} className="flex flex-col items-center text-center">
+                                <VuMeter level={item.level} label={item.label} className="max-w-xs drop-shadow-2xl" />
+                                <CountUp
+                                    to={item.to}
+                                    suffix={item.suffix}
+                                    duration={1.6}
+                                    className="mt-6 font-heading text-5xl font-semibold text-brand-600 tabular-nums"
+                                />
+                                <figcaption className="mt-2 max-w-xs text-lg text-white/70">{item.caption}</figcaption>
+                            </figure>
+                        ))}
+                    </div>
+                </div>
             </ColumnsSection>
 
-            <ColumnsSection title="Tech stack" columns={3} className="text-center">
-                <Card variant="transparent" radius="none">
-                    <CardBody className="text-center">
-                        <CardTitle className="font-normal">
-                            Vue 3
-                        </CardTitle>
-                    </CardBody>
-                </Card>
-                <Card variant="transparent" radius="none">
-                    <CardBody className="text-center">
-                        <CardTitle className="font-normal">
-                            TypeScript
-                        </CardTitle>
-                    </CardBody>
-                </Card>
-                <Card variant="transparent" radius="none">
-                    <CardBody className="text-center">
-                        <CardTitle className="font-normal">
-                            LESS
-                        </CardTitle>
-                    </CardBody>
-                </Card>
+            {/* Tech stack als "personnel": de credits van de plaat */}
+            <ColumnsSection columns={1}>
+                <div className="mx-auto flex w-full max-w-xl flex-col items-center">
+                    <Badge variant="eyebrow" size="none" radius="none" className="justify-center text-brand-600">
+                        <span aria-hidden="true" className="h-px w-8 bg-brand-600" />
+                        Tech stack
+                        <span aria-hidden="true" className="h-px w-8 bg-brand-600" />
+                    </Badge>
+                    <SplitHeading className="mt-4 font-heading text-4xl font-bold leading-[1.15]">Personnel</SplitHeading>
+
+                    <Reveal as={TrackList} className="mt-8 w-full">
+                        {personnel.map((item) => (
+                            <TrackListItem key={item.name} label={item.name}>
+                                <span className="italic text-brand-600">{item.role}</span>
+                            </TrackListItem>
+                        ))}
+                    </Reveal>
+                </div>
             </ColumnsSection>
 
             <CaseSection title="Meer cases" excludeSlug={slug} limit={4}>

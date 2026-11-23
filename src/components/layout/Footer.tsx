@@ -1,6 +1,11 @@
+import { useState } from "react"
 import { tracks } from "../../lib/tracks"
+import { GrooveLink } from "../ui/GrooveLink"
+import { CreditsModal } from "./CreditsModal"
 
 export function Footer() {
+    const [creditsOpen, setCreditsOpen] = useState(false)
+
     return (
         <footer className="border-t border-white/10 bg-black">
             {/* pb-28: ruimte zodat de vaste navigatie de footer niet bedekt */}
@@ -12,36 +17,27 @@ export function Footer() {
                             Front-end developer. Ik bouw interfaces met ritme, ruimte en oog voor detail.
                         </p>
                         <p className="font-heading text-sm font-semibold text-white mt-4">Te vinden op</p>
-                        <ul className="mt-2 space-y-1 text-sm text-white/60">
+                        <ul className="mt-2 space-y-1 text-sm">
                             <li>
-                                <a
-                                    href="https://www.linkedin.com/in/marc-slagter/"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="underline-offset-4 hover:text-white hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
-                                >
+                                <GrooveLink href="https://www.linkedin.com/in/marc-slagter/" target="_blank">
                                     LinkedIn
-                                </a>
+                                </GrooveLink>
                             </li>
                         </ul>
                     </div>
                     <div>
                         <h2 className="text-sm font-semibold text-white">Muziek op deze site</h2>
-                        <ul className="mt-2 space-y-1 text-sm text-white/60">
-                            {tracks.map((track) => (
-                                <li key={track.src}>
-                                    <a
-                                        href={track.href}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="underline-offset-4 hover:text-white hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
-                                    >
-                                        {track.title}
-                                    </a>{" "}
-                                    door {track.artist} ({track.license}), via Free Music Archive
-                                </li>
-                            ))}
-                        </ul>
+                        <p className="mt-2 text-sm text-white/60">
+                            {tracks.length} jazztracks, met dank aan de makers.
+                        </p>
+                        {/* De volledige naamsvermelding (CC BY) staat in de liner notes */}
+                        <GrooveLink
+                            onClick={() => setCreditsOpen(true)}
+                            aria-haspopup="dialog"
+                            className="mt-1 text-sm"
+                        >
+                            Bekijk de credits ♪
+                        </GrooveLink>
                     </div>
                 </div>
 
@@ -49,6 +45,8 @@ export function Footer() {
                     © {new Date().getFullYear()} Slaktrrr. Alle rechten voorbehouden.
                 </p>
             </div>
+
+            <CreditsModal open={creditsOpen} onClose={() => setCreditsOpen(false)} />
         </footer>
     )
 }

@@ -32,7 +32,6 @@ export function ExperienceSection({ defaultActiveId }: ExperienceSectionProps) {
     const [activeId, setActiveId] = useState(defaultActiveId ?? experiences[experiences.length - 1].id)
 
     const index = experiences.findIndex((item) => item.id === activeId)
-    const active = experiences[index]
     const previous = experiences[index - 1]
     const next = experiences[index + 1]
 
@@ -56,7 +55,20 @@ export function ExperienceSection({ defaultActiveId }: ExperienceSectionProps) {
                 <Score items={experiences} activeId={activeId} onSelect={setActiveId} className="mt-12" />
 
                 <div className="mt-6">
-                    <TicketStub item={active} index={index} total={experiences.length} />
+                    {/* Alle kaartjes staan op elkaar in één gridcel: de cel is zo hoog als het langste kaartje,
+                        dus elk kaartje krijgt op elk scherm dezelfde hoogte. Alleen het actieve is zichtbaar. */}
+                    <div className="grid">
+                        {experiences.map((item, i) => (
+                            <TicketStub
+                                key={item.id}
+                                item={item}
+                                index={i}
+                                total={experiences.length}
+                                active={item.id === activeId}
+                                className="[grid-area:1/1]"
+                            />
+                        ))}
+                    </div>
 
                     <div className="mt-6 flex items-center justify-between gap-4">
                         <Button

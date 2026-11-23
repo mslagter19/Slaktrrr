@@ -14,6 +14,7 @@ type HeroSubSectionProps = {
     background?: SectionBackground
     backgroundClassName?: string
     aside?: ReactNode // optioneel: element rechts naast de tekst (bv. <CaseSleeve />)
+    actions?: ReactNode | null // knoppen onder de tekst: weglaten = standaardknoppen, null = geen knoppen
 }
 
 const backgrounds: Record<SectionBackground, string> = {
@@ -33,18 +34,20 @@ export function HeroSubSection({
     backgroundClassName,
     className = "",
     aside,
+    actions,
 }: HeroSubSectionProps) {
     return (
         <section
             aria-labelledby="hero-title"
-            className={`${backgroundClassName ?? backgrounds[background]} py-16 ${className}`}
+            // overflow-x-clip: de aside mag rechts uitsteken zonder horizontale scroll
+            className={`${backgroundClassName ?? backgrounds[background]} overflow-x-clip py-16 ${className}`}
         >
             <div className={container ? "mx-auto max-w-7xl px-6" : "px-6"}>
                 {/* Zonder aside blijft het een enkele kolom; met aside: tekst links, element rechts */}
                 <div
                     className={
                         aside
-                            ? "grid items-center gap-12 md:grid-cols-[minmax(0,1fr)_minmax(0,24rem)] md:gap-16"
+                            ? "grid items-center gap-12 md:grid-cols-[minmax(0,1fr)_minmax(0,28rem)] md:gap-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,36rem)]"
                             : ""
                     }
                 >
@@ -66,6 +69,7 @@ export function HeroSubSection({
                             {description}
                         </p>
 
+                        {actions === undefined ? (
                         <div className="mt-7 flex flex-wrap gap-3">
                             <Button
                                 href="#werk"
@@ -88,9 +92,13 @@ export function HeroSubSection({
                                 Over mij
                             </Button>
                         </div>
+                        ) : (
+                            actions && <div className="mt-7 flex flex-wrap gap-3">{actions}</div>
+                        )}
                     </div>
 
-                    {aside && <div className="relative">{aside}</div>}
+                    {/* Negatieve marge: de aside loopt rechts buiten de container */}
+                    {aside && <div className="relative md:-mr-12 lg:-mr-24 xl:-mr-40">{aside}</div>}
                 </div>
             </div>
         </section>

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react"
-import { gsap } from "gsap"
+import { gsap } from "../../lib/gsap"
 import { cn } from "../../lib/cn"
 import { Badge } from "../ui/Badge"
 import { formatPeriod, startYear, type Experience } from "./Experience.data"
@@ -8,16 +8,17 @@ type TicketStubProps = {
     item: Experience
     index: number // positie in de partituur (0-based)
     total: number
+    active?: boolean // false = staat er wel (voor de hoogte), maar onzichtbaar en niet bereikbaar
     className?: string
 }
 
-export function TicketStub({ item, index, total, className }: TicketStubProps) {
+export function TicketStub({ item, index, total, active = true, className }: TicketStubProps) {
     const ref = useRef<HTMLElement>(null)
 
-    // Bij een andere noot "schuift een nieuw kaartje" binnen
+    // Wordt dit kaartje actief, dan "schuift het binnen"
     useEffect(() => {
         const el = ref.current
-        if (!el) return
+        if (!el || !active) return
 
         const mm = gsap.matchMedia()
         mm.add("(prefers-reduced-motion: no-preference)", () => {
@@ -29,7 +30,7 @@ export function TicketStub({ item, index, total, className }: TicketStubProps) {
         })
 
         return () => mm.revert()
-    }, [item.id])
+    }, [active])
 
     return (
         <article
@@ -37,9 +38,11 @@ export function TicketStub({ item, index, total, className }: TicketStubProps) {
             id={`ticket-${item.id}`}
             role="tabpanel"
             aria-labelledby={`note-${item.id}`}
+            inert={!active}
             // --notch = achtergrondkleur van de sectie, zodat de uitsparingen "doorzichtig" lijken
             className={cn(
                 "relative flex flex-col overflow-hidden rounded-xl border border-white/15 bg-white/5 text-white [--notch:var(--color-black)] sm:flex-row",
+                !active && "invisible",
                 className
             )}
         >

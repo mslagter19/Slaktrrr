@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react"
 import { NavLink } from "react-router-dom"
-import { gsap } from "gsap"
+import { gsap } from "../../lib/gsap"
 import { cn } from "../../lib/cn"
 import { navItems } from "././NavItems"
 
@@ -24,15 +24,17 @@ export function NavModal({ open, onClose }: NavModalProps) {
         if (!open && dialog.open) dialog.close()
     }, [open])
 
-    // Eén georkestreerd moment: poster schuift omhoog, titels volgen
+    // Eén georkestreerd moment: poster schuift omhoog, titels volgen.
+    // De dialog zelf beweegt (niet de inhoud), anders steekt de inhoud even uit en krijg je scrollbalken.
     useEffect(() => {
+        const dialog = dialogRef.current
         const poster = posterRef.current
-        if (!open || !poster) return
+        if (!open || !dialog || !poster) return
 
         const mm = gsap.matchMedia()
         mm.add("(prefers-reduced-motion: no-preference)", () => {
             gsap.timeline({ defaults: { ease: "power3.out" } })
-                .from(poster, { y: 48, rotate: 1.5, opacity: 0, duration: 0.45 })
+                .from(dialog, { y: 48, rotate: 1.5, opacity: 0, duration: 0.45 })
                 .from(
                     poster.querySelectorAll("[data-poster-item]"),
                     { x: -28, opacity: 0, duration: 0.35, stagger: 0.05 },
@@ -52,11 +54,11 @@ export function NavModal({ open, onClose }: NavModalProps) {
                 // Klik op de backdrop (target is de dialog zelf) sluit
                 if (e.target === e.currentTarget) onClose()
             }}
-            className="m-auto max-h-dvh w-full max-w-3xl overflow-y-auto bg-transparent sm:p-8 backdrop:bg-black/80 backdrop:backdrop-blur-sm"
+            className="m-auto max-h-dvh w-full max-w-3xl overflow-x-hidden overflow-y-auto bg-transparent sm:p-8 backdrop:bg-black/80 backdrop:backdrop-blur-sm"
         >
             <div
                 ref={posterRef}
-                className="grid grid-cols-[6.5rem_1fr] sm:grid-cols-[11rem_1fr]overflow-hidden bg-white text-black shadow-2xl"
+                className="grid grid-cols-[6.5rem_1fr] sm:grid-cols-[11rem_1fr] overflow-hidden bg-white text-black shadow-2xl"
             >
                 {/* Blauw vlak met verticale titel */}
                 <div
