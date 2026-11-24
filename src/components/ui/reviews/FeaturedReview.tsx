@@ -1,4 +1,5 @@
 import { Badge } from "../Badge"
+import { Button } from "../Button"
 import { Spotlight } from "../Spotlight"
 import { Reveal } from "../../gsap/Reveal"
 import type { Review } from "./ReviewCard"
@@ -6,6 +7,8 @@ import type { Review } from "./ReviewCard"
 type FeaturedReviewProps = {
     reviews: Review[]
     review?: Review // optioneel: deze review uitlichten, anders de hoogste score
+    moreTo?: string // optioneel: knop onder de quote, bv. "/reviews"
+    moreLabel?: string // tekst van die knop
 }
 
 /*
@@ -13,7 +16,7 @@ type FeaturedReviewProps = {
  * de quote in het heading-font met messing aanhalingstekens, de afzender als "featuring".
  * De score staat als schoppen-symbolen (5 = ♠♠♠♠♠), net als de rang op de kaarten in ReviewHand.
  */
-export function FeaturedReview({ reviews, review }: FeaturedReviewProps) {
+export function FeaturedReview({ reviews, review, moreTo, moreLabel = "Alle reviews" }: FeaturedReviewProps) {
     const featured = review ?? [...reviews].sort((a, b) => b.rating - a.rating)[0]
     if (!featured) return null
 
@@ -52,6 +55,20 @@ export function FeaturedReview({ reviews, review }: FeaturedReviewProps) {
                     <span className="sr-only">Score: {featured.rating} van 5</span>
                 </p>
             </Reveal>
+
+            {moreTo && (
+                <Reveal className="relative mt-10 flex justify-center">
+                    <Button
+                        to={moreTo}
+                        variant="outline"
+                        size="lg"
+                        radius="lg"
+                        className="border-white/30 text-white hover:bg-white/10"
+                    >
+                        {moreLabel}
+                    </Button>
+                </Reveal>
+            )}
         </section>
     )
 }

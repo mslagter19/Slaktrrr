@@ -1,7 +1,6 @@
 import { Card, CardBody, CardDescription, CardTitle } from "../ui/Card"
 import { Badge } from "../ui/Badge"
 import { Button } from "../ui/Button"
-import { Vinyl } from "../ui/Vinyl"
 import { cn } from "../../lib/cn"
 import { PLAYLISTS, type Playlist } from "../../data/Playlists"
 
@@ -44,20 +43,11 @@ export function NowSpinning({ id, playlist: playlistProp, className }: NowSpinni
         return null
     }
 
-    const { title, description, url, coverSrc, mood, tracks, duration, highlights } = playlist
+    const { title, description, url, mood, tracks, duration, highlights } = playlist
 
     return (
         <Card direction="horizontal" radius="lg" className={cn("border-white/10 bg-black text-white", className)}>
-            <div className="relative w-full shrink-0 overflow-hidden p-6 sm:w-[22rem] sm:p-8">
-                <Vinyl
-                    alt={`Draaiende plaat: ${title}`}
-                    trigger="always"
-                    duration={1.8}
-                    labelSrc={coverSrc}
-                    labelText={coverSrc ? undefined : "NOW SPINNING"}
-                    labelSubText={coverSrc ? undefined : "33 RPM · SIDE A"}
-                />
-            </div>
+
 
             <CardBody className="justify-center gap-4 p-6 sm:p-8">
                 <div className="flex items-center gap-3">
