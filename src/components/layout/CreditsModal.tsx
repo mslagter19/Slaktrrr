@@ -77,7 +77,7 @@ export function CreditsModal({ open, onClose }: CreditsModalProps) {
                 <div className="relative flex items-start justify-between gap-4">
                     <div>
                         <p className="text-xs font-medium tracking-[0.22em] text-brand-700 uppercase">Liner notes · Side A</p>
-                        <h2 id={titleId} className="mt-2 font-heading text-2xl leading-tight font-semibold sm:text-3xl">
+                        <h2 id={titleId} className="mt-2 font-heading text-2xl leading-tight font-bold sm:text-3xl !text-black">
                             Muziek op deze site
                         </h2>
                     </div>
@@ -101,7 +101,14 @@ export function CreditsModal({ open, onClose }: CreditsModalProps) {
                             <GrooveLink href={track.href} target="_blank" className="text-base text-black/60 hover:text-black focus-visible:text-black">
                                 {track.artist} ↗
                             </GrooveLink>{" "}
-                            · {track.license}
+                            ·{" "}
+                            {track.licenseHref ? (
+                                <GrooveLink href={track.licenseHref} target="_blank" className="text-base text-black/60 hover:text-black focus-visible:text-black">
+                                    {track.license}
+                                </GrooveLink>
+                            ) : (
+                                track.license
+                            )}
                         </TrackListItem>
                     ))}
                 </TrackList>
