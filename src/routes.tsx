@@ -7,6 +7,7 @@ import { ContactPage } from "@/pages/ContactPage"
 import { ExperiencePage } from "@/pages/ExperiencePage"
 import { ReviewsPage } from "@/pages/ReviewsPage"
 import { ExperimentPage } from "@/pages/ExperimentPage"
+import { StyleguidePage } from "@/pages/StyleguidePage"
 
 type PageRoute = {
     path: string
@@ -22,7 +23,8 @@ export const pageRoutes: PageRoute[] = [
     { path: "/ervaring", label: "Ervaring", group: "Start", element: <ExperiencePage /> },
     { path: "/reviews", label: "Reviews", group: "Start", element: <ReviewsPage /> },
     { path: "/contact", label: "Contact", group: "Start", element: <ContactPage /> },
-    // Verborgen: niet in navItems, alleen bereikbaar via de flamingo in de hero
+    // Verborgen: niet in navItems. /experiment via de flamingo in de hero, /styleguide via de footer
+    { path: "/styleguide", label: "Styleguide", group: "Basis", element: <StyleguidePage /> },
     { path: "/experiment", label: "Experiment", group: "Start", element: <ExperimentPage /> },
     // CASES: elke case een eigen route. Een onbekende slug valt zo door naar de 404 in App.tsx
     { path: "/cases/bij-martinus", label: "Bij Martinus", group: "Start", element: <BijMartinusPage /> },

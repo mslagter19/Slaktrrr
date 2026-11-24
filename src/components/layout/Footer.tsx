@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Link } from "react-router-dom"
 import { tracks } from "@/features/music/tracks.data"
 import { GrooveLink } from "@/components/brand/GrooveLink"
 import { CreditsModal } from "./CreditsModal"
@@ -41,9 +42,13 @@ export function Footer() {
                     </div>
                 </div>
 
-                <p className="mt-10 text-xs text-white/40">
-                    © {new Date().getFullYear()} Slaktrrr. Alle rechten voorbehouden.
-                </p>
+                <div className="mt-10 flex flex-wrap items-center justify-between gap-3 text-xs text-white/40">
+                    <p>© {new Date().getFullYear()} Slaktrrr. Alle rechten voorbehouden.</p>
+                    {/* Verborgen pagina: het design system, voor wie wil zien hoe deze site gebouwd is */}
+                    <Link to="/styleguide" className="underline-offset-4 hover:text-brand-600 hover:underline focus-visible:text-brand-600">
+                        Liner notes: de styleguide
+                    </Link>
+                </div>
             </div>
 
             <CreditsModal open={creditsOpen} onClose={() => setCreditsOpen(false)} />

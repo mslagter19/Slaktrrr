@@ -1,7 +1,7 @@
 import { test, expect, type Page } from '@playwright/test';
 
 // Alle pagina's uit src/routes.tsx (de detailroute met een echte slug)
-const ROUTES = ['/', '/over-mij', '/cases', '/cases/bij-martinus', '/ervaring', '/reviews', '/contact', '/experiment'];
+const ROUTES = ['/', '/over-mij', '/cases', '/cases/bij-martinus', '/ervaring', '/reviews', '/contact', '/experiment', '/styleguide'];
 
 // Bekende placeholders die (nog) niet bestaan: niet als fout tellen
 const IGNORED = [/\/cv\/download/];

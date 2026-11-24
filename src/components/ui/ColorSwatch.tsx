@@ -8,7 +8,7 @@ export function ColorSwatch({ variable, label, value }: ColorSwatchProps) {
     return (
         <div className="w-20 text-center">
             <div
-                className="h-16 rounded-lg border border-black/5"
+                className="h-16 rounded-lg border border-line"
                 style={{ backgroundColor: `var(${variable})` }} // dynamisch: elk token een eigen variabele
             />
             <span className="mt-1 block text-xs font-medium text-ink-muted">{label}</span>
