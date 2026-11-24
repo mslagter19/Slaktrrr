@@ -74,7 +74,7 @@ Spelregels:
 
 - Geen standaardkleuren van Tailwind (`slate-*`), geen hex en geen `rgb()` in componenten.
 - Gedempte tekst is `ink-subtle`, nooit een lagere opacity (`text-white/40` haalt het contrast niet).
-- Een effect dat vaker terugkomt, wordt een `@utility` in `theme.css`. Voorbeelden: `grain` (filmkorrel), `noir-img` en `text-neon`.
+- Een effect dat vaker terugkomt, wordt een `@utility` in `theme.css`. Voorbeelden: `grain` (filmkorrel) en `noir-img`.
 - Geen dark mode: het ontwerp ís donker. Er is één thema, en dat klopt.
 
 De **styleguide** (`/styleguide`, te vinden via de footer) laat het hele systeem live zien. De kleuren worden rechtstreeks uit `theme.css` gelezen, dus de styleguide loopt nooit achter.

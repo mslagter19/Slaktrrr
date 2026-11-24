@@ -33,7 +33,7 @@ Zoek, voordat je iets ontwerpt, met Grep/Glob naar wat er al is:
 - `src/components/sections/`: generieke paginablokken (HeroSubSection, ColumnsSection, SetlistSection, LevelsSection, SwiperSection)
 - `src/features/<onderwerp>/`: componenten, secties en data per onderwerp (cases, reviews, experience, contact, music, …)
 - `src/hooks/` en `src/lib/`
-- `src/styles/theme.css`: tokens en `@utility`-classes (`film`, `film-page`, `noir-img`, `grain`, `text-neon`)
+- `src/styles/theme.css`: tokens en `@utility`-classes (`film`, `film-page`, `noir-img`, `grain`)
 
 Kijk ook hoe vergelijkbare markup nu in pagina's gebruikt wordt.
 
