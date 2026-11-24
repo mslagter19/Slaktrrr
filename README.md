@@ -28,6 +28,16 @@ Claude Code-commands in `.claude/skills/`:
 
 ## Wijzigingen
 
+### 24 november 2026
+- **Easter egg**: neonflamingo vliegt af en toe over de hero en landt even op de draaiende plaat
+- **Experiment**: verborgen `/experiment` met een balansspel op de plaat, van Ballad tot Bebop
+- **Experiment**: roze confetti bij een record en score delen met uitdagingslink via `ShareButton`
+- **Pagina's**: nieuwe Over mij met omdraaibare hoes, verhaal, standards en teasers
+- **Muziekspeler**: zeven menselijk gemaakte jazznummers, met gelinkte licenties in de credits
+- **Animaties**: `Underline` tekent zich uit met een naald en het Spotlight-licht komt zacht op
+- **Secties**: line-art zonder horizontale scroll, sleeves weer op de plank en knop naar alle cases
+- **Opschoning**: oude playlist met de AI-gegenereerde track en Slow Music verwijderd
+
 ### 23 november 2026
 - **Pagina's**: nieuwe Cases met filter, Ervaring met `SetlistSection`, Reviews en Contact met FAQ
 - **Animaties**: scroll-reveals op de homepage spelen nu echt af, met verse triggers na navigatie
@@ -73,4 +83,4 @@ Claude Code-commands in `.claude/skills/`:
 - **UI-primitives**: basiscomponenten Button, Card, Badge, Tabs, Typography, accordion en formulier
 - **Pagina's**: demopagina per primitive en een overzicht van de design tokens
 
-<!-- readme:laatste-commit b9e5881 -->
+<!-- readme:laatste-commit 9c34f6f -->
