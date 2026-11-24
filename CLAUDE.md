@@ -25,11 +25,16 @@ Project-commands (`.claude/skills/`): `/component` (nieuw of hergebruikt UI-comp
 - `npm run build`: `tsc -b && vite build`. The type check is part of the build, so type errors fail CI.
 - `npm run lint`: ESLint (flat config in `eslint.config.js`, including the layer rules)
 - `npm run preview`: serve the `dist/` build
-- `npx playwright test`: smoke tests in `tests/site.spec.ts` on desktop Chrome, Pixel 7 and iPhone 13. `playwright.config.ts` starts (or reuses) the dev server on port 5199. Single test: `npx playwright test tests/site.spec.ts -g "<name>"`.
+- `npm test`: Playwright smoke tests (`tests/site.spec.ts`) and WCAG 2.1 AA checks (`tests/a11y.spec.ts`, axe) on desktop Chrome, Pixel 7 and iPhone 13. `playwright.config.ts` starts (or reuses) the dev server on port 5199. Single test: `npx playwright test tests/site.spec.ts -g "<name>"`.
+- `npm run test:visual` / `test:visual:update`: full-page screenshot comparison (`tests/visual.spec.ts`, tagged `@visual`). Local only; baselines are machine-specific and not in git.
+- `npm run check:bundle`: JS budget on `dist/` (initial load ≤ 245 kB gzip, each lazy chunk ≤ 30 kB). Run after `npm run build`.
+- `npm run lighthouse`: Lighthouse CI on the production build (performance ≥ 0.9, accessibility ≥ 0.95), config in `lighthouserc.cjs`.
+
+`.github/workflows/ci.yml` runs lint, build, bundle budget, `npm test` and Lighthouse on pushes to `main` and on PRs; the deploy waits for it. The way of working behind all this is documented (in Dutch, for clients too) in `docs/werkwijze.md`; keep it in sync when conventions change.
 
 ## Deployment
 
-`.github/workflows/deploy.yml` builds and deploys to GitHub Pages on push to **`master`** (Node 22, `npm ci && npm run build`). Local work happens on `main`. `vite.config.ts` reads the base path from `VITE_BASE` (default `/`), and the router uses `import.meta.env.BASE_URL` as its `basename`. Asset and link paths must therefore not assume the site is served from the root.
+`.github/workflows/deploy.yml` builds and deploys to GitHub Pages on push to **`master`** (Node 22, `npm ci && npm run build`), after the checks in `ci.yml` pass. Local work happens on `main`. `vite.config.ts` reads the base path from `VITE_BASE` (default `/`), and the router uses `import.meta.env.BASE_URL` as its `basename`. Asset and link paths must therefore not assume the site is served from the root.
 
 ## Architecture
 
@@ -52,7 +57,9 @@ Imports outside the current folder use the `@/` alias (= `src/`); imports within
 
 **Naming.** PascalCase for components (`CaseSection.tsx`), kebab-case for everything else (`cases.data.ts`, `nav-items.ts`), the `Page` suffix for pages, `use*` for hooks. Data lives next to its feature as `*.data.ts`; later it can be replaced by a fetch from Laravel without touching components.
 
-**Routing.** `main.tsx` creates a *data router* (`createBrowserRouter`) with a single splat route that renders `<App />`. The data router exists only because `PageTransition` needs `useBlocker`. The real routes are classic `<Routes>` in `App.tsx`, generated from the `pageRoutes` array in `src/routes.tsx`. To add a page, add an entry there; each case with its own page gets its own route (unknown slugs fall through to the 404). `ErrorPage`/`NotFoundPage` live in `src/pages/StatusPages.tsx`.
+**Accessibility.** Muted text uses `ink-subtle` (never `text-white/40`–`/55`, which fail contrast). A control's visible text must be part of its accessible name (don't give it an unrelated `aria-label`). The axe tests in CI enforce WCAG 2.1 AA.
+
+**Routing.** `main.tsx` creates a *data router* (`createBrowserRouter`) with a single splat route that renders `<App />`. The data router exists only because `PageTransition` needs `useBlocker`. The real routes are classic `<Routes>` in `App.tsx`, generated from the `pageRoutes` array in `src/routes.tsx`. To add a page, add an entry there using the `page()` helper, which lazy-loads it (only `HomePage` is eager); `App.tsx` wraps the routes in `<Suspense>` with a full-height fallback to avoid layout shift. Each case with its own page gets its own route (unknown slugs fall through to the 404). `ErrorPage`/`NotFoundPage` live in `src/pages/StatusPages.tsx`.
 
 **Page transitions.** `components/layout/PageTransition.tsx` uses `useBlocker` to intercept every pathname change. It animates a cover panel in, then scrolls to the top and calls `blocker.proceed()`, then animates the panel out and focuses `<main id="main">`. Any navigation goes through this, so don't add separate scroll-to-top logic.
 

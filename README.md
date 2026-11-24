@@ -10,8 +10,13 @@ npm run dev       # Vite dev server
 npm run build     # type check (tsc -b) + productiebuild
 npm run lint      # ESLint, inclusief de laagregels
 npm run preview   # de build in dist/ serveren
-npx playwright test   # smoke-tests op desktop, Pixel 7 en iPhone 13
+npm test              # smoke- en toegankelijkheidstests (WCAG 2.1 AA) op desktop, Pixel 7 en iPhone 13
+npm run test:visual   # screenshots vergelijken met de baseline (alleen lokaal)
+npm run check:bundle  # JavaScript-budget, na een build
+npm run lighthouse    # Lighthouse op de productiebuild
 ```
+
+Hoe en waarom het project zo is opgezet, staat in [`docs/werkwijze.md`](docs/werkwijze.md). Het design system staat live op `/styleguide`.
 
 ## Structuur
 

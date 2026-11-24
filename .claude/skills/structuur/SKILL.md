@@ -35,7 +35,7 @@ Lees elk bestand en controleer:
 3. **Tailwind eerst**:
    - inline `style={{}}` met statische waarden
    - nieuwe losse CSS in `theme.css`/`index.css` die met Tailwind of een `@utility` kan
-4. **Tokens**: hardgecodeerde kleuren (hex, `rgb(`, `hsl(`) of Tailwind-standaardkleuren (`slate-*`, `gray-*`, `zinc-*`, …) in plaats van de tokens uit `src/styles/theme.css`. In `components/ui/` alleen de semantische laag (`surface`, `line`, `ink`, `on-brand`, …), geen `brand-*`-schaal tenzij het een merkaccent is.
+4. **Tokens**: hardgecodeerde kleuren (hex, `rgb(`, `hsl(`) of Tailwind-standaardkleuren (`slate-*`, `gray-*`, `zinc-*`, …) in plaats van de tokens uit `src/styles/theme.css`. In `components/ui/` alleen de semantische laag (`surface`, `line`, `ink`, `on-brand`, …), geen `brand-*`-schaal tenzij het een merkaccent is. Gedempte tekst is `text-ink-subtle`; `text-white/40` tot `/55` haalt het contrast (WCAG AA) niet.
 5. **Geen dark mode**: `dark:`-classes of `prefers-color-scheme`.
 6. **`cn()`**: classNames die met template strings of `+` zijn samengevoegd in plaats van `cn()` uit `src/lib/cn.ts`.
 7. **GSAP en motion**:
