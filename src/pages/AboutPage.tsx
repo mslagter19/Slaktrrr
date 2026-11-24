@@ -5,7 +5,6 @@ import { SetlistSection, type SetlistStep } from "../components/sections/Setlist
 import { OutroSection } from "../components/sections/OutroSection";
 import { Underline } from "../components/ui/Underline";
 import { Button } from "../components/ui/Button";
-import { Badge } from "../components/ui/Badge";
 import { CaseSleeve } from "../components/ui/CaseSleeve";
 import { NowSpinning } from "../components/ui/NowSpinning";
 import { TrackList, TrackListItem } from "../components/ui/TrackList";
@@ -15,6 +14,7 @@ import { SplitHeading } from "../components/gsap/SplitHeading";
 import { Reveal } from "../components/gsap/Reveal";
 // TIJDELIJK: vervang door je portretfoto, bv. src/assets/images/portret.webp
 import portrait from "../assets/test-image.jpg";
+import { Eyebrow } from "../components/ui/Eyebrow";
 
 // CONCEPT: pas de principes aan naar wat jij belangrijk vindt
 const standards: SetlistStep[] = [
@@ -55,7 +55,7 @@ export function AboutPage() {
                 description="Ik ben Marc, front-end developer uit Arnhem met een achtergrond in UX design. Ik bouw websites die net zo prettig voelen als ze eruitzien: toegankelijk, snel en met oog voor de kleine details. Draai de hoes om voor de liner notes."
                 actions={
                     <>
-                        <Button to="/contact" size="lg" radius="lg" className="text-black">
+                        <Button to="/contact" size="lg" radius="lg">
                             Stel een vraag
                         </Button>
                         <Button
@@ -64,7 +64,7 @@ export function AboutPage() {
                             variant="outline"
                             size="lg"
                             radius="lg"
-                            className="border-white/30 text-white hover:bg-white/10"
+                           
                         >
                             Download cv
                         </Button>
@@ -147,10 +147,7 @@ export function AboutPage() {
             <ColumnsSection columns={2} gap="gap-10" columnsClassName="items-center">
                 {/* CONCEPT: vul aan met je eigen hobby's */}
                 <div>
-                    <Badge variant="eyebrow" size="none" radius="none" className="text-brand-600">
-                        <span aria-hidden="true" className="h-px w-8 bg-brand-600" />
-                        B-kant
-                    </Badge>
+                    <Eyebrow>B-kant</Eyebrow>
                     <SplitHeading as="h2" className="mt-4 mb-4 font-heading text-4xl font-bold">
                         Buiten de code
                     </SplitHeading>

@@ -50,20 +50,18 @@ export function MusicPlayer() {
     }, [])
 
     // Hint: 5 seconden zichtbaar zodra je op de homepage komt
-    const { pathname } = useLocation()
-    const [hintVisible, setHintVisible] = useState(false)
+    // Afgeleid i.p.v. gezet: elk bezoek aan "/" heeft een eigen location.key,
+    // en na 5 s markeren we alleen dát bezoek als "gezien" (setState in een callback, niet in de effect-body)
+    const { pathname, key } = useLocation()
+    const [hintSeenFor, setHintSeenFor] = useState<string | null>(null)
 
     useEffect(() => {
-        if (pathname !== "/") {
-            setHintVisible(false)
-            return
-        }
-        setHintVisible(true)
-        const timer = setTimeout(() => setHintVisible(false), 5000)
+        if (pathname !== "/") return
+        const timer = setTimeout(() => setHintSeenFor(key), 5000)
         return () => clearTimeout(timer)
-    }, [pathname])
+    }, [pathname, key])
 
-    const showHint = hintVisible && !playing
+    const showHint = pathname === "/" && hintSeenFor !== key && !playing
 
     if (!track) return null
 
@@ -85,7 +83,7 @@ export function MusicPlayer() {
                 <button
                     type="button"
                     onClick={() => {
-                        setHintVisible(false)
+                        setHintSeenFor(key)
                         setPlaying((p) => !p)
                     }}
                     aria-pressed={playing}

@@ -1,9 +1,10 @@
 import { useRef } from "react"
 import { SplitHeading } from "../gsap/SplitHeading"
-import { Badge } from "../ui/Badge"
 import { Button } from "../ui/Button"
 import { Vinyl } from "../ui/Vinyl"
 import { HeroFlamingo } from "../experiment/HeroFlamingo"
+import { Eyebrow } from "../ui/Eyebrow"
+import { DownloadIcon, PlayIcon } from "../ui/icons"
 
 /*
  * De hero rekent met de bottom-navigatie via de CSS-variabele --nav-h.
@@ -13,14 +14,6 @@ import { HeroFlamingo } from "../experiment/HeroFlamingo"
 
 // Notenbalk: 5 lijnen, gelijkmatig verdeeld over de hoogte van de SVG
 const STAFF_LINES = [20, 60, 100, 140, 180]
-
-function DownloadIcon() {
-    return (
-        <svg viewBox="0 0 16 16" className="size-4" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <path d="M8 2v8M4.5 7 8 10.5 11.5 7M3 13.5h10" />
-        </svg>
-    )
-}
 
 export function HeroSection() {
     // De flamingo landt op het midden van deze plaat
@@ -84,10 +77,7 @@ export function HeroSection() {
             {/* Zelfde container als de andere secties: tekst lijnt nu uit */}
             <div className="relative mx-auto w-full max-w-7xl px-6">
                 <div className="max-w-136">
-                    <Badge variant="eyebrow" size="none" radius="none" className="text-brand-600">
-                        <span aria-hidden="true" className="h-px w-8 bg-brand-600" />
-                        Side A · Front-end developer
-                    </Badge>
+                    <Eyebrow>Side A · Front-end developer</Eyebrow>
 
                     <SplitHeading
                         as="h1"
@@ -106,11 +96,9 @@ export function HeroSection() {
                         <Button
                             to="/cases"
                             size="lg"
-                            className="rounded-full text-black rounded-xl"
+                            className="rounded-xl"
                             leftIcon={
-                                <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true">
-                                    <path d="M4 2l10 6-10 6z" fill="currentColor" />
-                                </svg>
+                                <PlayIcon />
                             }
                         >
                             Bekijk mijn werk
@@ -121,7 +109,7 @@ export function HeroSection() {
                             variant="outline"
                             size="lg"
                             radius="lg"
-                            className="border-white/30 text-white hover:bg-white/10"
+                           
                             leftIcon={<DownloadIcon />}
                         >
                             Download cv

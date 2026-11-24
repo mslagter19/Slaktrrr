@@ -21,7 +21,7 @@ export function VerticalMeter({ level, active, delay = 0, className }: VerticalM
                 return (
                     <span
                         key={i}
-                        style={{ transitionDelay: isLit ? `${delay + i * 40}ms` : "0ms" }}
+                        style={{ transitionDelay: isLit ? `${delay + i * 40}ms` : "0ms" }} // dynamisch: vertraging per segment
                         className={cn(
                             "flex-1 rounded-[1px] bg-white/10 transition-colors duration-150 motion-reduce:transition-none",
                             isLit && (i >= PEAK_FROM ? "bg-brand-600" : "bg-white")

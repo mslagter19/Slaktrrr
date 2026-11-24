@@ -9,12 +9,12 @@ type LabelProps = ComponentProps<"label"> & {
 export function Label({ className, required, children, ...props }: LabelProps) {
     return (
         <label
-            className={cn("block text-sm font-medium text-slate-700", className)}
+            className={cn("block text-sm font-medium text-ink-muted", className)}
             {...props}
         >
             {children}
             {required && (
-                <span className="ml-0.5 text-red-500" aria-hidden="true">
+                <span className="ml-0.5 text-danger-500" aria-hidden="true">
                     *
                 </span>
             )}

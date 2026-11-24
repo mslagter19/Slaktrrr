@@ -1,6 +1,7 @@
 import { useEffect, useId, useState, type ComponentProps } from "react"
 import { Button } from "./Button"
 import { Tooltip } from "./Tooltip"
+import { ShareIcon } from "./icons"
 
 /*
  * Deelknop. Op apparaten met een deelmenu (vooral telefoons) opent het native menu;
@@ -25,14 +26,6 @@ type Feedback = "idle" | "copied" | "failed"
 const MESSAGES: Record<Exclude<Feedback, "idle">, string> = {
     copied: "Gekopieerd! Plak het waar je wilt.",
     failed: "Kopiëren lukte niet.",
-}
-
-function ShareIcon() {
-    return (
-        <svg viewBox="0 0 16 16" className="size-4" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <path d="M8 10V2M5 4.5 8 1.5l3 3M3.5 7.5v6h9v-6" />
-        </svg>
-    )
 }
 
 export function ShareButton({ title, text, url, label = "Deel", ...buttonProps }: ShareButtonProps) {

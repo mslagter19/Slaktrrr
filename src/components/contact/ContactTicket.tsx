@@ -67,7 +67,7 @@ function Field({ label, name, error, optional, multiline, type = "text", autoCom
             {multiline ? <textarea rows={4} {...shared} /> : <input type={type} {...shared} />}
 
             {error && (
-                <p id={errorId} className="mt-1 text-sm text-red-400">
+                <p id={errorId} className="mt-1 text-sm text-danger-500">
                     {error}
                 </p>
             )}
@@ -157,7 +157,7 @@ export function ContactTicket({
                         variant="outline"
                         size="xs"
                         radius="full"
-                        className="border-white/30 text-white hover:bg-transparent"
+                        className="hover:bg-transparent"
                     >
                         Gastenlijst
                     </Badge>
@@ -179,11 +179,11 @@ export function ContactTicket({
                             je bericht is aangekomen. Ik antwoord zo snel mogelijk.
                         </p>
                         {onClose ? (
-                            <Button variant="outline" size="sm" onClick={onClose} className="border-white/30 text-white hover:bg-white/10">
+                            <Button variant="outline" size="sm" onClick={onClose}>
                                 Sluiten
                             </Button>
                         ) : (
-                            <Button variant="outline" size="sm" onClick={() => setStatus("idle")} className="border-white/30 text-white hover:bg-white/10">
+                            <Button variant="outline" size="sm" onClick={() => setStatus("idle")}>
                                 Nog een bericht
                             </Button>
                         )}
@@ -209,13 +209,13 @@ export function ContactTicket({
                         />
 
                         {status === "error" && (
-                            <p role="alert" className="text-sm text-red-400">
+                            <p role="alert" className="text-sm text-danger-500">
                                 Versturen is niet gelukt. Probeer het later nog eens.
                             </p>
                         )}
 
                         <div className="flex items-center gap-4">
-                            <Button type="submit" size="lg" disabled={status === "sending"} className="rounded-full text-black">
+                            <Button type="submit" size="lg" disabled={status === "sending"} className="rounded-full">
                                 {status === "sending" ? "Versturen…" : "Verstuur"}
                             </Button>
                         </div>

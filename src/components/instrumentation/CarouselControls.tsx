@@ -1,4 +1,4 @@
-import { LuChevronLeft, LuChevronRight } from "react-icons/lu"
+import { ChevronIcon } from "../ui/icons"
 
 type CarouselControlsProps = {
     current: number
@@ -23,16 +23,16 @@ export function CarouselControls({ current, total, progress, onPrev, onNext }: C
             <div className="h-0.5 flex-1 overflow-hidden rounded-full bg-white/10" aria-hidden="true">
                 <div
                     className="h-full bg-brand-600 transition-[width] duration-150 motion-reduce:transition-none"
-                    style={{ width: `${Math.max(8, progress * 100)}%` }}
+                    style={{ width: `${Math.max(8, progress * 100)}%` }} // dynamisch: voortgang
                 />
             </div>
 
             <div className="flex gap-1.5">
                 <button type="button" aria-label="Vorige" onClick={onPrev} className={buttonClass}>
-                    <LuChevronLeft />
+                    <ChevronIcon direction="left" />
                 </button>
                 <button type="button" aria-label="Volgende" onClick={onNext} className={buttonClass}>
-                    <LuChevronRight />
+                    <ChevronIcon direction="right" />
                 </button>
             </div>
         </div>

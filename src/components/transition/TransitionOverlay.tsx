@@ -16,8 +16,7 @@ export function TransitionOverlay({ panelRef, discRef }: TransitionOverlayProps)
         <div
             ref={panelRef}
             aria-hidden="true"
-            style={{ visibility: "hidden" }}
-            className="pointer-events-none fixed inset-x-0 top-0 bottom-(--nav-height,0px) z-40 flex items-center justify-center bg-black"
+            className="invisible pointer-events-none fixed inset-x-0 top-0 bottom-(--nav-height,0px) z-40 flex items-center justify-center bg-black"
         >
             <svg
                 ref={discRef}

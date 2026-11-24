@@ -4,24 +4,7 @@ import { Score } from "../experience/Score"
 import { TicketStub } from "../experience/TicketStub"
 import { experiences } from "../experience/Experience.data"
 import { SplitHeading } from "../gsap/SplitHeading"
-
-// Kleine pijlen als icoon, zodat de knoptekst zelf schoon blijft
-function Chevron({ direction }: { direction: "left" | "right" }) {
-    return (
-        <svg
-            viewBox="0 0 16 16"
-            className="size-4"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={1.75}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
-        >
-            <path d={direction === "left" ? "M10 3 5 8l5 5" : "M6 3l5 5-5 5"} />
-        </svg>
-    )
-}
+import { ChevronIcon } from "../ui/icons"
 
 type ExperienceSectionProps = {
     // Standaard start de partituur bij de huidige (laatste) rol
@@ -76,8 +59,8 @@ export function ExperienceSection({ defaultActiveId }: ExperienceSectionProps) {
                             size="sm"
                             disabled={!previous}
                             onClick={() => previous && setActiveId(previous.id)}
-                            leftIcon={<Chevron direction="left" />}
-                            className="border-white/30 text-white hover:bg-white/10"
+                            leftIcon={<ChevronIcon direction="left" />}
+                           
                         >
                             Eerder
                         </Button>
@@ -91,8 +74,8 @@ export function ExperienceSection({ defaultActiveId }: ExperienceSectionProps) {
                             size="sm"
                             disabled={!next}
                             onClick={() => next && setActiveId(next.id)}
-                            rightIcon={<Chevron direction="right" />}
-                            className="border-white/30 text-white hover:bg-white/10"
+                            rightIcon={<ChevronIcon direction="right" />}
+                           
                         >
                             Later
                         </Button>

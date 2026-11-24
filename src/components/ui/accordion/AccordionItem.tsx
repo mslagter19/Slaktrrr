@@ -9,7 +9,7 @@ const itemVariants = cva("", {
             default: "",
             bordered: "",
             // Bij "separated" krijgt elk item zelf een rand en afronding
-            separated: "overflow-hidden rounded-lg border border-slate-200",
+            separated: "overflow-hidden rounded-lg border border-line",
         },
     },
 });

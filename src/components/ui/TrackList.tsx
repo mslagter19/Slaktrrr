@@ -14,7 +14,7 @@ const trackListVariants = cva("m-0 flex flex-col text-sm", {
             // voor donkere secties (Noir)
             dark: "text-white [--track-line:rgb(255_255_255/0.18)] [--track-muted:var(--color-white-faint)]",
             // voor lichte secties
-            light: "text-slate-900 [--track-line:var(--color-slate-200)] [--track-muted:var(--color-slate-500)]",
+            light: "text-black [--track-line:rgb(11_11_13/0.15)] [--track-muted:var(--color-black-ash)]",
         },
     },
 

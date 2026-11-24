@@ -8,9 +8,9 @@ const cardVariants = cva(
     {
         variants: {
             variant: {
-                outline: "border border-slate-200 bg-white",
-                elevated: "bg-white shadow-md hover:shadow-lg",
-                filled: "bg-slate-100",
+                outline: "border border-line bg-surface",
+                elevated: "bg-surface-raised shadow-md hover:shadow-lg",
+                filled: "bg-surface-raised",
                 transparent: "bg-transparent",
             },
 
@@ -88,7 +88,7 @@ export function CardBody({ className, ...rest }: ComponentProps<"div">) {
 }
 
 export function CardDescription({ className, ...rest }: ComponentProps<"p">) {
-    return <p className={cn("text-sm text-slate-600", className)} {...rest} />
+    return <p className={cn("text-sm text-ink-muted", className)} {...rest} />
 }
 
 /* ---------- CardTitle (met stretched link) ---------- */
@@ -135,7 +135,7 @@ export function CardTitle(props: CardTitleProps) {
     // 3. Geen link: alleen tekst
 
     return (
-        <Heading className={cn("font-heading text-lg font-semibold text-slate-900", className)}>
+        <Heading className={cn("font-heading text-lg font-semibold text-ink-strong", className)}>
             {content}
         </Heading>
     )

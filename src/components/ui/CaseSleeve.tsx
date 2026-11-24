@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState, type ComponentProps } from "react"
-import { gsap } from "gsap"
+import { gsap } from "../../lib/gsap"
+import { useMotion } from "../gsap/Motion-context"
 import { cn } from "../../lib/cn"
-import { GRAIN } from "../../lib/grain"
+import { FlipIcon } from "./icons"
 
 type PersonnelItem = {
     label: string // bv. "Client", "Rol", "Jaar"
@@ -31,12 +32,13 @@ export function CaseSleeve({
 }: CaseSleeveProps) {
     const innerRef = useRef<HTMLDivElement>(null)
     const [flipped, setFlipped] = useState(false)
+    const { enabled } = useMotion()
 
     useEffect(() => {
         const inner = innerRef.current
         if (!inner) return
 
-        const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        const reduce = !enabled || window.matchMedia("(prefers-reduced-motion: reduce)").matches
 
         const tween = gsap.to(inner, {
             rotationY: flipped ? 180 : 0,
@@ -48,7 +50,7 @@ export function CaseSleeve({
         return () => {
             tween.kill()
         }
-    }, [flipped, duration])
+    }, [flipped, duration, enabled])
 
     return (
         <div
@@ -83,8 +85,7 @@ export function CaseSleeve({
                             {/* Korrel + diagonale glans (zelfde lichtval als de Vinyl) */}
                             <div
                                 aria-hidden="true"
-                                className="pointer-events-none absolute inset-0 opacity-[0.12] mix-blend-overlay"
-                                style={{ backgroundImage: GRAIN }}
+                                className="grain pointer-events-none absolute inset-0 opacity-[0.12] mix-blend-overlay"
                             />
                             <div
                                 aria-hidden="true"
@@ -113,8 +114,7 @@ export function CaseSleeve({
                         >
                             <div
                                 aria-hidden="true"
-                                className="pointer-events-none absolute inset-0 opacity-[0.06] mix-blend-multiply"
-                                style={{ backgroundImage: GRAIN }}
+                                className="grain pointer-events-none absolute inset-0 opacity-[0.06] mix-blend-multiply"
                             />
 
                             <p className="relative text-sm font-medium text-brand-700">Personnel</p>
@@ -147,16 +147,3 @@ export function CaseSleeve({
     )
 }
 
-function FlipIcon() {
-    return (
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path
-                d="M2.5 8a5.5 5.5 0 0 1 9.4-3.9L13.5 5.5M13.5 2.5v3h-3M13.5 8a5.5 5.5 0 0 1-9.4 3.9L2.5 10.5M2.5 13.5v-3h3"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-            />
-        </svg>
-    )
-}

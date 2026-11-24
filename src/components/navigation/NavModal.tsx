@@ -5,7 +5,6 @@ import { cn } from "../../lib/cn"
 import { navItems } from "././NavItems"
 
 // Voeg dit toe aan je @theme: --color-bluenote: #1F5BA6;
-const BLUE = "var(--color-bluenote, #1F5BA6)"
 
 type NavModalProps = {
     open: boolean
@@ -63,8 +62,7 @@ export function NavModal({ open, onClose }: NavModalProps) {
                 {/* Blauw vlak met verticale titel */}
                 <div
                     aria-hidden="true"
-                    className="relative flex items-end justify-center overflow-hidden"
-                    style={{ backgroundColor: BLUE }}
+                    className="relative flex items-end justify-center overflow-hidden bg-bluenote"
                 >
                     {/* Halftone-raster, als gedrukt */}
                     <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(rgba(11,11,13,0.3)_1.2px,transparent_1.6px)] bg-size-[9px_9px]" />
@@ -103,13 +101,12 @@ export function NavModal({ open, onClose }: NavModalProps) {
                                                 "flex flex-wrap w-fit items-baseline gap-3 py-1 font-heading text-5xl leading-[0.9] font-bold tracking-tight uppercase transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black motion-reduce:transition-none sm:text-6xl",
                                                 isActive
                                                     ? "-rotate-1 bg-brand-600 px-2 text-black"
-                                                    : "text-black hover:text-(--poster-blue)"
+                                                    : "text-black hover:text-bluenote"
                                             )
                                         }
-                                        style={{ "--poster-blue": BLUE } as React.CSSProperties}
                                     >
                                         {item.label}
-                                        <span className="hidden text-sm font-normal tracking-normal text-slate-600 normal-case sm:inline">
+                                        <span className="hidden text-sm font-normal tracking-normal text-black/60 normal-case sm:inline">
                                             {item.hint}
                                         </span>
                                     </NavLink>

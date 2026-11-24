@@ -1,7 +1,8 @@
 import type { ReactNode } from "react"
-import { Badge } from "../ui/Badge"
 import { Button } from "../ui/Button"
 import { SplitHeading } from "../gsap/SplitHeading"
+import { Eyebrow } from "../ui/Eyebrow"
+import { PlayIcon } from "../ui/icons"
 
 type SectionBackground = "white" | "black" | "brand" | "secondary" | "transparent"
 
@@ -52,10 +53,7 @@ export function HeroSubSection({
                     }
                 >
                     <div className="relative max-w-136">
-                        <Badge variant="eyebrow" size="none" radius="none" className="text-brand-600">
-                            <span aria-hidden="true" className="h-px w-8 bg-brand-600" />
-                            {subtitle}
-                        </Badge>
+                        <Eyebrow>{subtitle}</Eyebrow>
 
                         <SplitHeading
                             as="h1"
@@ -74,11 +72,9 @@ export function HeroSubSection({
                             <Button
                                 to="/cases"
                                 size="lg"
-                                className="rounded-xl text-black"
+                                className="rounded-xl"
                                 leftIcon={
-                                    <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true">
-                                        <path d="M4 2l10 6-10 6z" fill="currentColor" />
-                                    </svg>
+                                    <PlayIcon />
                                 }
                             >
                                 Bekijk werk
@@ -87,7 +83,7 @@ export function HeroSubSection({
                                 to="/over-mij"
                                 variant="outline"
                                 size="lg"
-                                className="rounded-xl border-white/30 text-white hover:bg-white/10"
+                                className="rounded-xl"
                             >
                                 Over mij
                             </Button>

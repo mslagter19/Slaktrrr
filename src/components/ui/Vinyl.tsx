@@ -1,5 +1,6 @@
 import { useEffect, useId, useRef, type ComponentProps } from "react"
-import { gsap } from "gsap"
+import { gsap } from "../../lib/gsap"
+import { useMotion } from "../gsap/Motion-context"
 import { cn } from "../../lib/cn"
 
 /* ---------- Geometrie (viewBox 0 0 400 400) ---------- */
@@ -34,6 +35,7 @@ export function Vinyl({
 }: VinylProps) {
     // useId bevat dubbele punten; die kunnen in url(#...) problemen geven
     const uid = useId().replace(/:/g, "")
+    const { enabled } = useMotion()
     const svgRef = useRef<SVGSVGElement>(null)
     const spinRef = useRef<SVGGElement>(null) // alles wat meedraait (plaat + label)
 
@@ -41,9 +43,9 @@ export function Vinyl({
         const svg = svgRef.current
         const spin = spinRef.current
         // "none": de plaat draait niet zelf; een ouder (bv. het balansspel) draait hem
-        if (!svg || !spin || trigger === "none") return
+        if (!svg || !spin || trigger === "none" || !enabled) return
 
-        // Bij "prefers-reduced-motion: reduce" blijft de plaat stilstaan
+        // Bij "prefers-reduced-motion: reduce" of motion uit blijft de plaat stilstaan
         const mm = gsap.matchMedia()
 
         mm.add("(prefers-reduced-motion: no-preference)", () => {
@@ -80,7 +82,7 @@ export function Vinyl({
         })
 
         return () => mm.revert()
-    }, [duration, trigger])
+    }, [duration, trigger, enabled])
 
     const decorative = alt === ""
 

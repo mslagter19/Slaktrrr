@@ -7,12 +7,12 @@ import { OutroSection } from "../components/sections/OutroSection";
 import { LevelsSection, type LevelItem } from "../components/sections/LevelsSection";
 import { WhiskeyGlassLine } from "../components/ui/LineArt";
 import { CardImage } from "../components/ui/Card";
-import { Badge } from "../components/ui/Badge";
 import { TrackList, TrackListItem } from "../components/ui/TrackList";
 import { Reveal } from "../components/gsap/Reveal";
 import { SplitHeading } from "../components/gsap/SplitHeading";
 import { CaseSleeve } from "../components/ui/CaseSleeve";
 import bijMartinusImg from "../assets/images/cases/bij-martinus.webp";
+import { Eyebrow } from "../components/ui/Eyebrow";
 
 const SLUG = "bij-martinus"
 
@@ -86,11 +86,7 @@ export function BijMartinus() {
             {/* Tech stack als "personnel": de credits van de plaat */}
             <ColumnsSection columns={1}>
                 <div className="mx-auto flex w-full max-w-xl flex-col items-center">
-                    <Badge variant="eyebrow" size="none" radius="none" className="justify-center text-brand-600">
-                        <span aria-hidden="true" className="h-px w-8 bg-brand-600" />
-                        Tech stack
-                        <span aria-hidden="true" className="h-px w-8 bg-brand-600" />
-                    </Badge>
+                    <Eyebrow align="center">Tech stack</Eyebrow>
                     <SplitHeading className="mt-4 font-heading text-4xl font-bold leading-[1.15]">Personnel</SplitHeading>
 
                     <Reveal as={TrackList} className="mt-8 w-full">

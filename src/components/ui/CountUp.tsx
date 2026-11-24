@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type ComponentProps } from "react"
-import { gsap } from "gsap"
+import { gsap } from "../../lib/gsap"
+import { useMotion } from "../gsap/Motion-context"
 import { cn } from "../../lib/cn"
 
 type CountUpProps = Omit<ComponentProps<"span">, "children"> & {
@@ -28,6 +29,7 @@ export function CountUp({
     ...rest
 }: CountUpProps) {
     const ref = useRef<HTMLSpanElement>(null)
+    const { enabled } = useMotion()
 
     const format = (value: number) =>
         prefix +
@@ -54,7 +56,7 @@ export function CountUp({
             },
             (ctx) => {
                 // Geen animatie: toon meteen de eindwaarde
-                if (ctx.conditions?.reduce) {
+                if (ctx.conditions?.reduce || !enabled) {
                     el.textContent = finalText
                     return
                 }
@@ -99,7 +101,7 @@ export function CountUp({
 
         return () => mm.revert()
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [to, from, duration, delay, decimals, prefix, suffix, locale, start])
+    }, [to, from, duration, delay, decimals, prefix, suffix, locale, start, enabled])
 
     return (
         <span className={cn("tabular-nums", className)} {...rest}>

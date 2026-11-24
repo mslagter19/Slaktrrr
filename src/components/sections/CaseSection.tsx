@@ -77,7 +77,7 @@ export function CaseSection({
             <section className="bg-black bg-[radial-gradient(ellipse_80%_50%_at_50%_0%,rgba(255,255,255,0.10),transparent)]">
                 <div className="mx-auto max-w-7xl px-6 py-16 lg:py-24 gap-2 flex flex-col">
                     {title && (
-                        <SplitHeading className="font-heading !font-bold text-slate-900 text-4xl font-normal text-center leading-[1.15]">
+                        <SplitHeading className="text-center font-heading text-4xl leading-[1.15] font-bold">
                             {title}
                         </SplitHeading>
                     )}
@@ -139,7 +139,7 @@ export function CaseSection({
                     </Reveal>
                     {moreTo && (
                         <Reveal className="mt-12 flex justify-center">
-                            <Button to={moreTo} size="lg" radius="lg" className="text-black">
+                            <Button to={moreTo} size="lg" radius="lg">
                                 {moreLabel}
                             </Button>
                         </Reveal>

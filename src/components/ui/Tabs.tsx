@@ -5,9 +5,9 @@ import { cn } from '../../lib/cn'
 const tabListVariants = cva('flex items-center gap-1 overflow-x-auto', {
     variants: {
         variant: {
-            underline: 'border-b border-neutral-200',
+            underline: 'border-b border-line',
             pills: '',
-            boxed: 'w-fit rounded-lg bg-neutral-100 p-1',
+            boxed: 'w-fit rounded-lg bg-surface-raised p-1',
         },
     },
     defaultVariants: { variant: 'underline' },
@@ -24,9 +24,9 @@ const tabVariants = cva(
         variants: {
             variant: {
                 underline:
-                    '-mb-px border-b-2 border-transparent text-neutral-600 hover:text-neutral-900',
-                pills: 'rounded-md text-neutral-600 hover:bg-neutral-100',
-                boxed: 'rounded-md text-neutral-600 hover:text-neutral-900',
+                    '-mb-px border-b-2 border-transparent text-ink-muted hover:text-ink-strong',
+                pills: 'rounded-md text-ink-muted hover:bg-surface-hover',
+                boxed: 'rounded-md text-ink-muted hover:text-ink-strong',
             },
             active: { true: '', false: '' },
         },
@@ -34,7 +34,7 @@ const tabVariants = cva(
         compoundVariants: [
             { variant: 'underline', active: true, class: 'border-brand-600 text-brand-700' },
             { variant: 'pills', active: true, class: 'bg-brand-600 text-white hover:bg-brand-600' },
-            { variant: 'boxed', active: true, class: 'bg-white text-neutral-900 shadow-sm' },
+            { variant: 'boxed', active: true, class: 'bg-surface-hover text-ink-strong shadow-sm' },
         ],
         defaultVariants: { variant: 'underline', active: false },
     },

@@ -62,13 +62,20 @@
   --color-white-faint:  #5F5B52; /* placeholders, subtiele labels */
  
   /* ==========================================================
-     SEMANTISCH — korte aliassen voor dagelijks gebruik
+     SEMANTISCH — korte aliassen voor dagelijks gebruik.
+     De generieke ui-primitives (components/ui) gebruiken ALLEEN deze laag,
+     zodat een ander project met een ander thema alleen dit blok hoeft te herdefiniëren.
      ========================================================== */
   --color-surface:        var(--color-black);
   --color-surface-raised: var(--color-black-vinyl);
+  --color-surface-hover:  var(--color-black-raised);
   --color-line:           var(--color-black-groove);
+  --color-line-strong:    var(--color-black-ash);
   --color-ink:            var(--color-white);
+  --color-ink-strong:     var(--color-white-bright);
   --color-ink-muted:      var(--color-white-muted);
+  --color-ink-subtle:     var(--color-white-dim);
+  --color-on-brand:       var(--color-black); /* tekst op een messing vlak (primary-knop) */
  
   /* ==========================================================
      FEEDBACK — verwijzen naar Tailwind-standaardkleuren
@@ -243,6 +250,20 @@ h1, h2, h3 {
     mix-blend-mode: overlay;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .7 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
   }
+}
+
+/* Filmkorrel als laag: combineer met mix-blend-overlay (op donker) of mix-blend-multiply (op licht) en een lage opacity */
+@utility grain {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* Neonbuis in de merkkleur (NeonLabel in de navigatie) */
+@utility text-neon {
+  color: var(--color-brand-500);
+  text-shadow:
+    0 0 2px color-mix(in srgb, var(--color-brand-500) 70%, transparent),
+    0 0 8px color-mix(in srgb, var(--color-brand-600) 60%, transparent),
+    0 0 18px color-mix(in srgb, var(--color-brand-600) 35%, transparent);
 }
 
 @utility noir-img {

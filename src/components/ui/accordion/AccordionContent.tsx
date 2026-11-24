@@ -21,7 +21,7 @@ export function AccordionContent({
       )}
     >
       <div className="min-h-0 overflow-hidden">
-        <div className={cn("px-4 pb-4 text-slate-600", className)} {...props}>
+        <div className={cn("px-4 pb-4 text-ink-muted", className)} {...props}>
           {children}
         </div>
       </div>

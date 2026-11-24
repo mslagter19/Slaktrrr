@@ -59,7 +59,7 @@ export function HomePage() {
                         <Button
                             to="/over-mij"
                             size="lg"
-                            className="rounded-full text-black rounded-xl w-fit mt-2">
+                            className="mt-2 w-fit rounded-xl">
                             Over mij
                         </Button>
                     </Reveal>

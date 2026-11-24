@@ -8,19 +8,18 @@ import { PLAYLISTS, type Playlist } from "../../data/Playlists"
 /* ---------- Equalizer: puur decoratief, staat stil bij reduced motion ---------- */
 function Equalizer({ className }: { className?: string }) {
     const bars = [
-        { h: "h-3", d: "0ms" },
-        { h: "h-5", d: "150ms" },
-        { h: "h-4", d: "300ms" },
-        { h: "h-6", d: "100ms" },
-        { h: "h-3", d: "250ms" },
+        { h: "h-3", d: "[animation-delay:0ms]" },
+        { h: "h-5", d: "[animation-delay:150ms]" },
+        { h: "h-4", d: "[animation-delay:300ms]" },
+        { h: "h-6", d: "[animation-delay:100ms]" },
+        { h: "h-3", d: "[animation-delay:250ms]" },
     ]
     return (
         <div aria-hidden="true" className={cn("flex items-end gap-1", className)}>
             {bars.map((b, i) => (
                 <span
                     key={i}
-                    style={{ animationDelay: b.d }}
-                    className={cn("w-1 rounded-full bg-brand-600 animate-pulse motion-reduce:animate-none", b.h)}
+                    className={cn("w-1 rounded-full bg-brand-600 animate-pulse motion-reduce:animate-none", b.h, b.d)}
                 />
             ))}
         </div>

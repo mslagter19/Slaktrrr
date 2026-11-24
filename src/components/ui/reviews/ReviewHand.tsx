@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react"
-import { gsap } from "gsap"
+import { gsap } from "../../../lib/gsap"
+import { useMotion } from "../../gsap/Motion-context"
 import { cn } from "../../../lib/cn"
 import { ReviewCard, type Review, type Suit } from "./ReviewCard"
 
@@ -13,6 +14,7 @@ const SUIT_CYCLE: Suit[] = ["spades", "hearts", "clubs", "diamonds"]
 
 export function ReviewHand({ reviews, className }: ReviewHandProps) {
     const rootRef = useRef<HTMLDivElement>(null)
+    const { enabled } = useMotion()
     const applyRef = useRef<((active: number | null, deal?: boolean) => void) | null>(null)
     const dealtRef = useRef(false)
 
@@ -34,7 +36,7 @@ export function ReviewHand({ reviews, className }: ReviewHandProps) {
             const mid = (n - 1) / 2
             const spread = Math.min(8, 36 / n) // graden tussen kaarten
             const overlap = Math.min(120, 640 / n) // px tussen kaarten
-            const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+            const reduce = !enabled || window.matchMedia("(prefers-reduced-motion: reduce)").matches
 
             const target = (i: number, a: number | null) => {
                 const d = i - mid
@@ -82,7 +84,7 @@ export function ReviewHand({ reviews, className }: ReviewHandProps) {
 
         // revert() ruimt alle inline GSAP-stijlen op, zodat mobiel schoon blijft
         return () => mm.revert()
-    }, [reviews.length])
+    }, [reviews.length, enabled])
 
     /* ---------- 2. Eenmalig uitdelen zodra de hand in beeld komt ---------- */
     useEffect(() => {

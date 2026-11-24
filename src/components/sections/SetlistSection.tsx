@@ -1,6 +1,6 @@
-import { Badge } from "../ui/Badge"
 import { Reveal } from "../gsap/Reveal"
 import { SplitHeading } from "../gsap/SplitHeading"
+import { Eyebrow } from "../ui/Eyebrow"
 
 export type SetlistStep = {
     title: string
@@ -59,10 +59,7 @@ export function SetlistSection({
         <section aria-labelledby={titleId} className="bg-black py-24 text-white">
             <div className="mx-auto max-w-7xl px-6">
                 <header className="max-w-2xl">
-                    <Badge variant="eyebrow" size="none" radius="none" className="text-brand-600">
-                        <span aria-hidden="true" className="h-px w-8 bg-brand-600" />
-                        {eyebrow}
-                    </Badge>
+                    <Eyebrow>{eyebrow}</Eyebrow>
                     <SplitHeading id={titleId} className="mt-4 font-heading text-4xl leading-[1.15] font-bold">
                         {title}
                     </SplitHeading>

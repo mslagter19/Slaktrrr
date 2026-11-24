@@ -9,11 +9,11 @@ const badgeVariants = cva(
     {
         variants: {
             variant: {
-                primary: "bg-brand-600 text-white hover:bg-brand-700 data-[pressed=true]:bg-brand-800",
-                secondary: "bg-slate-100 text-slate-900 hover:bg-slate-200 data-[pressed=true]:bg-slate-300",
-                outline: "border border-slate-300 bg-transparent text-slate-900 hover:bg-slate-50 data-[pressed=true]:bg-slate-100",
+                primary: "bg-brand-600 text-on-brand hover:bg-brand-700 data-[pressed=true]:bg-brand-800",
+                secondary: "bg-surface-raised text-ink-strong hover:bg-surface-hover data-[pressed=true]:bg-line",
+                outline: "border border-ink/30 bg-transparent text-ink-strong hover:bg-ink/10 data-[pressed=true]:bg-ink/15",
                 link: "text-brand-600 underline-offset-4 hover:underline",
-                transparent: "bg-transparent text-slate-900",
+                transparent: "bg-transparent text-ink-strong",
                 // NIEUW: platte "eyebrow"-tekst met ruimte voor een streepje ervoor
                 eyebrow: "gap-3 bg-transparent text-xs font-medium uppercase tracking-[0.22em] text-brand-600",
             },

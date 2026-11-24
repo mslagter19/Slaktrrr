@@ -1,8 +1,8 @@
 import type { ReactNode } from "react"
-import { Badge } from "../ui/Badge"
 import { CountUp } from "../ui/CountUp"
 import { VuMeter } from "../ui/VuMeter"
 import { cn } from "../../lib/cn"
+import { Eyebrow } from "../ui/Eyebrow"
 
 export type LevelItem = {
     to: number // eindwaarde van de teller
@@ -27,13 +27,9 @@ export function LevelsSection({ eyebrow = "Levels", items, className }: LevelsSe
     return (
         <section className={cn("relative overflow-hidden bg-black py-16 text-white", className)}>
             <div className="mx-auto flex max-w-7xl flex-col items-center gap-12 px-6">
-                <Badge variant="eyebrow" size="none" radius="none" className="justify-center text-brand-600">
-                    <span aria-hidden="true" className="h-px w-8 bg-brand-600" />
-                    {eyebrow}
-                    <span aria-hidden="true" className="h-px w-8 bg-brand-600" />
-                </Badge>
+                <Eyebrow align="center">{eyebrow}</Eyebrow>
 
-                <div className={cn("grid w-full gap-10 md:gap-12",items.length >= 3 ? "max-w-6xl md:grid-cols-3" : "max-w-4xl md:grid-cols-2")}>
+                <div className={cn("grid w-full gap-10 md:gap-12", items.length >= 3 ? "max-w-6xl md:grid-cols-3" : "max-w-4xl md:grid-cols-2")}>
                     {items.map((item) => (
                         <figure key={item.label} className="flex flex-col items-center text-center">
                             {/* Op mobiel kleiner: drie meters onder elkaar worden anders erg lang */}

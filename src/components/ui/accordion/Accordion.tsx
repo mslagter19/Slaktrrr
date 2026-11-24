@@ -6,8 +6,8 @@ import { AccordionContext } from "./accordion-context";
 const accordionVariants = cva("w-full", {
     variants: {
         variant: {
-            default: "divide-y divide-slate-200 border-y border-slate-200",
-            bordered: "divide-y divide-slate-200 overflow-hidden rounded-lg border border-slate-200",
+            default: "divide-y divide-line border-y border-line",
+            bordered: "divide-y divide-line overflow-hidden rounded-lg border border-line",
             separated: "flex flex-col gap-3",
         },
     },

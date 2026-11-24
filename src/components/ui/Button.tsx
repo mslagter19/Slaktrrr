@@ -7,16 +7,16 @@ import { useMotion } from "../gsap/Motion-context"
 
 const buttonVariants = cva(
     // Base styles
-    "group inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600 disabled:pointer-events-none disabled:opacity-50 motion-reduce:transition-none",
+    "group inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600 disabled:pointer-events-none disabled:opacity-50 motion-reduce:transition-none",
 
     {
         variants: {
             variant: {
-                primary: "bg-brand-600 text-white hover:bg-brand-700 data-[pressed=true]:bg-brand-800",
-                secondary: "bg-slate-100 text-slate-900 hover:bg-slate-200 data-[pressed=true]:bg-slate-300",
-                outline: "border border-slate-300 bg-transparent text-slate-900 hover:bg-slate-50 data-[pressed=true]:bg-slate-100",
+                primary: "bg-brand-600 text-on-brand hover:bg-brand-700 data-[pressed=true]:bg-brand-800",
+                secondary: "bg-surface-raised text-ink-strong hover:bg-surface-hover data-[pressed=true]:bg-line",
+                outline: "border border-ink/30 bg-transparent text-ink-strong hover:bg-ink/10 data-[pressed=true]:bg-ink/15",
                 link: "text-brand-600 underline-offset-4 hover:underline",
-                linksecondary: "text-slate-900 underline-offset-4 hover:underline",
+                linksecondary: "text-ink-strong underline-offset-4 hover:underline",
             },
 
             size: {

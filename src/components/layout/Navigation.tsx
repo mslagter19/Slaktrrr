@@ -163,7 +163,6 @@ export function Navigation({ logo, music }: NavigationProps) {
                                 aria-describedby={tooltipId}
                                 onClick={() => setOpen(true)}
                                 leftIcon={<MenuIcon open={open} />}
-                                className="cursor-pointer border-white/30 text-white hover:bg-white/10"
                             >
                                 Menu
                             </Button>

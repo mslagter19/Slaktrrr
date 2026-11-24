@@ -21,7 +21,7 @@ export function AccordionTrigger({
                 onClick={() => toggle(value)}
                 className={cn(
                     "flex flex-1 cursor-pointer items-center justify-between gap-4 px-4 py-3 text-left font-medium",
-                    "transition-colors hover:bg-slate-50",
+                    "transition-colors hover:bg-surface-hover",
                     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-500",
                     className,
                 )}

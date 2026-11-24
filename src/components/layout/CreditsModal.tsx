@@ -1,6 +1,5 @@
 import { useEffect, useId, useRef } from "react"
 import { gsap } from "../../lib/gsap"
-import { GRAIN } from "../../lib/grain"
 import { tracks } from "../../lib/tracks"
 import { TrackList, TrackListItem } from "../ui/TrackList"
 import { GrooveLink } from "../ui/GrooveLink"
@@ -70,8 +69,7 @@ export function CreditsModal({ open, onClose }: CreditsModalProps) {
                 {/* Papierkorrel */}
                 <div
                     aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 opacity-[0.06] mix-blend-multiply"
-                    style={{ backgroundImage: GRAIN }}
+                    className="grain pointer-events-none absolute inset-0 opacity-[0.06] mix-blend-multiply"
                 />
 
                 <div className="relative flex items-start justify-between gap-4">

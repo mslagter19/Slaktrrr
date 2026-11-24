@@ -274,7 +274,7 @@ export function BalanceGame({ challenge, className }: BalanceGameProps) {
                                 Je hebt animaties uitgezet. Dit experiment beweegt; start alleen als je dat wilt.
                             </p>
                         )}
-                        <Button size="lg" radius="lg" className="cursor-pointer text-black" onClick={start}>
+                        <Button size="lg" radius="lg" onClick={start}>
                             Zet de plaat op
                         </Button>
                     </>
@@ -300,7 +300,7 @@ export function BalanceGame({ challenge, className }: BalanceGameProps) {
                             </p>
                         )}
                         <div className="flex flex-wrap justify-center gap-3">
-                            <Button size="lg" radius="lg" className="cursor-pointer text-black" onClick={start}>
+                            <Button size="lg" radius="lg" onClick={start}>
                                 Nog een keer
                             </Button>
                             <ShareButton
@@ -311,7 +311,6 @@ export function BalanceGame({ challenge, className }: BalanceGameProps) {
                                 variant="outline"
                                 size="lg"
                                 radius="lg"
-                                className="cursor-pointer border-white/30 text-white hover:bg-white/10"
                             />
                         </div>
                         <Button to="/" variant="link" className="text-white/60 hover:text-white">

@@ -41,9 +41,9 @@ export function FormField({ label, hint, error, required, children }: FormFieldP
             })}
 
             {error ? (
-                <p id={errorId} className="text-xs text-red-600">{error}</p>
+                <p id={errorId} className="text-xs text-danger-500">{error}</p>
             ) : hint ? (
-                <p id={hintId} className="text-xs text-slate-500">{hint}</p>
+                <p id={hintId} className="text-xs text-ink-subtle">{hint}</p>
             ) : null}
         </div>
     )

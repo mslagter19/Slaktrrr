@@ -1,7 +1,7 @@
-import { Badge } from "../Badge"
 import { Button } from "../Button"
 import { Reveal } from "../../gsap/Reveal"
 import type { Review } from "./ReviewCard"
+import { Eyebrow } from "../Eyebrow"
 
 type FeaturedReviewProps = {
     reviews: Review[]
@@ -48,10 +48,7 @@ export function FeaturedReview({ reviews, review, moreTo, moreLabel = "Alle revi
                         &ldquo;
                     </span>
 
-                    <Badge variant="eyebrow" size="none" radius="none" className="text-brand-600">
-                        <span aria-hidden="true" className="h-px w-8 bg-brand-600" />
-                        Uit de zaal
-                    </Badge>
+                    <Eyebrow>Uit de zaal</Eyebrow>
 
                     <blockquote className="relative mt-5 font-heading text-2xl leading-snug font-medium italic md:text-4xl">
                         {featured.quote}
@@ -79,7 +76,7 @@ export function FeaturedReview({ reviews, review, moreTo, moreLabel = "Alle revi
                                 variant="outline"
                                 size="lg"
                                 radius="lg"
-                                className="border-white/30 text-white hover:bg-white/10"
+                               
                             >
                                 {moreLabel}
                             </Button>

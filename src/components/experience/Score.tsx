@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, type KeyboardEvent } from "react"
-import { gsap } from "gsap"
+import { gsap } from "../../lib/gsap"
+import { useMotion } from "../gsap/Motion-context"
 import { cn } from "../../lib/cn"
 import { formatPeriod, startYear, toMonths, type Experience } from "./Experience.data"
 
@@ -73,6 +74,7 @@ export function Score({ items, activeId, onSelect, className }: ScoreProps) {
     const mounted = useRef(false)
 
     const { placed, width } = useMemo(() => layout(items), [items])
+    const { enabled } = useMotion()
 
     // De actieve noot schuift naar het midden van het scherm
     useEffect(() => {
@@ -80,19 +82,19 @@ export function Score({ items, activeId, onSelect, className }: ScoreProps) {
         const target = placed.find((note) => note.item.id === activeId)
         if (!scroller || !target) return
 
-        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        const reduceMotion = !enabled || window.matchMedia("(prefers-reduced-motion: reduce)").matches
 
         scroller.scrollTo({
             left: target.x - scroller.clientWidth / 2,
             behavior: mounted.current && !reduceMotion ? "smooth" : "auto",
         })
         mounted.current = true
-    }, [activeId, placed])
+    }, [activeId, placed, enabled])
 
     // Kleine "aanslag": de ring rond de noot veert op bij selectie
     useEffect(() => {
         const ring = listRef.current?.querySelector(`#note-${CSS.escape(activeId)} [data-note-ring]`)
-        if (!ring) return
+        if (!ring || !enabled) return
 
         const mm = gsap.matchMedia()
         mm.add("(prefers-reduced-motion: no-preference)", () => {
@@ -100,7 +102,7 @@ export function Score({ items, activeId, onSelect, className }: ScoreProps) {
         })
 
         return () => mm.revert()
-    }, [activeId])
+    }, [activeId, enabled])
 
     // Pijltjestoetsen bladeren door de noten (zoals bij tabs)
     function handleKeyDown(event: KeyboardEvent<HTMLDivElement>) {
@@ -131,7 +133,7 @@ export function Score({ items, activeId, onSelect, className }: ScoreProps) {
                     aria-label="Loopbaan als partituur"
                     onKeyDown={handleKeyDown}
                     className="relative"
-                    style={{ width, height: HEIGHT }}
+                    style={{ width, height: HEIGHT }} // dynamisch: breedte volgt uit de loopbaan
                 >
                     {/* Alles wat niet klikbaar is: balk, stelen, bogen, jaartallen */}
                     <svg
@@ -252,7 +254,7 @@ export function Score({ items, activeId, onSelect, className }: ScoreProps) {
                                 aria-controls={`ticket-${item.id}`}
                                 tabIndex={isActive ? 0 : -1}
                                 onClick={() => onSelect(item.id)}
-                                style={{ left: x, top: y }}
+                                style={{ left: x, top: y }} // dynamisch: berekende positie op de balk
                                 className="group absolute grid size-11 -translate-x-1/2 -translate-y-1/2 cursor-pointer place-items-center rounded-full outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
                             >
                                 <span

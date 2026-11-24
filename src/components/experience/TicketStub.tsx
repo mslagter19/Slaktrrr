@@ -53,7 +53,7 @@ export function TicketStub({ item, index, total, active = true, className }: Tic
                         variant="outline"
                         size="xs"
                         radius="full"
-                        className="border-white/30 text-white hover:bg-transparent"
+                        className="hover:bg-transparent"
                     >
                         {item.type === "work" ? "Residency" : "Masterclass"}
                     </Badge>

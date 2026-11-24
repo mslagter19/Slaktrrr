@@ -5,7 +5,6 @@ import { ColumnsSection } from "../components/sections/ColumnsSection";
 import { ContactTicket } from "../components/contact/ContactTicket";
 import { TrackList, TrackListItem } from "../components/ui/TrackList";
 import { GrooveLink } from "../components/ui/GrooveLink";
-import { Badge } from "../components/ui/Badge";
 import { Reveal } from "../components/gsap/Reveal";
 import { SplitHeading } from "../components/gsap/SplitHeading";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
@@ -15,6 +14,7 @@ import { ParallaxScene } from "../components/gsap/ParallaxScene";
 import { SetlistSection, type SetlistStep } from "../components/sections/SetlistSection";
 import { FeaturedReview } from "../components/ui/reviews/FeaturedReview";
 import { REVIEWS } from "../components/ui/reviews/reviews.data";
+import { Eyebrow } from "../components/ui/Eyebrow";
 
 // CONCEPT: wat er gebeurt nadat iemand het formulier verstuurt
 const nextSteps: SetlistStep[] = [
@@ -88,10 +88,7 @@ export function ContactPage() {
                 <ContactTicket titleAs="h2" />
 
                 <Reveal className="flex flex-col gap-4">
-                    <Badge variant="eyebrow" size="none" radius="none" className="text-brand-600">
-                        <span aria-hidden="true" className="h-px w-8 bg-brand-600" />
-                        Backstage info
-                    </Badge>
+                    <Eyebrow>Backstage info</Eyebrow>
                     <TrackList numbered={false}>
                         {/* CONCEPT: vul de maand in waarop je weer ruimte hebt */}
                         <TrackListItem label="Status">
@@ -131,10 +128,7 @@ export function ContactPage() {
                 </ParallaxScene>
 
                 <div className="relative mx-auto w-full max-w-3xl">
-                    <Badge variant="eyebrow" size="none" radius="none" className="text-brand-600">
-                        <span aria-hidden="true" className="h-px w-8 bg-brand-600" />
-                        Voor het optreden
-                    </Badge>
+                    <Eyebrow>Voor het optreden</Eyebrow>
                     <SplitHeading className="mt-4 mb-8 font-heading text-4xl leading-[1.15] font-bold">
                         Veelgestelde vragen
                     </SplitHeading>

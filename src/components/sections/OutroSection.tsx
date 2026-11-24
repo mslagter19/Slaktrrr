@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { Badge } from "../ui/Badge"
 import { Button } from "../ui/Button"
 import { WhiskeyGlassLine } from "../ui/LineArt"
 import { ParallaxScene } from "../gsap/ParallaxScene"
@@ -7,29 +6,14 @@ import { ContactModal } from "../contact/ContactModal"
 import { Spotlight } from "../ui/Spotlight"
 import { Reveal } from "../gsap/Reveal"
 import { SplitHeading } from "../gsap/SplitHeading"
+import { Eyebrow } from "../ui/Eyebrow"
+import { MailIcon, DownloadIcon } from "../ui/icons"
 
 type OutroSectionProps = {
     // Waar de cv-download naartoe wijst (later eventueel een Laravel-route)
     cvHref?: string
     // Laravel-endpoint voor het contactformulier
     contactEndpoint?: string
-}
-
-function MailIcon() {
-    return (
-        <svg viewBox="0 0 16 16" className="size-4" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <rect x="2" y="3.5" width="12" height="9" rx="1.5" />
-            <path d="M2.5 4.5 8 9l5.5-4.5" />
-        </svg>
-    )
-}
-
-function DownloadIcon() {
-    return (
-        <svg viewBox="0 0 16 16" className="size-4" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <path d="M8 2v8M4.5 7 8 10.5 11.5 7M3 13.5h10" />
-        </svg>
-    )
 }
 
 export function OutroSection({ cvHref = "/cv/download", contactEndpoint = "/api/contact" }: OutroSectionProps) {
@@ -56,11 +40,7 @@ export function OutroSection({ cvHref = "/cv/download", contactEndpoint = "/api/
             </ParallaxScene>
 
             <div className="relative mx-auto max-w-7xl px-6 text-center">
-                <Badge variant="eyebrow" size="none" radius="none" className="justify-center text-brand-600">
-                    <span aria-hidden="true" className="h-px w-8 bg-brand-600" />
-                    Encore · Last call
-                    <span aria-hidden="true" className="h-px w-8 bg-brand-600" />
-                </Badge>
+                <Eyebrow align="center">Encore · Last call</Eyebrow>
 
                 <SplitHeading
                     id="outro-titel"
@@ -80,7 +60,6 @@ export function OutroSection({ cvHref = "/cv/download", contactEndpoint = "/api/
                         <Button
                             size="lg"
                             radius="lg"
-                            className="cursor-pointer text-black"
                             aria-haspopup="dialog"
                             onClick={() => setOpen(true)}
                             leftIcon={<MailIcon />}
@@ -93,7 +72,7 @@ export function OutroSection({ cvHref = "/cv/download", contactEndpoint = "/api/
                             download
                             variant="outline"
                             size="lg"
-                            className="border-white/30 text-white hover:bg-white/10"
+                           
                             leftIcon={<DownloadIcon />}
                         >
                             Download cv
