@@ -71,7 +71,7 @@ export function MusicPlayer() {
 
             <div className="hidden min-w-0 max-w-44 leading-tight lg:block">
                 <p className="truncate text-sm text-white">{track.title}</p>
-                <p className="truncate text-xs text-white/55">{track.artist}</p>
+                <p className="truncate text-xs text-ink-subtle">{track.artist}</p>
             </div>
 
             <Tooltip

@@ -61,7 +61,7 @@ function Field({ label, name, error, optional, multiline, type = "text", autoCom
         <div>
             <label htmlFor={id} className="text-xs tracking-wider text-white/60 uppercase">
                 {label}
-                {optional && <span className="tracking-normal normal-case text-white/40"> (optioneel)</span>}
+                {optional && <span className="tracking-normal normal-case text-ink-subtle"> (optioneel)</span>}
             </label>
 
             {multiline ? <textarea rows={4} {...shared} /> : <input type={type} {...shared} />}

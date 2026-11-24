@@ -33,7 +33,7 @@ const tabVariants = cva(
         // Stijl die alleen geldt voor een combinatie van variant + actief
         compoundVariants: [
             { variant: 'underline', active: true, class: 'border-brand-600 text-brand-700' },
-            { variant: 'pills', active: true, class: 'bg-brand-600 text-white hover:bg-brand-600' },
+            { variant: 'pills', active: true, class: 'bg-brand-600 text-on-brand hover:bg-brand-600' },
             { variant: 'boxed', active: true, class: 'bg-surface-hover text-ink-strong shadow-sm' },
         ],
         defaultVariants: { variant: 'underline', active: false },

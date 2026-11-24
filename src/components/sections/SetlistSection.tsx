@@ -73,7 +73,7 @@ export function SetlistSection({
                                 <span aria-hidden="true" className="font-heading text-5xl font-semibold text-brand-600 tabular-nums">
                                     {String(i + 1).padStart(2, "0")}
                                 </span>
-                                <span className="text-xs tracking-[0.2em] text-white/50 uppercase">{step.meta}</span>
+                                <span className="text-xs tracking-[0.2em] text-ink-subtle uppercase">{step.meta}</span>
                             </div>
                             <h3 className="font-heading text-2xl font-semibold">{step.title}</h3>
                             <p className="text-white/60">{step.text}</p>

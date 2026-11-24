@@ -129,7 +129,7 @@ test('case-drawer opent en sluit met Escape', async ({ page }) => {
     // De platen komen pas binnen (Reveal) als de collectie in beeld is
     await page.getByRole('group', { name: 'Filter op categorie' }).scrollIntoViewIfNeeded();
     await page.evaluate(() => window.scrollBy(0, window.innerHeight * 0.5));
-    const plaat = page.getByRole('button', { name: 'Bij Martinus' });
+    const plaat = page.getByRole('button', { name: 'Bij Martinus', exact: true });
     await plaat.scrollIntoViewIfNeeded();
     await plaat.click();
 

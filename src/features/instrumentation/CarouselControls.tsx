@@ -16,7 +16,7 @@ const buttonClass =
 export function CarouselControls({ current, total, progress, onPrev, onNext }: CarouselControlsProps) {
     return (
         <div className="flex items-center gap-4">
-            <span className="text-xs tracking-widest tabular-nums text-white/50">
+            <span className="text-xs tracking-widest tabular-nums text-ink-subtle">
                 {pad(current)} / {pad(total)}
             </span>
 

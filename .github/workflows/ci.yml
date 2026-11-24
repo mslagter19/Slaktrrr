@@ -1,0 +1,51 @@
+name: Kwaliteitschecks
+
+# Draait op elke push naar main, op elke pull request, en als eerste stap van de deploy (workflow_call).
+# Faalt één check, dan gaat de deploy naar GitHub Pages niet door.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+
+      # 1. Code: lint (incl. laagregels) en typecheck + productiebuild
+      - run: npm run lint
+      - run: npm run build
+
+      # 2. Performance-budget op de gebouwde bundle
+      - run: npm run check:bundle
+
+      # 3. Smoke- en toegankelijkheidstests (WCAG 2.1 AA) op desktop, Android en iPhone.
+      #    De visuele tests (@visual) draaien alleen lokaal: hun baselines zijn machine-afhankelijk.
+      - run: npx playwright install --with-deps chromium webkit
+      - run: npm test
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
+
+      # 4. Lighthouse op de productiebuild: performance ≥ 0.9, toegankelijkheid ≥ 0.95
+      - run: npm run lighthouse
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lighthouse
+          path: .lighthouseci/
+          retention-days: 7

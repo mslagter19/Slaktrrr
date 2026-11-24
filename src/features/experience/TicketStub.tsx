@@ -62,7 +62,7 @@ export function TicketStub({ item, index, total, active = true, className }: Tic
 
                     <p className="mt-1 text-white/70">
                         {item.company}
-                        {item.location && <span className="text-white/50">, {item.location}</span>}
+                        {item.location && <span className="text-ink-subtle">, {item.location}</span>}
                     </p>
                     <p className="mt-1 text-sm text-brand-600">{formatPeriod(item.start, item.end)}</p>
                 </div>

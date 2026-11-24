@@ -42,7 +42,7 @@ export function Footer() {
                     </div>
                 </div>
 
-                <div className="mt-10 flex flex-wrap items-center justify-between gap-3 text-xs text-white/40">
+                <div className="mt-10 flex flex-wrap items-center justify-between gap-3 text-xs text-ink-subtle">
                     <p>© {new Date().getFullYear()} Slaktrrr. Alle rechten voorbehouden.</p>
                     {/* Verborgen pagina: het design system, voor wie wil zien hoe deze site gebouwd is */}
                     <Link to="/styleguide" className="underline-offset-4 hover:text-brand-600 hover:underline focus-visible:text-brand-600">

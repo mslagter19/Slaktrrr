@@ -29,3 +29,7 @@ dist-ssr
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+.lighthouseci/
+
+# Visuele baselines: per machine, niet in git (zie tests/visual.spec.ts)
+/tests/*-snapshots/

@@ -63,11 +63,6 @@ export function CaseSleeve({
                     type="button"
                     onClick={() => setFlipped((f) => !f)}
                     aria-pressed={flipped}
-                    aria-label={
-                        flipped
-                            ? "Draai de hoes om naar de voorkant"
-                            : "Draai de hoes om naar de achterkant met projectgegevens"
-                    }
                     className="group relative block size-full cursor-pointer rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-600"
                 >
                     <div

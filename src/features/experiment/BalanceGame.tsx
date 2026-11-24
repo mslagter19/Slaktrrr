@@ -222,21 +222,21 @@ export function BalanceGame({ challenge, className }: BalanceGameProps) {
             {/* HUD */}
             <dl className="grid w-full grid-cols-3 gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10 text-center">
                 <div className="bg-black p-3">
-                    <dt className="text-xs tracking-widest text-white/50 uppercase">Tijd</dt>
+                    <dt className="text-xs tracking-widest text-ink-subtle uppercase">Tijd</dt>
                     <dd className="font-heading text-2xl font-semibold tabular-nums">{formatSeconds(hud.time)}s</dd>
                 </div>
                 <div className="bg-black p-3">
-                    <dt className="text-xs tracking-widest text-white/50 uppercase">Niveau</dt>
+                    <dt className="text-xs tracking-widest text-ink-subtle uppercase">Niveau</dt>
                     <dd className="font-heading text-2xl font-semibold text-brand-600 tabular-nums">{hud.stage.rpm} RPM</dd>
                     <dd className="text-xs tracking-widest text-white/60 uppercase">{hud.stage.name}</dd>
                 </div>
                 <div className="bg-black p-3">
-                    <dt className="text-xs tracking-widest text-white/50 uppercase">Record</dt>
+                    <dt className="text-xs tracking-widest text-ink-subtle uppercase">Record</dt>
                     <dd className="font-heading text-2xl font-semibold tabular-nums">{formatSeconds(best)}s</dd>
                 </div>
                 {challenge !== undefined && (
                     <div className="col-span-3 bg-black px-3 py-2">
-                        <dt className="inline text-xs tracking-widest text-white/50 uppercase">Te verslaan: </dt>
+                        <dt className="inline text-xs tracking-widest text-ink-subtle uppercase">Te verslaan: </dt>
                         <dd className="inline font-heading font-semibold text-flamingo-500 tabular-nums">
                             {formatSeconds(challenge)}s
                         </dd>
@@ -270,7 +270,7 @@ export function BalanceGame({ challenge, className }: BalanceGameProps) {
                             vinger naar die kant van de plaat, of gebruik de pijltjes.
                         </p>
                         {!enabled && (
-                            <p className="max-w-sm text-sm text-white/50">
+                            <p className="max-w-sm text-sm text-ink-subtle">
                                 Je hebt animaties uitgezet. Dit experiment beweegt; start alleen als je dat wilt.
                             </p>
                         )}
@@ -281,7 +281,7 @@ export function BalanceGame({ challenge, className }: BalanceGameProps) {
                 )}
 
                 {phase === "playing" && (
-                    <p className="text-sm text-white/50">Houd vol… het toerental gaat omhoog.</p>
+                    <p className="text-sm text-ink-subtle">Houd vol… het toerental gaat omhoog.</p>
                 )}
 
                 {phase === "over" && result && (
