@@ -1,0 +1,14 @@
+# Alle tekstbestanden met LF-regeleindes, op elk besturingssysteem (ook Windows)
+* text=auto eol=lf
+
+# Media en lettertypes nooit als tekst behandelen
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.webp binary
+*.gif  binary
+*.ico  binary
+*.mp3  binary
+*.woff binary
+*.woff2 binary
+*.pdf  binary
