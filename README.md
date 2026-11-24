@@ -8,9 +8,26 @@ Persoonlijk portfolio met een jazz- en vinylthema. Gebouwd als client-only SPA m
 npm install
 npm run dev       # Vite dev server
 npm run build     # type check (tsc -b) + productiebuild
-npm run lint      # ESLint
+npm run lint      # ESLint, inclusief de laagregels
 npm run preview   # de build in dist/ serveren
+npx playwright test   # smoke-tests op desktop, Pixel 7 en iPhone 13
 ```
+
+## Structuur
+
+```
+src/
+  lib/, hooks/          helpers en hooks zonder UI
+  components/ui/        thema-loze primitives (Button, Card, Eyebrow, icons, form, …)
+  components/motion/    animatie en de motion-instelling
+  components/brand/     het jazz-thema (Vinyl, VuMeter, CaseSleeve, …)
+  components/sections/  generieke paginablokken
+  features/<onderwerp>/ componenten, secties en data per onderwerp
+  components/layout/    navigatie, footer, paginatransitie
+  pages/                pagina's
+```
+
+Een laag importeert alleen uit lagen eronder; ESLint bewaakt dat. Imports buiten de eigen map gaan via `@/`.
 
 ## Deployment
 

@@ -1,9 +1,9 @@
 import { useId, useRef, useState, type ReactNode } from "react"
 import { useLocation, Link } from "react-router-dom"
-import { gsap, useGSAP } from "../../lib/gsap"
-import { useMotion } from "../gsap/Motion-context"
-import { Button } from "../ui/Button"
-import { NavModal } from "../navigation/NavModal"
+import { gsap, useGSAP } from "@/lib/gsap"
+import { useMotion } from "@/hooks/useMotion"
+import { Button } from "@/components/ui/Button"
+import { NavModal } from "./NavModal"
 
 type NavigationProps = {
     logo: ReactNode // je bestaande <Logo />

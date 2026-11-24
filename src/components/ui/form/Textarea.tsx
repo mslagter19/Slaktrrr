@@ -1,7 +1,7 @@
 // src/components/ui/form/Textarea.tsx
 import type { ComponentProps } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
-import { cn } from "../../../lib/cn"
+import { cn } from "@/lib/cn"
 import { fieldVariants, type FieldVariantProps } from "./fieldStyles"
 
 // Geen vaste hoogte: een textarea groeit via `rows`

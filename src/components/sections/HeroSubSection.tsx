@@ -1,8 +1,8 @@
 import type { ReactNode } from "react"
-import { Button } from "../ui/Button"
-import { SplitHeading } from "../gsap/SplitHeading"
-import { Eyebrow } from "../ui/Eyebrow"
-import { PlayIcon } from "../ui/icons"
+import { Button } from "@/components/ui/Button"
+import { SplitHeading } from "@/components/motion/SplitHeading"
+import { Eyebrow } from "@/components/ui/Eyebrow"
+import { PlayIcon } from "@/components/ui/icons"
 
 type SectionBackground = "white" | "black" | "brand" | "secondary" | "transparent"
 

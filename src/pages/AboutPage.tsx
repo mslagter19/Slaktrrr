@@ -1,20 +1,20 @@
-import { usePageMeta } from "../hooks/usePageMeta";
-import { ColumnsSection } from "../components/sections/ColumnsSection";
-import { HeroSubSection } from "../components/sections/HeroSubSection";
-import { SetlistSection, type SetlistStep } from "../components/sections/SetlistSection";
-import { OutroSection } from "../components/sections/OutroSection";
-import { Underline } from "../components/ui/Underline";
-import { Button } from "../components/ui/Button";
-import { CaseSleeve } from "../components/ui/CaseSleeve";
-import { NowSpinning } from "../components/ui/NowSpinning";
-import { TrackList, TrackListItem } from "../components/ui/TrackList";
-import { WhiskeyGlassLine } from "../components/ui/LineArt";
-import { ParallaxScene } from "../components/gsap/ParallaxScene";
-import { SplitHeading } from "../components/gsap/SplitHeading";
-import { Reveal } from "../components/gsap/Reveal";
+import { usePageMeta } from "@/hooks/usePageMeta";
+import { ColumnsSection } from "@/components/sections/ColumnsSection";
+import { HeroSubSection } from "@/components/sections/HeroSubSection";
+import { SetlistSection, type SetlistStep } from "@/components/sections/SetlistSection";
+import { OutroSection } from "@/features/contact/OutroSection";
+import { Underline } from "@/components/ui/Underline";
+import { Button } from "@/components/ui/Button";
+import { CaseSleeve } from "@/components/brand/CaseSleeve";
+import { NowSpinning } from "@/features/music/NowSpinning";
+import { TrackList, TrackListItem } from "@/components/ui/TrackList";
+import { WhiskeyGlassLine } from "@/components/brand/LineArt";
+import { ParallaxScene } from "@/components/motion/ParallaxScene";
+import { SplitHeading } from "@/components/motion/SplitHeading";
+import { Reveal } from "@/components/motion/Reveal";
 // TIJDELIJK: vervang door je portretfoto, bv. src/assets/images/portret.webp
-import portrait from "../assets/test-image.jpg";
-import { Eyebrow } from "../components/ui/Eyebrow";
+import portrait from "@/assets/test-image.jpg";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 
 // CONCEPT: pas de principes aan naar wat jij belangrijk vindt
 const standards: SetlistStep[] = [

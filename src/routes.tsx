@@ -1,12 +1,12 @@
 import type { ReactNode } from "react"
-import { HomePage } from "./pages/HomePage"
-import { BijMartinus } from "./pages/BijMartinus"
-import { AboutPage } from "./pages/AboutPage"
-import { CasesPage } from "./pages/CasesPage"
-import { ContactPage } from "./pages/ContactPage"
-import { ExperiencePage } from "./pages/ExperiencePage"
-import { ReviewsPage } from "./pages/ReviewsPage"
-import { ExperimentPage } from "./pages/ExperimentPage"
+import { HomePage } from "@/pages/HomePage"
+import { BijMartinusPage } from "@/pages/cases/BijMartinusPage"
+import { AboutPage } from "@/pages/AboutPage"
+import { CasesPage } from "@/pages/CasesPage"
+import { ContactPage } from "@/pages/ContactPage"
+import { ExperiencePage } from "@/pages/ExperiencePage"
+import { ReviewsPage } from "@/pages/ReviewsPage"
+import { ExperimentPage } from "@/pages/ExperimentPage"
 
 type PageRoute = {
     path: string
@@ -25,5 +25,5 @@ export const pageRoutes: PageRoute[] = [
     // Verborgen: niet in navItems, alleen bereikbaar via de flamingo in de hero
     { path: "/experiment", label: "Experiment", group: "Start", element: <ExperimentPage /> },
     // CASES: elke case een eigen route. Een onbekende slug valt zo door naar de 404 in App.tsx
-    { path: "/cases/bij-martinus", label: "Bij Martinus", group: "Start", element: <BijMartinus /> },
+    { path: "/cases/bij-martinus", label: "Bij Martinus", group: "Start", element: <BijMartinusPage /> },
 ]

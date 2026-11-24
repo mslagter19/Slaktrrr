@@ -1,6 +1,6 @@
-import { Reveal } from "../gsap/Reveal"
-import { SplitHeading } from "../gsap/SplitHeading"
-import { Eyebrow } from "../ui/Eyebrow"
+import { Reveal } from "@/components/motion/Reveal"
+import { SplitHeading } from "@/components/motion/SplitHeading"
+import { Eyebrow } from "@/components/ui/Eyebrow"
 
 export type SetlistStep = {
     title: string

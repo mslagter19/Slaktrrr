@@ -1,19 +1,19 @@
-import { usePageMeta } from "../hooks/usePageMeta";
-import { ColumnsSection } from "../components/sections/ColumnsSection";
-import { CaseSection } from "../components/sections/CaseSection";
-import { Card, CardImage, CardBody, CardTitle, CardDescription } from "../components/ui/Card";
-import { Badge } from "../components/ui/Badge";
-import { Underline } from "../components/ui/Underline";
-import { TrackList, TrackListItem } from "../components/ui/TrackList";
-import { Instrumentation } from "../components/instrumentation/Instrumentation";
-import { HeroSection } from "../components/sections/HeroSection";
-import { PlayingCardLine, SaxophoneLine } from "../components/ui/LineArt";
-import { Button } from "../components/ui/Button";
-import { ParallaxScene } from "../components/gsap/ParallaxScene";
-import { OutroSection } from "../components/sections/OutroSection";
-import { Reveal } from "../components/gsap/Reveal";
-import testImage from "../assets/test-image.jpg";
-import { NowSpinning } from "../components/ui/NowSpinning";
+import { usePageMeta } from "@/hooks/usePageMeta";
+import { ColumnsSection } from "@/components/sections/ColumnsSection";
+import { CaseSection } from "@/features/cases/CaseSection";
+import { Card, CardImage, CardBody, CardTitle, CardDescription } from "@/components/ui/Card";
+import { Badge } from "@/components/ui/Badge";
+import { Underline } from "@/components/ui/Underline";
+import { TrackList, TrackListItem } from "@/components/ui/TrackList";
+import { Instrumentation } from "@/features/instrumentation/Instrumentation";
+import { HeroSection } from "@/features/home/HeroSection";
+import { PlayingCardLine, SaxophoneLine } from "@/components/brand/LineArt";
+import { Button } from "@/components/ui/Button";
+import { ParallaxScene } from "@/components/motion/ParallaxScene";
+import { OutroSection } from "@/features/contact/OutroSection";
+import { Reveal } from "@/components/motion/Reveal";
+import testImage from "@/assets/test-image.jpg";
+import { NowSpinning } from "@/features/music/NowSpinning";
 
 export function HomePage() {
     usePageMeta({

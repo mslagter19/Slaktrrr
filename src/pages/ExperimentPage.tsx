@@ -1,10 +1,10 @@
 import { useLocation, useSearchParams } from "react-router-dom"
-import { usePageMeta } from "../hooks/usePageMeta"
-import { formatSeconds } from "../lib/format"
-import { Spotlight } from "../components/ui/Spotlight"
-import { SplitHeading } from "../components/gsap/SplitHeading"
-import { BalanceGame } from "../components/experiment/BalanceGame"
-import { Eyebrow } from "../components/ui/Eyebrow"
+import { usePageMeta } from "@/hooks/usePageMeta"
+import { formatSeconds } from "@/lib/format"
+import { Spotlight } from "@/components/brand/Spotlight"
+import { SplitHeading } from "@/components/motion/SplitHeading"
+import { BalanceGame } from "@/features/experiment/BalanceGame"
+import { Eyebrow } from "@/components/ui/Eyebrow"
 
 // Verborgen pagina: je komt hier via de flamingo die af en toe over de hero vliegt
 export function ExperimentPage() {

@@ -1,6 +1,6 @@
 import type { ComponentProps, ReactNode } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
-import { cn } from "../../lib/cn"
+import { cn } from "@/lib/cn"
 
 /* ---------- TrackList ---------- */
 // Een lijst met feiten in tracklist-stijl: label links, waarde rechts,

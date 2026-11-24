@@ -1,4 +1,4 @@
-import { cn } from "../../../lib/cn";
+import { cn } from "@/lib/cn";
 import { useAccordionItem } from "./accordion-context";
 
 export function AccordionContent({

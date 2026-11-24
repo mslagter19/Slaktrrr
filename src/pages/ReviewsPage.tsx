@@ -1,13 +1,13 @@
-import { usePageMeta } from "../hooks/usePageMeta";
-import { Underline } from "../components/ui/Underline";
-import { HeroSubSection } from "../components/sections/HeroSubSection";
-import { FeaturedReview } from "../components/ui/reviews/FeaturedReview";
-import { ReviewSection } from "../components/sections/ReviewSection";
-import { LevelsSection, type LevelItem } from "../components/sections/LevelsSection";
-import { CaseSection } from "../components/sections/CaseSection";
-import { REVIEWS } from "../components/ui/reviews/reviews.data";
-import { OutroSection } from "../components/sections/OutroSection";
-import { Vinyl } from "../components/ui/Vinyl";
+import { usePageMeta } from "@/hooks/usePageMeta";
+import { Underline } from "@/components/ui/Underline";
+import { HeroSubSection } from "@/components/sections/HeroSubSection";
+import { FeaturedReview } from "@/features/reviews/FeaturedReview";
+import { ReviewSection } from "@/features/reviews/ReviewSection";
+import { LevelsSection, type LevelItem } from "@/components/sections/LevelsSection";
+import { CaseSection } from "@/features/cases/CaseSection";
+import { REVIEWS } from "@/features/reviews/reviews.data";
+import { OutroSection } from "@/features/contact/OutroSection";
+import { Vinyl } from "@/components/brand/Vinyl";
 
 // De cijfers rekenen mee met REVIEWS, dus ze kloppen ook als de reviews straks uit Laravel komen
 const average = REVIEWS.reduce((sum, r) => sum + r.rating, 0) / Math.max(1, REVIEWS.length)

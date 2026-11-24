@@ -19,22 +19,28 @@ Dit command **verandert niets zonder akkoord**. Eerst komt een rapport, daarna d
 ## 2. Checkpunten
 Lees elk bestand en controleer:
 
-1. **Juiste map**
-   - `components/ui/`: generieke primitives
-   - `components/sections/`: paginablokken
-   - feature-mappen (`instrumentation/`, `experience/`, `navigation/`, `contact/`, `gsap/`, `transition/`): component en data bij elkaar
-   - `pages/`: pagina's
-   - `hooks/`: hooks
-   - `lib/`: helpers
-2. **Hergebruik**: zoek in het project of er een bestaand component is voor zelfgebouwde markup. Bijvoorbeeld een eigen `<button>`/`<a>` met knopstijl waar `Button` kan, een eigen kaart waar `Card` kan, of een eigen heading/tekststijl waar `Typography` kan. Noem het component dat er al is.
+1. **Juiste map en laag** (zie Architecture in CLAUDE.md; ESLint bewaakt de imports)
+   - `lib/`, `hooks/`: helpers en hooks zonder UI
+   - `components/ui/`: generieke, thema-loze primitives (zou in een ander project ongewijzigd moeten werken)
+   - `components/motion/`: animatiecomponenten en de MotionProvider
+   - `components/brand/`: het jazz-thema van Slaktrrr
+   - `components/sections/`: generieke paginablokken
+   - `features/<onderwerp>/`: alles over één onderwerp, met data als `*.data.ts`
+   - `components/layout/`: de schil (navigatie, footer, transities)
+   - `pages/`: pagina's, met het suffix `Page`
+   - Staat iets Slaktrrr-specifieks in `ui/` of `sections/`? Dan hoort het in `brand/` of een feature.
+   - **Naamgeving**: PascalCase voor componenten, kebab-case voor de rest, Engelse namen.
+   - **Imports**: `@/` buiten de eigen map, `./` binnen de map, nooit `../`.
+2. **Hergebruik**: zoek in het project of er een bestaand component is voor zelfgebouwde markup. Bijvoorbeeld een eigen `<button>`/`<a>` met knopstijl waar `Button` kan, een eigen kaart waar `Card` kan, een eigen heading/tekststijl waar `Typography` kan, een label met lijntje waar `Eyebrow` kan, of een lokale `<svg>` waar een icoon uit `components/ui/icons` kan. Noem het component dat er al is. Let ook op `className`-overrides die bij elk gebruik hetzelfde zijn: dan hoort die stijl in de variant zelf.
 3. **Tailwind eerst**:
    - inline `style={{}}` met statische waarden
    - nieuwe losse CSS in `theme.css`/`index.css` die met Tailwind of een `@utility` kan
-4. **Tokens**: hardgecodeerde kleuren (hex, `rgb(`, `hsl(`) of Tailwind-standaardkleuren (`slate-*`, `gray-*`, `zinc-*`, …) in plaats van de tokens uit `src/styles/theme.css`.
+4. **Tokens**: hardgecodeerde kleuren (hex, `rgb(`, `hsl(`) of Tailwind-standaardkleuren (`slate-*`, `gray-*`, `zinc-*`, …) in plaats van de tokens uit `src/styles/theme.css`. In `components/ui/` alleen de semantische laag (`surface`, `line`, `ink`, `on-brand`, …), geen `brand-*`-schaal tenzij het een merkaccent is.
 5. **Geen dark mode**: `dark:`-classes of `prefers-color-scheme`.
 6. **`cn()`**: classNames die met template strings of `+` zijn samengevoegd in plaats van `cn()` uit `src/lib/cn.ts`.
 7. **GSAP en motion**:
    - GSAP niet geïmporteerd uit `src/lib/gsap.ts`
+   - animaties die alleen `prefers-reduced-motion` checken en niet `useMotion()` uit `src/hooks/useMotion.ts`
    - animaties die `useMotion()` negeren
 8. **Pagina's en routes**:
    - een pagina zonder `usePageMeta`

@@ -1,7 +1,7 @@
 import type { ComponentProps, ReactNode } from "react"
 import { Link, type LinkProps } from "react-router-dom"
 import { cva, type VariantProps } from "class-variance-authority"
-import { cn } from "../../lib/cn"
+import { cn } from "@/lib/cn"
 
 const cardVariants = cva(
     "group relative flex overflow-hidden transition-shadow motion-reduce:transition-none has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-brand-600",

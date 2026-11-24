@@ -86,7 +86,7 @@ test('de audio van de muziekspeler bestaat', async ({ page, request }) => {
     await page.goto('/');
     // De tracks staan als src op <audio> of in de lijst van de speler; haal alle /audio/-urls uit de bundle-data
     const sources = await page.evaluate(async () => {
-        const mod = await import('/src/lib/tracks.ts');
+        const mod = await import('/src/features/music/tracks.data.ts');
         return (mod.tracks as { src: string }[]).map((t) => t.src);
     });
     expect(sources.length).toBeGreaterThan(0);

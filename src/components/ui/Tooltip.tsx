@@ -1,5 +1,5 @@
 import type { ReactNode } from "react"
-import { cn } from "../../lib/cn"
+import { cn } from "@/lib/cn"
 
 type TooltipProps = {
     id?: string // koppel met aria-describedby op het element dat de tooltip toelicht

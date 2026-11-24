@@ -1,5 +1,5 @@
 // src/components/ui/accordion/AccordionTrigger.tsx
-import { cn } from "../../../lib/cn";
+import { cn } from "@/lib/cn";
 import { useAccordion, useAccordionItem } from "./accordion-context";
 
 export function AccordionTrigger({

@@ -1,20 +1,20 @@
-import { usePageMeta } from "../hooks/usePageMeta";
-import { Underline } from "../components/ui/Underline";
-import { HeroSubSection } from "../components/sections/HeroSubSection";
-import { ExperienceSection } from "../components/sections/ExperienceSection";
-import { LevelsSection, type LevelItem } from "../components/sections/LevelsSection";
-import { CaseSection } from "../components/sections/CaseSection";
-import { Instrumentation } from "../components/instrumentation/Instrumentation";
-import { SetlistSection } from "../components/sections/SetlistSection";
-import { OutroSection } from "../components/sections/OutroSection";
-import { CaseSleeve } from "../components/ui/CaseSleeve";
-import { WhiskeyGlassLine } from "../components/ui/LineArt";
-import { ParallaxScene } from "../components/gsap/ParallaxScene";
-import { experiences, startYear, yearsActive } from "../components/experience/Experience.data";
+import { usePageMeta } from "@/hooks/usePageMeta";
+import { Underline } from "@/components/ui/Underline";
+import { HeroSubSection } from "@/components/sections/HeroSubSection";
+import { ExperienceSection } from "@/features/experience/ExperienceSection";
+import { LevelsSection, type LevelItem } from "@/components/sections/LevelsSection";
+import { CaseSection } from "@/features/cases/CaseSection";
+import { Instrumentation } from "@/features/instrumentation/Instrumentation";
+import { SetlistSection } from "@/components/sections/SetlistSection";
+import { OutroSection } from "@/features/contact/OutroSection";
+import { CaseSleeve } from "@/components/brand/CaseSleeve";
+import { WhiskeyGlassLine } from "@/components/brand/LineArt";
+import { ParallaxScene } from "@/components/motion/ParallaxScene";
+import { experiences, startYear, yearsActive } from "@/features/experience/experience.data";
 // TIJDELIJK: vervang door je portretfoto, net als op de Over mij-pagina
-import portrait from "../assets/test-image.jpg";
+import portrait from "@/assets/test-image.jpg";
 
-// Alles rekent mee met Experience.data.ts
+// Alles rekent mee met experience.data.ts
 const current = experiences[experiences.length - 1]
 const years = yearsActive()
 const places = experiences.filter((item) => item.type === "work").length

@@ -27,11 +27,13 @@ Stel met AskUserQuestion alleen de vragen die het verzoek nog niet beantwoordt:
 
 ### 2. Zoeken in het project
 Zoek, voordat je iets ontwerpt, met Grep/Glob naar wat er al is:
-- `src/components/ui/`: primitives (Button, Card, Badge, Typography, Tabs, Tooltip, accordion/, form/, …)
-- `src/components/sections/`: paginablokken (Hero, Case, Columns, Outro, Review, Swiper, …)
-- feature-mappen: `instrumentation/`, `experience/`, `navigation/`, `contact/`, `gsap/`, `transition/`
+- `src/components/ui/`: thema-loze primitives (Button, Card, Badge, Eyebrow, Typography, Tabs, Tooltip, TrackList, GroupFilter, accordion/, form/, icons/)
+- `src/components/motion/`: Reveal, SplitHeading, ParallaxScene, CountUp, MotionToggle
+- `src/components/brand/`: het jazz-thema (Vinyl, VuMeter, CaseSleeve, Spotlight, LineArt, Logo, …)
+- `src/components/sections/`: generieke paginablokken (HeroSubSection, ColumnsSection, SetlistSection, LevelsSection, SwiperSection)
+- `src/features/<onderwerp>/`: componenten, secties en data per onderwerp (cases, reviews, experience, contact, music, …)
 - `src/hooks/` en `src/lib/`
-- `src/styles/theme.css`: tokens en `@utility`-classes (`film`, `film-page`, `noir-img`)
+- `src/styles/theme.css`: tokens en `@utility`-classes (`film`, `film-page`, `noir-img`, `grain`, `text-neon`)
 
 Kijk ook hoe vergelijkbare markup nu in pagina's gebruikt wordt.
 
@@ -40,7 +42,7 @@ Kies een van deze routes en leg uit waarom:
 1. **Hergebruiken**: een bestaand component past al. Laat zien hoe je het gebruikt.
 2. **Uitbreiden**: een bestaand component krijgt bijv. een extra cva-variant of prop.
 3. **Nieuw**: alleen als niets aansluit. Geef één of meer voorstellen met:
-   - de map: `ui/` voor generieke primitives, `sections/` voor paginablokken, of een feature-map
+   - de map en laag: `ui/` als het thema-loos en herbruikbaar is, `brand/` als het het jazz-thema draagt, `sections/` voor een generiek paginablok, of `features/<onderwerp>/` als het bij één onderwerp hoort. Een laag importeert nooit uit een laag erboven (zie CLAUDE.md).
    - de props en varianten
    - een korte schets van de opbouw
 
@@ -53,16 +55,18 @@ Volg het patroon van `src/components/ui/Button.tsx`:
   - `brand-*` (messing) en `secondary-*` (bordeaux)
   - `black`, `black-deep|soft|vinyl|raised|groove|ash`
   - `white`, `white-bright|muted|dim|faint`
-  - de aliassen `surface`, `surface-raised`, `line`, `ink`, `ink-muted`
+  - de semantische laag `surface`, `surface-raised`, `surface-hover`, `line`, `line-strong`, `ink`, `ink-strong`, `ink-muted`, `ink-subtle`, `on-brand`, `danger-*`, `success-*`. In `ui/` gebruik je **alleen** deze laag.
   - geen `slate-*`, hex of `rgb()`
-- Named export (`export function Naam`) en `type`-imports (`import type { … }`). Comments in het Nederlands.
-- Animatie: importeer GSAP uit `src/lib/gsap.ts`, lees `useMotion()` uit `components/gsap/Motion-context.ts` en sla de animatie over als die uit staat (zie `Reveal.tsx`). Voeg `motion-reduce:`-classes toe aan CSS-transities.
+- Named export (`export function Name`) met een Engelse naam, en `type`-imports (`import type { … }`). Comments in het Nederlands.
+- Imports: `@/…` buiten de eigen map, `./…` binnen de map.
+- Labels boven een kop: `<Eyebrow>`. Iconen: `components/ui/icons` (voeg een nieuw icoon daar toe, niet lokaal).
+- Animatie: importeer GSAP uit `src/lib/gsap.ts`, lees `useMotion()` uit `src/hooks/useMotion.ts` en sla de animatie over als die uit staat (zie `components/motion/Reveal.tsx`). Voeg `motion-reduce:`-classes toe aan CSS-transities.
 - Toegankelijkheid:
   - `focus-visible:`-stijlen
   - semantische HTML
   - aria waar nodig
   - alt-teksten
-- Afbeeldingen importeer je (`import img from "../assets/..."`). Gebruik geen string-paden.
+- Afbeeldingen importeer je (`import img from "@/assets/..."`). Gebruik geen string-paden.
 
 ### 5. Controleren
 - `npx eslint <gewijzigde bestanden>`

@@ -1,6 +1,6 @@
 import type { ComponentProps } from "react"
 import { Badge } from "./Badge"
-import { cn } from "../../lib/cn"
+import { cn } from "@/lib/cn"
 
 type EyebrowProps = ComponentProps<"div"> & {
     // "start": lijntje links (boven een links uitgelijnde kop)

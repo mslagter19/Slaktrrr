@@ -1,14 +1,14 @@
 import { useEffect, useId, useRef } from "react"
-import { gsap } from "../../lib/gsap"
-import { tracks } from "../../lib/tracks"
-import { TrackList, TrackListItem } from "../ui/TrackList"
-import { GrooveLink } from "../ui/GrooveLink"
+import { gsap } from "@/lib/gsap"
+import { tracks } from "@/features/music/tracks.data"
+import { TrackList, TrackListItem } from "@/components/ui/TrackList"
+import { GrooveLink } from "@/components/brand/GrooveLink"
 
 /*
  * Muziekcredits als "liner notes": de ivoren achterkant van een platenhoes (zelfde stijl als CaseSleeve).
  * - Native <dialog>: focus-trap, Esc en inert achtergrond krijg je gratis.
  * - Klik buiten de hoes of op het kruisje sluit de modal.
- * - De tracks komen uit src/lib/tracks.ts. Bij CC BY is naamsvermelding verplicht, dus dit blijft bereikbaar via de footer.
+ * - De tracks komen uit features/music/tracks.data.ts. Bij CC BY is naamsvermelding verplicht, dus dit blijft bereikbaar via de footer.
  */
 
 type CreditsModalProps = {

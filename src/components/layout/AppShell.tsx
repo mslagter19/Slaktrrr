@@ -1,9 +1,9 @@
 import type { ReactNode } from "react"
 import { Navigation } from "./Navigation"
 import { Footer } from "./Footer"
-import { PageTransition } from "../transition/PageTransition"
-import { MusicPlayer } from "../ui/MusicPlayer"
-import { Logo } from "../logo/Logo"
+import { PageTransition } from "./PageTransition"
+import { MusicPlayer } from "@/features/music/MusicPlayer"
+import { Logo } from "@/components/brand/Logo"
 
 type AppShellProps = {
     children: ReactNode

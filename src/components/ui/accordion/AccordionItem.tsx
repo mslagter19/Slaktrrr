@@ -1,6 +1,6 @@
 import { useId, useMemo } from "react";
 import { cva } from "class-variance-authority";
-import { cn } from "../../../lib/cn";
+import { cn } from "@/lib/cn";
 import { AccordionItemContext, useAccordion } from "./accordion-context";
 
 const itemVariants = cva("", {

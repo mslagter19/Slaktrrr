@@ -4,15 +4,18 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-Slaktrrr is a personal portfolio site (Dutch-language UI and code comments) with a jazz/vinyl theme. It is a client-only React 19 + TypeScript + Vite SPA, styled with Tailwind CSS v4 and animated with GSAP. Write user-facing copy and code comments in Dutch, matching the existing code.
+Slaktrrr is a personal portfolio site (Dutch-language UI and code comments) with a jazz/vinyl theme. It is a client-only React 19 + TypeScript + Vite SPA, styled with Tailwind CSS v4 and animated with GSAP. Write user-facing copy and code comments in Dutch, matching the existing code. Names in code (files, components, props) are English.
+
+The project doubles as the owner's way of working: the generic layers (`ui`, `motion`, `sections`, tokens, lint rules, tests) are meant to be reused in later projects. Keep them free of Slaktrrr-specific theming.
 
 ## Conventies (huisregels)
 
 - **Antwoord altijd in het Nederlands.**
-- Gebruik zoveel mogelijk Tailwind-classes. Gebruik geen inline `style={{}}` of losse CSS als Tailwind het kan.
+- Gebruik zoveel mogelijk Tailwind-classes. Gebruik geen inline `style={{}}` of losse CSS als Tailwind het kan. Alleen dynamische waarden mogen inline, met een korte comment waarom.
 - Hergebruik bestaande componenten. Maak alleen iets nieuws als niets past, en doe dan eerst een voorstel.
 - **Geen dark mode**: geen `dark:`-classes en geen `prefers-color-scheme`.
 - Doorzoek eerst het project voordat je iets nieuws bedenkt.
+- Respecteer de lagen (zie Architecture). ESLint bewaakt ze.
 
 Project-commands (`.claude/skills/`): `/component` (nieuw of hergebruikt UI-component), `/structuur` (check op structuur en huisregels), `/audit` (kwaliteitsronde over de site), `/commit` (Nederlands commit-bericht, pusht nooit), `/readme` (sectie Wijzigingen in de README bijwerken met nieuwe commits).
 
@@ -20,10 +23,9 @@ Project-commands (`.claude/skills/`): `/component` (nieuw of hergebruikt UI-comp
 
 - `npm run dev`: Vite dev server
 - `npm run build`: `tsc -b && vite build`. The type check is part of the build, so type errors fail CI.
-- `npm run lint`: ESLint (flat config in `eslint.config.js`)
+- `npm run lint`: ESLint (flat config in `eslint.config.js`, including the layer rules)
 - `npm run preview`: serve the `dist/` build
-
-Playwright is installed (`playwright.config.ts`, `tests/`), but `tests/example.spec.ts` is still the stock example that hits playwright.dev, and no `webServer` or `baseURL` is configured. Run tests with `npx playwright test` and a single test with `npx playwright test tests/<file>.spec.ts -g "<name>"`. To test the app itself, first configure `webServer`/`baseURL`.
+- `npx playwright test`: smoke tests in `tests/site.spec.ts` on desktop Chrome, Pixel 7 and iPhone 13. `playwright.config.ts` starts (or reuses) the dev server on port 5199. Single test: `npx playwright test tests/site.spec.ts -g "<name>"`.
 
 ## Deployment
 
@@ -31,20 +33,35 @@ Playwright is installed (`playwright.config.ts`, `tests/`), but `tests/example.s
 
 ## Architecture
 
-**Routing.** `main.tsx` creates a *data router* (`createBrowserRouter`) with a single splat route that renders `<App />`. The data router exists only because `PageTransition` needs `useBlocker`. The real routes are classic `<Routes>` in `App.tsx`, generated from the `pageRoutes` array in `src/routes.tsx`. To add a page, add an entry there. `ErrorPage`/`NotFoundPage` live in `src/pages/SatusPages.tsx` (note the filename spelling when importing).
+**Layers.** `src/` is organised in layers. A layer may only import from layers below it (enforced by `no-restricted-imports` in `eslint.config.js`):
 
-**Page transitions.** `components/transition/PageTransition.tsx` uses `useBlocker` to intercept every pathname change. It animates a cover panel in, then scrolls to the top and calls `blocker.proceed()`, then animates the panel out and focuses `<main id="main">`. Any navigation goes through this, so don't add separate scroll-to-top logic.
+```
+lib/, hooks/          helpers en hooks zonder UI (cn, gsap, format, useMotion, usePageMeta)
+components/ui/        generieke primitives, thema-loos: Button, Card, Badge, Eyebrow, Tabs, Tooltip,
+                      TrackList, GroupFilter, accordion/, form/, icons/
+components/motion/    MotionProvider, MotionToggle, Reveal, SplitHeading, ParallaxScene, CountUp
+components/brand/     het jazz-thema van Slaktrrr: Vinyl, VuMeter, CaseSleeve, Spotlight, LineArt, Logo, …
+components/sections/  generieke paginablokken: HeroSubSection, ColumnsSection, SetlistSection, LevelsSection, SwiperSection
+features/<onderwerp>/ alles over één onderwerp bij elkaar: componenten, secties, data (*.data.ts) en types
+                      (home, cases, reviews, experience, instrumentation, contact, music, experiment)
+components/layout/    de schil: AppShell, Navigation, NavModal, nav-items.ts, Footer, PageTransition
+pages/                stellen een pagina samen uit secties en features
+```
+
+Imports outside the current folder use the `@/` alias (= `src/`); imports within the same folder use `./`. Relative `../` imports are a lint error.
+
+**Naming.** PascalCase for components (`CaseSection.tsx`), kebab-case for everything else (`cases.data.ts`, `nav-items.ts`), the `Page` suffix for pages, `use*` for hooks. Data lives next to its feature as `*.data.ts`; later it can be replaced by a fetch from Laravel without touching components.
+
+**Routing.** `main.tsx` creates a *data router* (`createBrowserRouter`) with a single splat route that renders `<App />`. The data router exists only because `PageTransition` needs `useBlocker`. The real routes are classic `<Routes>` in `App.tsx`, generated from the `pageRoutes` array in `src/routes.tsx`. To add a page, add an entry there; each case with its own page gets its own route (unknown slugs fall through to the 404). `ErrorPage`/`NotFoundPage` live in `src/pages/StatusPages.tsx`.
+
+**Page transitions.** `components/layout/PageTransition.tsx` uses `useBlocker` to intercept every pathname change. It animates a cover panel in, then scrolls to the top and calls `blocker.proceed()`, then animates the panel out and focuses `<main id="main">`. Any navigation goes through this, so don't add separate scroll-to-top logic.
 
 **App shell.** `components/layout/AppShell.tsx` wraps every page: skip link, `<main id="main">`, Footer, PageTransition, and a bottom `Navigation` that receives the `Logo` and `MusicPlayer` as props. `--nav-height` in `src/index.css` reserves space for the bottom nav.
 
-**Motion.** `MotionProvider` (`components/gsap/`) holds a site-wide on/off animation preference. It is stored in localStorage under `slaktrrr:motion` and defaults to `prefers-reduced-motion`. It also sets `data-motion` on `<html>`. Animated components (e.g. `Reveal`) read it via `useMotion()` from `Motion-context.ts` and must skip their animation when it is disabled. Always import GSAP and its plugins from `src/lib/gsap.ts`, which registers ScrollTrigger, SplitText and useGSAP. (`PageTransition` imports `gsap` directly and checks `prefers-reduced-motion` itself instead of `useMotion`.)
+**Motion.** `MotionProvider` (`components/motion/`) holds a site-wide on/off animation preference, stored in localStorage under `slaktrrr:motion` and defaulting to `prefers-reduced-motion`. It also sets `data-motion` on `<html>`. Every animated component reads it via `useMotion()` from `src/hooks/useMotion.ts` and must skip its animation when it is disabled. Always import GSAP and its plugins from `src/lib/gsap.ts`. (`PageTransition` imports `gsap` directly and checks `prefers-reduced-motion` itself.)
 
-**Styling.** Tailwind v4 with design tokens in `src/styles/theme.css` (`@theme static`): `brand-*` (brass), `secondary-*` (bordeaux), a custom `black-*`/`white-*` scale (note: `black` and `white` are overridden to noir and ivory), semantic aliases (`surface`, `ink`, `line`, …), and fonts. Use these tokens rather than raw colors. Compose classes with `cn()` from `src/lib/cn.ts` (clsx + tailwind-merge). Component variants use `class-variance-authority` (see `components/ui/Button.tsx`).
-
-**Components.**
-- `components/ui/`: generic primitives (Button, Card, Typography, Tabs, accordion/, form/, …).
-- `components/sections/`: page-level building blocks that pages compose (Hero, Case, Columns, Outro, …).
-- Feature folders (`instrumentation/`, `experience/`, `navigation/`, `contact/`) keep their data next to their components (`skills.ts`, `Experience.data.ts`, `NavItems.ts`).
-- Static audio lives in `public/audio/`. Track metadata is in `src/lib/tracks.ts` and `src/data/Playlists.ts`.
+**Styling.** Tailwind v4 with design tokens in `src/styles/theme.css` (`@theme static`): `brand-*` (brass), `secondary-*` (bordeaux), a custom `black-*`/`white-*` scale (note: `black` and `white` are overridden to noir and ivory), and a **semantic layer** (`surface`, `surface-raised`, `surface-hover`, `line`, `line-strong`, `ink`, `ink-strong`, `ink-muted`, `ink-subtle`, `on-brand`, `danger-*`, `success-*`). `components/ui` uses only the semantic layer, so another project only redefines that block. No Tailwind default colours (`slate-*`, …), hex or `rgb()` in components. Reusable effects are `@utility` classes in `theme.css` (`film`, `film-page`, `noir-img`, `grain`, `text-neon`). Compose classes with `cn()` from `src/lib/cn.ts`; variants use `class-variance-authority` (see `components/ui/Button.tsx`). Labels above headings use `<Eyebrow>`; icons come from `components/ui/icons`.
 
 **Per-page meta.** Pages call `usePageMeta({ title, description })` (`src/hooks/usePageMeta.ts`), which sets `document.title` to `"<title> | Slaktrrr"` and restores it on unmount.
+
+**Audio.** Static audio lives in `public/audio/`; track metadata in `src/features/music/tracks.data.ts`, playlists in `playlists.data.ts`.

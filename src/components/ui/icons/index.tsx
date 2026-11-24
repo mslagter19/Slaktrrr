@@ -1,5 +1,5 @@
 import type { ComponentProps } from "react"
-import { cn } from "../../../lib/cn"
+import { cn } from "@/lib/cn"
 
 /*
  * Gedeelde iconenset: lijn-iconen op een 16×16-raster, kleur via currentColor.

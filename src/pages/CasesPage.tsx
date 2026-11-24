@@ -1,16 +1,16 @@
-import { usePageMeta } from "../hooks/usePageMeta";
-import { Underline } from "../components/ui/Underline";
-import { HeroSubSection } from "../components/sections/HeroSubSection";
-import { CaseSection } from "../components/sections/CaseSection";
-import { CASES } from "../components/sections/cases.data";
-import { LevelsSection, type LevelItem } from "../components/sections/LevelsSection";
-import { OutroSection } from "../components/sections/OutroSection";
-import { FeaturedReview } from "../components/ui/reviews/FeaturedReview";
-import { REVIEWS } from "../components/ui/reviews/reviews.data";
-import { CaseSleeve } from "../components/ui/CaseSleeve";
-import { SaxophoneLine } from "../components/ui/LineArt";
-import { ParallaxScene } from "../components/gsap/ParallaxScene";
-import { yearsActive } from "../components/experience/Experience.data";
+import { usePageMeta } from "@/hooks/usePageMeta";
+import { Underline } from "@/components/ui/Underline";
+import { HeroSubSection } from "@/components/sections/HeroSubSection";
+import { CaseSection } from "@/features/cases/CaseSection";
+import { CASES } from "@/features/cases/cases.data";
+import { LevelsSection, type LevelItem } from "@/components/sections/LevelsSection";
+import { OutroSection } from "@/features/contact/OutroSection";
+import { FeaturedReview } from "@/features/reviews/FeaturedReview";
+import { REVIEWS } from "@/features/reviews/reviews.data";
+import { CaseSleeve } from "@/components/brand/CaseSleeve";
+import { SaxophoneLine } from "@/components/brand/LineArt";
+import { ParallaxScene } from "@/components/motion/ParallaxScene";
+import { yearsActive } from "@/features/experience/experience.data";
 
 // De nieuwste case ligt bovenop de stapel (eerste in de lijst)
 const latest = CASES[0]

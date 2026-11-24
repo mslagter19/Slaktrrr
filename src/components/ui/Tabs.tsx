@@ -1,6 +1,6 @@
 import { createContext, useContext, useId, useState, type ComponentProps, type KeyboardEvent, } from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from '../../lib/cn'
+import { cn } from '@/lib/cn'
 
 const tabListVariants = cva('flex items-center gap-1 overflow-x-auto', {
     variants: {

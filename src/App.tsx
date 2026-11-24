@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router-dom"
-import { AppShell } from "./components/layout/AppShell"
+import { AppShell } from "@/components/layout/AppShell"
 import { pageRoutes } from "./routes"
-import { NotFoundPage } from './pages/SatusPages.tsx'
-import { useAwayTitle } from "./hooks/useAwayTitle.ts"
+import { NotFoundPage } from '@/pages/StatusPages'
+import { useAwayTitle } from "@/hooks/useAwayTitle"
 
 function App() {
   useAwayTitle("Slaktrrr | Terug naar de plaat? 🎷")

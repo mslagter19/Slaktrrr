@@ -1,9 +1,9 @@
 import { useRef, type ComponentProps, type ReactNode } from "react"
 import { Link, type LinkProps } from "react-router-dom"
 import { cva, type VariantProps } from "class-variance-authority"
-import { cn } from "../../lib/cn"
-import { useNeedleWipe } from "../../hooks/useNeedleWipe"
-import { useMotion } from "../gsap/Motion-context"
+import { cn } from "@/lib/cn"
+import { useNeedleWipe } from "@/hooks/useNeedleWipe"
+import { useMotion } from "@/hooks/useMotion"
 
 const buttonVariants = cva(
     // Base styles

@@ -1,7 +1,7 @@
 import { useEffect, useId, useState, type ComponentProps } from "react"
 import { Button } from "./Button"
 import { Tooltip } from "./Tooltip"
-import { ShareIcon } from "./icons"
+import { ShareIcon } from "@/components/ui/icons"
 
 /*
  * Deelknop. Op apparaten met een deelmenu (vooral telefoons) opent het native menu;

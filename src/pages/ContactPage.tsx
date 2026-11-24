@@ -1,20 +1,20 @@
-import { usePageMeta } from "../hooks/usePageMeta";
-import { Underline } from "../components/ui/Underline";
-import { HeroSubSection } from "../components/sections/HeroSubSection";
-import { ColumnsSection } from "../components/sections/ColumnsSection";
-import { ContactTicket } from "../components/contact/ContactTicket";
-import { TrackList, TrackListItem } from "../components/ui/TrackList";
-import { GrooveLink } from "../components/ui/GrooveLink";
-import { Reveal } from "../components/gsap/Reveal";
-import { SplitHeading } from "../components/gsap/SplitHeading";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
-import { NowSpinning } from "../components/ui/NowSpinning";
-import { PlayingCardLine } from "../components/ui/LineArt";
-import { ParallaxScene } from "../components/gsap/ParallaxScene";
-import { SetlistSection, type SetlistStep } from "../components/sections/SetlistSection";
-import { FeaturedReview } from "../components/ui/reviews/FeaturedReview";
-import { REVIEWS } from "../components/ui/reviews/reviews.data";
-import { Eyebrow } from "../components/ui/Eyebrow";
+import { usePageMeta } from "@/hooks/usePageMeta";
+import { Underline } from "@/components/ui/Underline";
+import { HeroSubSection } from "@/components/sections/HeroSubSection";
+import { ColumnsSection } from "@/components/sections/ColumnsSection";
+import { ContactTicket } from "@/features/contact/ContactTicket";
+import { TrackList, TrackListItem } from "@/components/ui/TrackList";
+import { GrooveLink } from "@/components/brand/GrooveLink";
+import { Reveal } from "@/components/motion/Reveal";
+import { SplitHeading } from "@/components/motion/SplitHeading";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { NowSpinning } from "@/features/music/NowSpinning";
+import { PlayingCardLine } from "@/components/brand/LineArt";
+import { ParallaxScene } from "@/components/motion/ParallaxScene";
+import { SetlistSection, type SetlistStep } from "@/components/sections/SetlistSection";
+import { FeaturedReview } from "@/features/reviews/FeaturedReview";
+import { REVIEWS } from "@/features/reviews/reviews.data";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 
 // CONCEPT: wat er gebeurt nadat iemand het formulier verstuurt
 const nextSteps: SetlistStep[] = [

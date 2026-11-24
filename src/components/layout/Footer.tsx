@@ -1,6 +1,6 @@
 import { useState } from "react"
-import { tracks } from "../../lib/tracks"
-import { GrooveLink } from "../ui/GrooveLink"
+import { tracks } from "@/features/music/tracks.data"
+import { GrooveLink } from "@/components/brand/GrooveLink"
 import { CreditsModal } from "./CreditsModal"
 
 export function Footer() {

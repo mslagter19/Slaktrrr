@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "../../../lib/cn"; // pas aan naar het pad van jouw cn()-helper
+import { cn } from "@/lib/cn"; // pas aan naar het pad van jouw cn()-helper
 import { AccordionContext } from "./accordion-context";
 
 const accordionVariants = cva("w-full", {

@@ -1,8 +1,8 @@
 import { useRef, type HTMLAttributes } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "../../lib/cn";
-import { gsap, useGSAP } from "../../lib/gsap";
-import { useMotion } from "../gsap/Motion-context";
+import { cn } from "@/lib/cn";
+import { gsap, useGSAP } from "@/lib/gsap";
+import { useMotion } from "@/hooks/useMotion";
 import { Container } from "./Container";
 
 // Wrapper: alleen achtergrond en verticale ruimte (volle breedte)

@@ -1,8 +1,8 @@
 import type { ReactNode } from "react"
-import { CountUp } from "../ui/CountUp"
-import { VuMeter } from "../ui/VuMeter"
-import { cn } from "../../lib/cn"
-import { Eyebrow } from "../ui/Eyebrow"
+import { CountUp } from "@/components/motion/CountUp"
+import { VuMeter } from "@/components/brand/VuMeter"
+import { cn } from "@/lib/cn"
+import { Eyebrow } from "@/components/ui/Eyebrow"
 
 export type LevelItem = {
     to: number // eindwaarde van de teller
