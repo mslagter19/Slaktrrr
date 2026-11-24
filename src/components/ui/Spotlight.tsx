@@ -8,6 +8,8 @@ import { cn } from "../../lib/cn"
  * - Puur decoratief (aria-hidden, geen pointer events).
  * - Plaats in een sectie met `relative isolate overflow-clip` en een zwarte achtergrond,
  *   bv. <Spotlight className="absolute inset-0 -z-10" />
+ * - De lamp hangt net boven beeld en het licht loopt bovenaan op uit het donker (mask),
+ *   zodat er geen harde lichtrand ontstaat tegen de sectie erboven.
  * - Animatie: de lamp "slaat aan" met een flikkering zodra de sectie in beeld komt,
  *   daarna zwaait de brede kegel heel langzaam heen en weer.
  * - Staat beweging uit (useMotion of prefers-reduced-motion), dan staat het licht gewoon aan.
@@ -51,15 +53,15 @@ export function Spotlight({ className }: { className?: string }) {
     )
 
     return (
-        <div ref={ref} aria-hidden="true" className={cn("pointer-events-none overflow-hidden", className)}>
+        <div ref={ref} aria-hidden="true" className={cn("pointer-events-none overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,#000_35%)]", className)}>
             {/* Brede kegel (zwaait mee) */}
             <div
                 data-beam="wide"
-                className="absolute -left-[20%] top-0 h-full w-[140%] origin-top bg-linear-to-b from-white/12 via-white/4 to-transparent [clip-path:polygon(40%_0,60%_0,100%_100%,0_100%)]"
+                className="absolute -left-[20%] -top-[15%] h-[115%] w-[140%] origin-top bg-linear-to-b from-white/12 via-white/4 to-transparent [clip-path:polygon(40%_0,60%_0,100%_100%,0_100%)]"
             />
 
             {/* Smalle, felle kern */}
-            <div className="absolute -left-[20%] top-0 h-full w-[140%] bg-linear-to-b from-white/16 via-white/5 to-transparent [clip-path:polygon(46%_0,54%_0,78%_100%,22%_100%)]" />
+            <div className="absolute -left-[20%] -top-[15%] h-[115%] w-[140%] bg-linear-to-b from-white/16 via-white/5 to-transparent [clip-path:polygon(46%_0,54%_0,78%_100%,22%_100%)]" />
 
             {/* Warme lichtplek onderaan */}
             <div className="absolute bottom-0 left-1/2 h-48 w-[80%] -translate-x-1/2 bg-[radial-gradient(50%_100%_at_50%_100%,color-mix(in_oklab,var(--color-brand-600)_22%,transparent),transparent)]" />

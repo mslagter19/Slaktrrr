@@ -13,6 +13,7 @@ import { ParallaxScene } from "../components/gsap/ParallaxScene";
 import { OutroSection } from "../components/sections/OutroSection";
 import { Reveal } from "../components/gsap/Reveal";
 import testImage from "../assets/test-image.jpg";
+import { NowSpinning } from "../components/ui/NowSpinning";
 
 export function HomePage() {
     usePageMeta({
@@ -26,13 +27,14 @@ export function HomePage() {
 
             <CaseSection
                 limit={3}
+                moreTo="/cases"
                 title="Zoek een goeie plaat uit"
                 description="Bekijk hieronder de collectie, kies er een uit en zet het op!"
             />
 
-            <ColumnsSection columns={2} gap="gap-10" background="black" className="relative overflow-hidden flex">
+            <ColumnsSection columns={2} gap="gap-10" background="black" className="relative overflow-x-clip flex">
                 {/* Saxofoon met parallax: iets trager dan de inhoud, lichte rotatie */}
-                <ParallaxScene aria-hidden="true" className="pointer-events-none absolute inset-0">
+                <ParallaxScene aria-hidden="true" className="pointer-events-none absolute inset-0 z-10">
                     <div data-speed="0.8" data-rotate="3" className="absolute -right-16 top-0 w-80">
                         <SaxophoneLine className="rotate-12 text-white/10" />
                     </div>
@@ -66,9 +68,9 @@ export function HomePage() {
 
             <Underline background="black" width="full" thickness="thin" className="pt-0 pb-0"></Underline>
 
-            <ColumnsSection columns={2} gap="gap-10" background="black" className="relative overflow-hidden">
+            <ColumnsSection columns={2} gap="gap-10" background="black" className="relative overflow-x-clip">
                 {/* Speelkaart met parallax: draait de andere kant op dan de saxofoon */}
-                <ParallaxScene aria-hidden="true" className="pointer-events-none absolute inset-0">
+                <ParallaxScene aria-hidden="true" className="pointer-events-none absolute inset-0 z-10">
                     <div data-speed="0.7" data-rotate="-3" className="absolute -left-0 -top-8 w-60">
                         <PlayingCardLine className="-rotate-12 text-white/10" />
                     </div>
@@ -84,6 +86,9 @@ export function HomePage() {
                         <TrackListItem label="Stack">React, Tailwind</TrackListItem>
                     </TrackList>
                 </Reveal>
+                <div className="">
+                    <NowSpinning id="alternamellooo" />
+                </div>
             </ColumnsSection>
 
             <Instrumentation />

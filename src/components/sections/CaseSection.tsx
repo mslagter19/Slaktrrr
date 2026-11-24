@@ -6,6 +6,7 @@ import type { CasePanelData } from "../ui/CasePanel"
 import { Reveal } from "../gsap/Reveal"
 import { SplitHeading } from "../gsap/SplitHeading"
 import { GroupFilter } from "../instrumentation/GroupFilter"
+import { Button } from "../ui/Button"
 
 import bijMartinus from "../../assets/images/cases/bij-martinus.webp"
 
@@ -17,6 +18,8 @@ type CaseSectionProps = {
     category?: string      // optioneel: alleen deze categorie tonen
     limit?: number         // optioneel: max aantal tegels
     filterable?: boolean   // optioneel: filterknoppen per categorie boven de plank (negeert limit)
+    moreTo?: string        // optioneel: knop onder de plank, bv. "/cases"
+    moreLabel?: string     // tekst van die knop
 }
 
 type CaseItem = CasePanelData
@@ -65,6 +68,8 @@ export function CaseSection({
     category,
     limit,
     filterable = false,
+    moreTo,
+    moreLabel = "Bekijk alle cases",
 }: CaseSectionProps) {
     const [active, setActive] = useState<CaseItem | null>(null)
     const [open, setOpen] = useState(false)
@@ -133,15 +138,16 @@ export function CaseSection({
                                         <div className="transition-transform duration-(--duration-standard) ease-(--ease-standard) group-hover:-translate-y-2 motion-reduce:transition-none">
                                             <RecordSleeveArt cover={item.cover} title={item.title} />
                                         </div>
-                                        {/* Contactschaduw */}
+                                        {/* Contactschaduw: valt net boven de plank, niet eroverheen.
+                                            Bij hover komt de plaat los en wordt de schaduw zachter */}
                                         <div
                                             aria-hidden
-                                            className="absolute inset-x-6 -bottom-1 h-3 rounded-[50%] bg-black/70 blur-md"
+                                            className="absolute inset-x-[20%] bottom-0 h-2 rounded-[50%] bg-black/60 blur-sm transition-opacity duration-(--duration-standard) ease-(--ease-standard) group-hover:opacity-40 motion-reduce:transition-none"
                                         />
                                     </div>
 
-                                    {/* Dunne plank */}
-                                    <div aria-hidden className="h-px bg-brand-600" />
+                                    {/* Dunne plank: relative z-10, zodat de schaduw van de hoes hem niet dooft */}
+                                    <div aria-hidden className="relative z-10 h-px bg-brand-600" />
 
                                     {/* Zwart bordje met de tekst */}
                                     <CardBody className="mt-4 flex-none items-center rounded-lg border border-white/10 bg-black p-4 text-center shadow-[0_18px_24px_-8px_rgba(0,0,0,0.9)] transition-colors group-hover:border-brand-600 motion-reduce:transition-none">
@@ -163,6 +169,13 @@ export function CaseSection({
                             </li>
                         ))}
                     </Reveal>
+                    {moreTo && (
+                        <Reveal className="mt-12 flex justify-center">
+                            <Button to={moreTo} size="lg" radius="lg" className="text-black">
+                                {moreLabel}
+                            </Button>
+                        </Reveal>
+                    )}
                 </div>
             </section>
 

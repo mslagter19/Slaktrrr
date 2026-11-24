@@ -14,7 +14,9 @@ type ParallaxSceneProps = ComponentProps<"div"> & {
  *
  * Het element staat precies op zijn natuurlijke plek wanneer het midden in beeld is.
  * Op smalle schermen is het effect de helft zo sterk.
- * Tip: geef de omliggende sectie overflow-clip, zodat niets buiten de sectie uitsteekt.
+ * Tip: geef de omliggende sectie overflow-x-clip (niet overflow-hidden): dan steekt het
+ * element boven/onder de sectie uit, maar ontstaat er geen horizontale scroll.
+ * Met z-10 op de scene valt het niet weg achter de achtergrond van de volgende sectie.
  */
 export function ParallaxScene({ as: Tag = "div", children, ...rest }: ParallaxSceneProps) {
     const ref = useRef<HTMLElement>(null)

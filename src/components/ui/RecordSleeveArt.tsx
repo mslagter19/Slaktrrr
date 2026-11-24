@@ -26,8 +26,8 @@ export function RecordSleeveArt({ cover, title, badge, className }: RecordSleeve
                 <Vinyl alt="" labelSrc={cover} trigger="hover" />
             </div>
 
-            {/* De hoes */}
-            <div className="relative z-10 aspect-square overflow-hidden rounded-sm shadow-xl ring-1 ring-black/40">
+            {/* De hoes. Schaduw alleen opzij en omhoog: naar onder zou hij over de plank vallen */}
+            <div className="relative z-10 aspect-square overflow-hidden rounded-sm shadow-[0_-6px_24px_-8px_rgba(0,0,0,0.7)] ring-1 ring-black/40">
                 <img
                     src={cover}
                     alt={`Cover van project ${title}`}

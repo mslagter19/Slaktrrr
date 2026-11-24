@@ -21,7 +21,7 @@ export function CasePanel({ item, onClose }: CasePanelProps) {
         <div className="flex min-h-full flex-col gap-6 p-6">
             <div className="flex items-start justify-between gap-4">
                 <h2 className="font-heading text-2xl font-semibold text-white">{title}</h2>
-                <Button variant="outline" size="sm" aria-label="Sluit case" onClick={onClose} className="text-white cursor-pointer hover:bg-black">
+                <Button variant="link" size="sm" aria-label="Sluit case" onClick={onClose} className="text-white cursor-pointer hover:text-brand-600">
                     <svg viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden>
                         <path d="M6 6l12 12M18 6L6 18" />
                     </svg>
