@@ -72,7 +72,7 @@ export function HeroSubSection({
                         {actions === undefined ? (
                         <div className="mt-7 flex flex-wrap gap-3">
                             <Button
-                                href="#werk"
+                                to="/cases"
                                 size="lg"
                                 className="rounded-xl text-black"
                                 leftIcon={

@@ -9,6 +9,36 @@ import { Badge } from "../components/ui/Badge";
 import { Reveal } from "../components/gsap/Reveal";
 import { SplitHeading } from "../components/gsap/SplitHeading";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
+import { NowSpinning } from "../components/ui/NowSpinning";
+import { PlayingCardLine } from "../components/ui/LineArt";
+import { ParallaxScene } from "../components/gsap/ParallaxScene";
+import { SetlistSection, type SetlistStep } from "../components/sections/SetlistSection";
+import { FeaturedReview } from "../components/ui/reviews/FeaturedReview";
+import { REVIEWS } from "../components/ui/reviews/reviews.data";
+
+// CONCEPT: wat er gebeurt nadat iemand het formulier verstuurt
+const nextSteps: SetlistStep[] = [
+    {
+        title: "Bericht binnen",
+        meta: "Binnen 2 werkdagen",
+        text: "Ik lees je bericht en stuur een persoonlijke reactie, geen automatisch antwoord.",
+    },
+    {
+        title: "Soundcheck",
+        meta: "± 30 minuten",
+        text: "Een kort gesprek over je doel, je publiek en de planning. Online of bij een kop koffie.",
+    },
+    {
+        title: "Voorstel",
+        meta: "± 1 week",
+        text: "Je krijgt een helder voorstel met aanpak, planning en prijs. Geen kleine lettertjes.",
+    },
+    {
+        title: "Eerste maat",
+        meta: "Aftellen",
+        text: "We spreken een startdatum af en ik zet de eerste noten neer. Vanaf dan zie je elke week voortgang.",
+    },
+]
 
 // Concept-teksten: pas aan naar je eigen situatie
 const faq = [
@@ -47,6 +77,8 @@ export function ContactPage() {
                 title="Contact"
                 description="Een project, een vraag of gewoon zin in een goed gesprek? Pak een kaartje voor de gastenlijst, dan neem ik snel contact met je op."
                 actions={null}
+                // Alleen vanaf md: op mobiel zou de playlist het formulier ver naar beneden duwen
+                aside={<NowSpinning id="alternamellooo" className="hidden md:block" />}
             />
 
             <Underline background="black" width="full" thickness="thin" />
@@ -61,6 +93,13 @@ export function ContactPage() {
                         Backstage info
                     </Badge>
                     <TrackList numbered={false}>
+                        {/* CONCEPT: vul de maand in waarop je weer ruimte hebt */}
+                        <TrackListItem label="Status">
+                            <span className="inline-flex items-center gap-2">
+                                <span aria-hidden="true" className="size-2 rounded-full bg-brand-600 motion-safe:animate-pulse" />
+                                Beschikbaar vanaf [maand]
+                            </span>
+                        </TrackListItem>
                         <TrackListItem label="E-mail">[e-mailadres]</TrackListItem>
                         <TrackListItem label="LinkedIn">
                             <GrooveLink href="https://www.linkedin.com/in/marc-slagter/" target="_blank" className="text-lg">
@@ -73,9 +112,25 @@ export function ContactPage() {
                 </Reveal>
             </ColumnsSection>
 
-            {/* Veelgestelde vragen */}
-            <ColumnsSection columns={1}>
-                <div className="mx-auto w-full max-w-3xl">
+            <FeaturedReview reviews={REVIEWS} moreTo="/reviews" />
+
+            <SetlistSection
+                id="na-het-versturen"
+                eyebrow="Na het versturen"
+                title="Wat er daarna gebeurt"
+                description="Geen zwart gat na de verzendknop. Zo ziet het vervolg eruit, stap voor stap."
+                steps={nextSteps}
+            />
+
+            {/* Veelgestelde vragen, met de speelkaart als parallax op de achtergrond */}
+            <ColumnsSection columns={1} className="relative overflow-x-clip">
+                <ParallaxScene aria-hidden="true" className="pointer-events-none absolute inset-0 z-10">
+                    <div data-speed="0.7" data-rotate="-3" className="absolute -left-8 top-8 w-60">
+                        <PlayingCardLine className="-rotate-12 text-white/10" />
+                    </div>
+                </ParallaxScene>
+
+                <div className="relative mx-auto w-full max-w-3xl">
                     <Badge variant="eyebrow" size="none" radius="none" className="text-brand-600">
                         <span aria-hidden="true" className="h-px w-8 bg-brand-600" />
                         Voor het optreden

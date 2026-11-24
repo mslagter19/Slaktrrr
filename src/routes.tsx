@@ -24,6 +24,6 @@ export const pageRoutes: PageRoute[] = [
     { path: "/contact", label: "Contact", group: "Start", element: <ContactPage /> },
     // Verborgen: niet in navItems, alleen bereikbaar via de flamingo in de hero
     { path: "/experiment", label: "Experiment", group: "Start", element: <ExperimentPage /> },
-    //CASES
-    { path: "/cases/:slug", label: "Bij Martinus", group: "Start", element: <BijMartinus /> },
+    // CASES: elke case een eigen route. Een onbekende slug valt zo door naar de 404 in App.tsx
+    { path: "/cases/bij-martinus", label: "Bij Martinus", group: "Start", element: <BijMartinus /> },
 ]

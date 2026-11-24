@@ -97,7 +97,14 @@ export function startYear(date: string) {
     return date.slice(0, 4)
 }
 
-const monthFormat = new Intl.DateTimeFormat("nl-NL", { month: "short", year: "numeric" })
+// Hele jaren sinds de eerste werkplek (opleidingen tellen niet mee)
+export function yearsActive(now = new Date()) {
+    const first = experiences.find((item) => item.type === "work")
+    if (!first) return 0
+    return Math.floor((now.getFullYear() * 12 + now.getMonth() - toMonths(first.start)) / 12)
+}
+
+const monthFormat =new Intl.DateTimeFormat("nl-NL", { month: "short", year: "numeric" })
 
 function toDate(date: string) {
     const [year, month] = date.split("-").map(Number)

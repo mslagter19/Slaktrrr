@@ -7,8 +7,7 @@ import { Reveal } from "../gsap/Reveal"
 import { SplitHeading } from "../gsap/SplitHeading"
 import { GroupFilter } from "../instrumentation/GroupFilter"
 import { Button } from "../ui/Button"
-
-import bijMartinus from "../../assets/images/cases/bij-martinus.webp"
+import { CASES } from "./cases.data"
 
 type CaseSectionProps = {
     title?: string
@@ -24,37 +23,6 @@ type CaseSectionProps = {
 
 type CaseItem = CasePanelData
 
-const defaultCases: CaseItem[] = [
-    {
-        slug: "bij-martinus",
-        title: "Bij Martinus",
-        cover: bijMartinus,
-        summary: "Korte samenvatting van het project. Wat was de opdracht en wat heb ik gebouwd?",
-        categories: ["Website", "Webshop"],
-    },
-    {
-        slug: "korving-houtbewerking",
-        title: "Korving houtbewerking",
-        cover: bijMartinus,
-        summary: "Korte samenvatting van het project. Wat was de opdracht en wat heb ik gebouwd?",
-        categories: ["Website"],
-    },
-    {
-        slug: "project-3",
-        title: "Project 3",
-        cover: bijMartinus,
-        summary: "Korte samenvatting van het project. Wat was de opdracht en wat heb ik gebouwd?",
-        categories: ["Webapp"],
-    },
-    {
-        slug: "project-4",
-        title: "Project 4",
-        cover: bijMartinus,
-        summary: "Korte samenvatting van het project. Wat was de opdracht en wat heb ik gebouwd?",
-        categories: ["Webshop"],
-    },
-]
-
 function overlap(a: CaseItem, b?: CaseItem) {
     if (!b) return 0
     return a.categories.filter((cat) => b.categories.includes(cat)).length
@@ -63,7 +31,7 @@ function overlap(a: CaseItem, b?: CaseItem) {
 export function CaseSection({
     title,
     description,
-    cases = defaultCases,
+    cases = CASES,
     excludeSlug,
     category,
     limit,

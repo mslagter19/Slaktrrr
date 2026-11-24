@@ -4,20 +4,20 @@ import { Underline } from "../components/ui/Underline";
 import { HeroSubSection } from "../components/sections/HeroSubSection";
 import { CaseSection } from "../components/sections/CaseSection";
 import { OutroSection } from "../components/sections/OutroSection";
+import { LevelsSection, type LevelItem } from "../components/sections/LevelsSection";
 import { WhiskeyGlassLine } from "../components/ui/LineArt";
 import { CardImage } from "../components/ui/Card";
 import { Badge } from "../components/ui/Badge";
-import { CountUp } from "../components/ui/CountUp";
-import { VuMeter } from "../components/ui/VuMeter";
 import { TrackList, TrackListItem } from "../components/ui/TrackList";
 import { Reveal } from "../components/gsap/Reveal";
 import { SplitHeading } from "../components/gsap/SplitHeading";
-import { useParams } from "react-router-dom";
 import { CaseSleeve } from "../components/ui/CaseSleeve";
 import bijMartinusImg from "../assets/images/cases/bij-martinus.webp";
 
+const SLUG = "bij-martinus"
+
 // De cijfers van het project, elk met een VU-meter (level 0–1 = uitslag van de naald)
-const levels = [
+const levels: LevelItem[] = [
     { to: 12, suffix: "+", level: 0.72, label: "Secties", caption: <>Eigen <span className="font-bold text-brand-600">CMS-secties</span> met bijbehorende editors</> },
     { to: 1500, suffix: "", level: 0.95, label: "Regels", caption: <><span className="font-bold text-brand-600">Regels</span> huisstijl voor vijf ruimtes</> },
 ]
@@ -30,8 +30,6 @@ const personnel = [
 ]
 
 export function BijMartinus() {
-    const { slug } = useParams<{ slug: string }>()
-
     usePageMeta({
         title: "BijMartinus",
         description: "Case BijMartinus: huisstijl, CMS-secties, navigatie en contactpagina voor versie 2 van het platform."
@@ -83,30 +81,7 @@ export function BijMartinus() {
             </ColumnsSection>
 
             {/* Levels: elk cijfer met een VU-meter die uitslaat zodra hij in beeld komt */}
-            <ColumnsSection columns={1} className="relative overflow-hidden">
-                <div className="flex flex-col items-center gap-12">
-                    <Badge variant="eyebrow" size="none" radius="none" className="justify-center text-brand-600">
-                        <span aria-hidden="true" className="h-px w-8 bg-brand-600" />
-                        Levels · BijMartinus v2
-                        <span aria-hidden="true" className="h-px w-8 bg-brand-600" />
-                    </Badge>
-
-                    <div className="grid w-full max-w-4xl gap-12 md:grid-cols-2">
-                        {levels.map((item) => (
-                            <figure key={item.label} className="flex flex-col items-center text-center">
-                                <VuMeter level={item.level} label={item.label} className="max-w-xs drop-shadow-2xl" />
-                                <CountUp
-                                    to={item.to}
-                                    suffix={item.suffix}
-                                    duration={1.6}
-                                    className="mt-6 font-heading text-5xl font-semibold text-brand-600 tabular-nums"
-                                />
-                                <figcaption className="mt-2 max-w-xs text-lg text-white/70">{item.caption}</figcaption>
-                            </figure>
-                        ))}
-                    </div>
-                </div>
-            </ColumnsSection>
+            <LevelsSection eyebrow="Levels · BijMartinus v2" items={levels} />
 
             {/* Tech stack als "personnel": de credits van de plaat */}
             <ColumnsSection columns={1}>
@@ -128,7 +103,7 @@ export function BijMartinus() {
                 </div>
             </ColumnsSection>
 
-            <CaseSection title="Meer cases" excludeSlug={slug} limit={4}>
+            <CaseSection title="Meer cases" excludeSlug={SLUG} limit={4}>
 
             </CaseSection>
 

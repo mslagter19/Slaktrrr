@@ -147,7 +147,7 @@ export function HeroFlamingo({ targetRef }: HeroFlamingoProps) {
                 <div
                     key={pass.id}
                     ref={flyerRef}
-                    className="absolute top-0 left-0 aspect-[2/1] w-24 -translate-y-full md:w-32"
+                    className="absolute top-0 left-0 aspect-[2/1] w-32 -translate-y-full md:w-44"
                 >
                     <Link
                         to="/experiment"
@@ -178,7 +178,7 @@ export function HeroFlamingo({ targetRef }: HeroFlamingoProps) {
                 <div
                     key={pass.id}
                     ref={standerRef}
-                    className="absolute top-0 left-0 w-10 -translate-x-1/2 -translate-y-[95%] md:w-14"
+                    className="absolute top-0 left-0 w-14 -translate-x-1/2 -translate-y-[95%] md:w-20"
                 >
                     <FlamingoEasterEgg state={{ caught: true }} className="pointer-events-auto block" flamingoClassName="w-full" />
                 </div>

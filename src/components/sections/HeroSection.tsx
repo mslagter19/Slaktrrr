@@ -37,10 +37,10 @@ export function HeroSection() {
                 className="absolute inset-0 -z-30 bg-[radial-gradient(60%_50%_at_80%_40%,color-mix(in_oklab,var(--color-brand-600)_16%,transparent),transparent_70%)]"
             />
 
-            {/* Laag 2: notenbalk, loopt achter de plaat door en vervaagt richting de tekst */}
+            {/* Laag 2: notenbalk (alleen vanaf md), loopt achter de plaat door en vervaagt richting de tekst */}
             <div
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-x-0 top-[22vh] -z-20 md:top-1/2 md:-translate-y-1/2"
+                className="pointer-events-none absolute inset-x-0 top-[22vh] -z-20 hidden md:block md:top-1/2 md:-translate-y-1/2"
             >
                 <svg
                     viewBox="0 0 1000 200"
@@ -104,7 +104,7 @@ export function HeroSection() {
 
                     <div className="mt-7 flex flex-wrap gap-3">
                         <Button
-                            href="#werk"
+                            to="/cases"
                             size="lg"
                             className="rounded-full text-black rounded-xl"
                             leftIcon={
@@ -116,7 +116,7 @@ export function HeroSection() {
                             Bekijk mijn werk
                         </Button>
                         <Button
-                            href="/"
+                            href="/cv/download"
                             download
                             variant="outline"
                             size="lg"
