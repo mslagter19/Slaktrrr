@@ -29,6 +29,15 @@
   --color-secondary-800: #5f1822;
   --color-secondary-900: #4a131b;
   --color-secondary-950: #290a0e;
+
+  /* ==========================================================
+     FLAMINGO — neonroze accent (alleen voor de flamingo-easter-egg)
+     bg-flamingo-500, text-flamingo-300, ...
+     ========================================================== */
+  --color-flamingo-300: #ff9cc6;
+  --color-flamingo-500: #ff5fa2;
+  --color-flamingo-700: #d63a7e;
+  --color-flamingo:     var(--color-flamingo-500);
  
   /* ==========================================================
      ZWART — van diepste noir tot lichte groove

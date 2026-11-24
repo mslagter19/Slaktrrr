@@ -1,7 +1,9 @@
+import { useRef } from "react"
 import { SplitHeading } from "../gsap/SplitHeading"
 import { Badge } from "../ui/Badge"
 import { Button } from "../ui/Button"
 import { Vinyl } from "../ui/Vinyl"
+import { HeroFlamingo } from "../experiment/HeroFlamingo"
 
 /*
  * De hero rekent met de bottom-navigatie via de CSS-variabele --nav-h.
@@ -21,6 +23,9 @@ function DownloadIcon() {
 }
 
 export function HeroSection() {
+    // De flamingo landt op het midden van deze plaat
+    const vinylRef = useRef<HTMLDivElement>(null)
+
     return (
         <section
             aria-labelledby="hero-title"
@@ -58,8 +63,12 @@ export function HeroSection() {
                 </svg>
             </div>
 
+            {/* Easter egg: af en toe vliegt er een flamingo over een lijn en landt hij op de plaat */}
+            <HeroFlamingo targetRef={vinylRef} />
+
             {/* Laag 3: plaat. Op mobiel half uit beeld en gedimd, op desktop rechts als anker */}
             <div
+                ref={vinylRef}
                 aria-hidden="true"
                 className="pointer-events-none absolute -top-[6vh] -right-[38vw] -z-10 w-[120vw] max-w-184 opacity-55 md:top-1/2 md:-right-[8vw] md:w-[40vw] md:max-w-none md:-translate-y-1/2 md:opacity-100"
             >

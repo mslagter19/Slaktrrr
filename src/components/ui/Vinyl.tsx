@@ -18,7 +18,7 @@ type VinylProps = Omit<ComponentProps<"svg">, "children"> & {
     labelText?: string // NIEUW: titel op het label (alleen zonder labelSrc), bv. "SLAKTRRR"
     labelSubText?: string // NIEUW: kleine regel eronder, bv. "33 RPM · SIDE A"
     duration?: number // seconden per omwenteling (33 toeren = ±1.8s)
-    trigger?: "always" | "hover" // altijd draaien (hero), of alleen bij hover/focus op de omliggende .group (cases)
+    trigger?: "always" | "hover" | "none" // altijd draaien (hero), alleen bij hover/focus op de omliggende .group (cases), of nooit zelf (spel)
 }
 
 export function Vinyl({
@@ -40,7 +40,8 @@ export function Vinyl({
     useEffect(() => {
         const svg = svgRef.current
         const spin = spinRef.current
-        if (!svg || !spin) return
+        // "none": de plaat draait niet zelf; een ouder (bv. het balansspel) draait hem
+        if (!svg || !spin || trigger === "none") return
 
         // Bij "prefers-reduced-motion: reduce" blijft de plaat stilstaan
         const mm = gsap.matchMedia()
